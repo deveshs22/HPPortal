@@ -247,7 +247,12 @@ table {
     content: "";
   }
   pre,
-  blockquote {
+  block,
+
+
+
+
+ote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
@@ -4025,7 +4030,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   z-index: 1000;
-  min-height: 50px;
+  min leight: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -4384,26 +4389,22 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  backgroun border-bottom-color: #fffr: #fff: #e7e7e7;
 }
 
 .navbar-default .navbar-brand {
-  color: #777777;
+  .caret {
+  border-top-color: #999999;
+  border-bottom-color: #999999;
 }
 
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
-  background-color: transparent;
+.navbar-inverse .navbar-nav > .open > a .caret,
+.navbar-inverse .navbar-nav > .open > a:hover .caret,
+.navbar-inverse .navb: #777777;
 }
 
-.navbar-default .navbar-text {
-  color: #777777;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: #777777;
+.navbar-default .navbar-nav > li >fff;
+   color: #777777;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
