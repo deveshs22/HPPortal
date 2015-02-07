@@ -22,7 +22,12 @@
 								DataTextField="Description" 
 								DataValueField="RoleId" 
 								UIHint="ForeignKey" runat="server" />
-						    <asp:DynamicControl Mode="Edit" DataField="ReportingId" runat="server" />
+						    <asp:DynamicControl Mode="Edit" 
+                                DataField="ReportingId" 
+                                DataTypeName="HPPortal.Data.Models.User" 
+								DataTextField="Name" 
+								DataValueField="UserId" 
+								UIHint="ForeignKey" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="Active" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="Mobile" runat="server" />
                     <div class="form-group">
@@ -35,5 +40,6 @@
             </EditItemTemplate>
         </asp:FormView>
     </div>
+
 </asp:Content>
 

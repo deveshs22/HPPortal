@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace HPPortal.Data.Models
 {
@@ -13,10 +14,14 @@ namespace HPPortal.Data.Models
         }
 
         public int UserId { get; set; }
+        [DisplayName("Email Address")]
         public string EmailId { get; set; }
+        [DisplayName("Password")]
         public string Pwd { get; set; }
         public string Name { get; set; }
+        [DisplayName("Role")]
         public int RoleId { get; set; }
+        [DisplayName("Reporting")]
         public Nullable<int> ReportingId { get; set; }
         public Nullable<bool> Active { get; set; }
         public string Mobile { get; set; }

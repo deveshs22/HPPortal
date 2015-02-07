@@ -11,11 +11,41 @@ namespace HPPortal.Web.Users
 {
     public partial class Insert : System.Web.UI.Page
     {
-		protected HPPortal.Data.Models.HPSiteDBContext _db = new HPPortal.Data.Models.HPSiteDBContext();
+        protected HPPortal.Data.Models.HPSiteDBContext _db = new HPPortal.Data.Models.HPSiteDBContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                var zones = _db.Zones.Include(z => z.Cities).ToList();
+                FillTreeView(zones);
+            }
+        }
 
+        private void FillTreeView(List<Zone> zones)
+        {
+            var count = 0;
+            foreach (var zone in zones)
+            {
+                TreeNode node = new TreeNode
+                {
+                    Value = zone.ZoneId.ToString(),
+                    Text = zone.Description
+                };
+
+                treeViewCity.Nodes.Add(node);
+
+                foreach (var city in zone.Cities)
+                {
+                    TreeNode child = new TreeNode
+                    {
+                        Value = city.CityId.ToString(),
+                        Text = city.Description
+                    };
+                    treeViewCity.Nodes[count].ChildNodes.Add(child);
+                }
+                count++;
+            }
         }
 
         // This is the Insert method to insert the entered User item
@@ -27,6 +57,9 @@ namespace HPPortal.Web.Users
                 var item = new HPPortal.Data.Models.User();
 
                 TryUpdateModel(item);
+                item.Active = true;
+
+                SaveCiyData(item);
 
                 if (ModelState.IsValid)
                 {
@@ -37,6 +70,27 @@ namespace HPPortal.Web.Users
                     Response.Redirect("Default");
                 }
             }
+        }
+
+        private void SaveCiyData(Data.Models.User item)
+        {
+            List<City> cities = new List<City>();
+            foreach (TreeNode node in treeViewCity.Nodes)
+            {
+                if (node.ChildNodes.Count > 0)
+                {
+                    foreach (TreeNode child in node.ChildNodes)
+                    {
+                        if (child.Checked)
+                        {
+                            City city = new City();
+                            city.CityId = Convert.ToInt32(child.Value);
+                            cities.Add(city);
+                        }
+                    }
+                }
+            }
+            item.Cities = cities;
         }
 
         protected void ItemCommand(object sender, FormViewCommandEventArgs e)
