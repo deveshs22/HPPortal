@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.Entity;
 using HPPortal.Data.Models;
 
-namespace HPPortal.Web.Outlets
+namespace HPPortal.Web.Partners
 {
     public partial class Insert : System.Web.UI.Page
     {
@@ -18,20 +18,20 @@ namespace HPPortal.Web.Outlets
 
         }
 
-        // This is the Insert method to insert the entered Outlet item
+        // This is the Insert method to insert the entered Partner item
         // USAGE: <asp:FormView InsertMethod="InsertItem">
         public void InsertItem()
         {
             using (_db)
             {
-                var item = new HPPortal.Data.Models.Outlet();
+                var item = new HPPortal.Data.Models.Partner();
 
                 TryUpdateModel(item);
 
                 if (ModelState.IsValid)
                 {
                     // Save changes
-                    _db.Outlets.Add(item);
+                    _db.Partners.Add(item);
                     _db.SaveChanges();
 
                     Response.Redirect("Default");

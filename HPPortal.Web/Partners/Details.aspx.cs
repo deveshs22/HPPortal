@@ -9,7 +9,7 @@ using System.Data.Entity;
 using Microsoft.AspNet.FriendlyUrls.ModelBinding;
 using HPPortal.Data.Models;
 
-namespace HPPortal.Web.Outlets
+namespace HPPortal.Web.Partners
 {
     public partial class Details : System.Web.UI.Page
     {
@@ -19,18 +19,18 @@ namespace HPPortal.Web.Outlets
         {
         }
 
-        // This is the Select methd to selects a single Outlet item with the id
+        // This is the Select methd to selects a single Partner item with the id
         // USAGE: <asp:FormView SelectMethod="GetItem">
-        public HPPortal.Data.Models.Outlet GetItem([FriendlyUrlSegmentsAttribute(0)]int? OutletId)
+        public HPPortal.Data.Models.Partner GetItem([FriendlyUrlSegmentsAttribute(0)]int? PartnerId)
         {
-            if (OutletId == null)
+            if (PartnerId == null)
             {
                 return null;
             }
 
             using (_db)
             {
-	            return _db.Outlets.Where(m => m.OutletId == OutletId).Include(m => m.City).Include(m => m.OutletCategory).FirstOrDefault();
+	            return _db.Partners.Where(m => m.PartnerId == PartnerId).Include(m => m.City).Include(m => m.PartnerCategory).FirstOrDefault();
             }
         }
 

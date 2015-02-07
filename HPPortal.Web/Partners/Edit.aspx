@@ -1,19 +1,19 @@
-﻿<%@ Page Title="OutletEdit" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Edit.aspx.cs" Inherits="HPPortal.Web.Outlets.Edit" %>
+﻿<%@ Page Title="PartnerEdit" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Edit.aspx.cs" Inherits="HPPortal.Web.Partners.Edit" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
 		<p>&nbsp;</p>
         <asp:FormView runat="server"
-            ItemType="HPPortal.Data.Models.Outlet" DefaultMode="Edit" DataKeyNames="OutletId"
+            ItemType="HPPortal.Data.Models.Partner" DefaultMode="Edit" DataKeyNames="PartnerId"
             UpdateMethod="UpdateItem" SelectMethod="GetItem"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
             <EmptyDataTemplate>
-                Cannot find the Outlet with OutletId <%: Request.QueryString["OutletId"] %>
+                Cannot find the Partner with PartnerId <%: Request.QueryString["PartnerId"] %>
             </EmptyDataTemplate>
             <EditItemTemplate>
                 <fieldset class="form-horizontal">
-                    <legend>Edit Outlet</legend>
+                    <legend>Edit Partner</legend>
 					<asp:ValidationSummary runat="server" CssClass="alert alert-danger"  />                 
-						    <asp:DynamicControl Mode="Edit" DataField="OutletName" runat="server" />
+						    <asp:DynamicControl Mode="Edit" DataField="PartnerName" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="ContactPerson" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="Email" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="Phone" runat="server" />
@@ -25,10 +25,10 @@
 						    <asp:DynamicControl Mode="Edit" DataField="MainCompetitors" runat="server" />
 						    <asp:DynamicControl Mode="Edit" DataField="StaffCount" runat="server" />
 							<asp:DynamicControl Mode="Edit" 
-								DataField="OutletCategoryId" 
-								DataTypeName="HPPortal.Data.Models.OutletCategory" 
+								DataField="PartnerCategoryId" 
+								DataTypeName="HPPortal.Data.Models.PartnerCategory" 
 								DataTextField="Description" 
-								DataValueField="OutletCategoryId" 
+								DataValueField="PartnerCategoryId" 
 								UIHint="ForeignKey" runat="server" />
 							<asp:DynamicControl Mode="Edit" 
 								DataField="CityId" 

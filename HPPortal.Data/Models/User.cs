@@ -7,7 +7,7 @@ namespace HPPortal.Data.Models
     {
         public User()
         {
-            this.Outlets = new List<Outlet>();
+            this.Partners = new List<Partner>();
             this.User1 = new List<User>();
             this.Cities = new List<City>();
         }
@@ -20,7 +20,7 @@ namespace HPPortal.Data.Models
         public Nullable<int> ReportingId { get; set; }
         public Nullable<bool> Active { get; set; }
         public string Mobile { get; set; }
-        public virtual ICollection<Outlet> Outlets { get; set; }
+        public virtual ICollection<Partner> Partners { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<User> User1 { get; set; }
         public virtual User User2 { get; set; }

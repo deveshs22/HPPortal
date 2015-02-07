@@ -8,9 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HPPortal.Web.Outlets {
-    public partial class Edit {
-        
+namespace HPPortal.Web.Partners {
+    public partial class Delete {
         /// <summary>
         /// form1 control.
         /// </summary>

@@ -3,20 +3,20 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace HPPortal.Data.Models.Mapping
 {
-    public class OutletCategoryMap : EntityTypeConfiguration<OutletCategory>
+    public class PartnerCategoryMap : EntityTypeConfiguration<PartnerCategory>
     {
-        public OutletCategoryMap()
+        public PartnerCategoryMap()
         {
             // Primary Key
-            this.HasKey(t => t.OutletCategoryId);
+            this.HasKey(t => t.PartnerCategoryId);
 
             // Properties
             this.Property(t => t.Description)
                 .HasMaxLength(50);
 
             // Table & Column Mappings
-            this.ToTable("OutletCategory");
-            this.Property(t => t.OutletCategoryId).HasColumnName("OutletCategoryId");
+            this.ToTable("PartnerCategory");
+            this.Property(t => t.PartnerCategoryId).HasColumnName("PartnerCategoryId");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.Active).HasColumnName("Active");
         }

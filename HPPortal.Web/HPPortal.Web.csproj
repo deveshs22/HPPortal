@@ -185,11 +185,11 @@
     <Content Include="DynamicData\FieldTemplates\Url.ascx" />
     <Content Include="DynamicData\FieldTemplates\Url_Edit.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Outlets\Default.aspx" />
-    <Content Include="Outlets\Delete.aspx" />
-    <Content Include="Outlets\Details.aspx" />
-    <Content Include="Outlets\Edit.aspx" />
-    <Content Include="Outlets\Insert.aspx" />
+    <Content Include="Partners\Default.aspx" />
+    <Content Include="Partners\Delete.aspx" />
+    <Content Include="Partners\Details.aspx" />
+    <Content Include="Partners\Edit.aspx" />
+    <Content Include="Partners\Insert.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -508,39 +508,39 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Outlets\Default.aspx.cs">
+    <Compile Include="Partners\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Outlets\Default.aspx.designer.cs">
+    <Compile Include="Partners\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Outlets\Delete.aspx.cs">
+    <Compile Include="Partners\Delete.aspx.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Outlets\Delete.aspx.designer.cs">
+    <Compile Include="Partners\Delete.aspx.designer.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Outlets\Details.aspx.cs">
+    <Compile Include="Partners\Details.aspx.cs">
       <DependentUpon>Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Outlets\Details.aspx.designer.cs">
+    <Compile Include="Partners\Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Outlets\Edit.aspx.cs">
+    <Compile Include="Partners\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Outlets\Edit.aspx.designer.cs">
+    <Compile Include="Partners\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Outlets\Insert.aspx.cs">
+    <Compile Include="Partners\Insert.aspx.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Outlets\Insert.aspx.designer.cs">
+    <Compile Include="Partners\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

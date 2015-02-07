@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.Entity;
 using HPPortal.Data.Models;
 
-namespace HPPortal.Web.Outlets
+namespace HPPortal.Web.Partners
 {
     public partial class Default : System.Web.UI.Page
     {
@@ -17,11 +17,11 @@ namespace HPPortal.Web.Outlets
         {
         }
 
-        // Model binding method to get List of Outlet entries
+        // Model binding method to get List of Partner entries
         // USAGE: <asp:ListView SelectMethod="GetData">
-        public IQueryable<HPPortal.Data.Models.Outlet> GetData()
+        public IQueryable<HPPortal.Data.Models.Partner> GetData()
         {
-            return _db.Outlets.Include(m => m.City).Include(m => m.OutletCategory);
+            return _db.Partners.Include(m => m.City).Include(m => m.PartnerCategory);
         }
     }
 }

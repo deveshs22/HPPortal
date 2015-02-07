@@ -1,16 +1,16 @@
-﻿<%@ Page Title="OutletInsert" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Insert.aspx.cs" Inherits="HPPortal.Web.Outlets.Insert" %>
+﻿<%@ Page Title="PartnerInsert" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Insert.aspx.cs" Inherits="HPPortal.Web.Partners.Insert" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
 		<p>&nbsp;</p>
         <asp:FormView runat="server"
-            ItemType="HPPortal.Data.Models.Outlet" DefaultMode="Insert"
+            ItemType="HPPortal.Data.Models.Partner" DefaultMode="Insert"
             InsertItemPosition="FirstItem" InsertMethod="InsertItem"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
             <InsertItemTemplate>
                 <fieldset class="form-horizontal">
-				<legend>Insert Outlet</legend>
+				<legend>Insert Partner</legend>
 		        <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
-						    <asp:DynamicControl Mode="Insert" DataField="OutletName" runat="server" />
+						    <asp:DynamicControl Mode="Insert" DataField="PartnerName" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="ContactPerson" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Email" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Phone" runat="server" />
@@ -22,10 +22,10 @@
 						    <asp:DynamicControl Mode="Insert" DataField="MainCompetitors" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="StaffCount" runat="server" />
 							<asp:DynamicControl Mode="Insert" 
-								DataField="OutletCategoryId" 
-								DataTypeName="HPPortal.Data.Models.OutletCategory" 
+								DataField="PartnerCategoryId" 
+								DataTypeName="HPPortal.Data.Models.PartnerCategory" 
 								DataTextField="Description" 
-								DataValueField="OutletCategoryId" 
+								DataValueField="PartnerCategoryId" 
 								UIHint="ForeignKey" runat="server" />
 							<asp:DynamicControl Mode="Insert" 
 								DataField="CityId" 
@@ -33,7 +33,14 @@
 								DataTextField="Description" 
 								DataValueField="CityId" 
 								UIHint="ForeignKey" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="AssociatedUserId" runat="server" />
+						    
+                    <asp:DynamicControl Mode="Insert" 
+								DataField="AssociatedUserId" 
+								DataTypeName="HPPortal.Data.Models.User" 
+								DataTextField="Name" 
+								DataValueField="UserId" 
+								UIHint="ForeignKey" runat="server" />
+
 						    <asp:DynamicControl Mode="Insert" DataField="FrequencyOfEngagement" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="RelationshipStatus" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="Active" runat="server" />

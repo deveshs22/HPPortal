@@ -3,15 +3,15 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace HPPortal.Data.Models.Mapping
 {
-    public class OutletMap : EntityTypeConfiguration<Outlet>
+    public class PartnerMap : EntityTypeConfiguration<Partner>
     {
-        public OutletMap()
+        public PartnerMap()
         {
             // Primary Key
-            this.HasKey(t => t.OutletId);
+            this.HasKey(t => t.PartnerId);
 
             // Properties
-            this.Property(t => t.OutletName)
+            this.Property(t => t.PartnerName)
                 .IsRequired()
                 .HasMaxLength(50);
 
@@ -52,9 +52,9 @@ namespace HPPortal.Data.Models.Mapping
                 .HasMaxLength(50);
 
             // Table & Column Mappings
-            this.ToTable("Outlet");
-            this.Property(t => t.OutletId).HasColumnName("OutletId");
-            this.Property(t => t.OutletName).HasColumnName("OutletName");
+            this.ToTable("Partner");
+            this.Property(t => t.PartnerId).HasColumnName("PartnerId");
+            this.Property(t => t.PartnerName).HasColumnName("PartnerName");
             this.Property(t => t.ContactPerson).HasColumnName("ContactPerson");
             this.Property(t => t.Email).HasColumnName("Email");
             this.Property(t => t.Phone).HasColumnName("Phone");
@@ -65,7 +65,7 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.CurrentBrands).HasColumnName("CurrentBrands");
             this.Property(t => t.MainCompetitors).HasColumnName("MainCompetitors");
             this.Property(t => t.StaffCount).HasColumnName("StaffCount");
-            this.Property(t => t.OutletCategoryId).HasColumnName("OutletCategoryId");
+            this.Property(t => t.PartnerCategoryId).HasColumnName("PartnerCategoryId");
             this.Property(t => t.CityId).HasColumnName("CityId");
             this.Property(t => t.AssociatedUserId).HasColumnName("AssociatedUserId");
             this.Property(t => t.FrequencyOfEngagement).HasColumnName("FrequencyOfEngagement");
@@ -74,13 +74,13 @@ namespace HPPortal.Data.Models.Mapping
 
             // Relationships
             this.HasRequired(t => t.City)
-                .WithMany(t => t.Outlets)
+                .WithMany(t => t.Partners)
                 .HasForeignKey(d => d.CityId);
-            this.HasRequired(t => t.OutletCategory)
-                .WithMany(t => t.Outlets)
-                .HasForeignKey(d => d.OutletCategoryId);
+            this.HasRequired(t => t.PartnerCategory)
+                .WithMany(t => t.Partners)
+                .HasForeignKey(d => d.PartnerCategoryId);
             this.HasRequired(t => t.User)
-                .WithMany(t => t.Outlets)
+                .WithMany(t => t.Partners)
                 .HasForeignKey(d => d.AssociatedUserId);
 
         }

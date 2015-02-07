@@ -1,32 +1,32 @@
-﻿<%@ Page Title="OutletDelete" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Delete.aspx.cs" Inherits="HPPortal.Web.Outlets.Delete" %>
+﻿<%@ Page Title="Partner Details" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Details.aspx.cs" Inherits="HPPortal.Web.Partners.Details" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
 		<p>&nbsp;</p>
-        <h3>Are you sure want to delete this Outlet?</h3>
+      
         <asp:FormView runat="server"
-            ItemType="HPPortal.Data.Models.Outlet" DataKeyNames="OutletId"
-            DeleteMethod="DeleteItem" SelectMethod="GetItem"
+            ItemType="HPPortal.Data.Models.Partner" DataKeyNames="PartnerId"
+            SelectMethod="GetItem"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
             <EmptyDataTemplate>
-                Cannot find the Outlet with OutletId <%: Request.QueryString["OutletId"] %>
+                Cannot find the Partner with PartnerId <%: Request.QueryString["PartnerId"] %>
             </EmptyDataTemplate>
             <ItemTemplate>
                 <fieldset class="form-horizontal">
-                    <legend>Delete Outlet</legend>
+                    <legend>Partner Details</legend>
 							<div class="row">
 								<div class="col-sm-2 text-right">
-									<strong>OutletId</strong>
+									<strong>PartnerId</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="OutletId" ID="OutletId" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="PartnerId" ID="PartnerId" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
-									<strong>OutletName</strong>
+									<strong>PartnerName</strong>
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="OutletName" ID="OutletName" Mode="ReadOnly" />
+									<asp:DynamicControl runat="server" DataField="PartnerName" ID="PartnerName" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
@@ -111,10 +111,10 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-2 text-right">
-									<strong>OutletCategoryId</strong>
+									<strong>PartnerCategoryId</strong>
 								</div>
 								<div class="col-sm-4">
-									<%#: Item.OutletCategory != null ? Item.OutletCategory.Description : "" %>
+									<%#: Item.PartnerCategory != null ? Item.PartnerCategory.Description : "" %>
 								</div>
 							</div>
 							<div class="row">
@@ -162,8 +162,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" CssClass="btn btn-danger" />
-							<asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" CssClass="btn btn-default" />
+							<asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Back" CssClass="btn btn-default" />
 						</div>
 					</div>
                 </fieldset>

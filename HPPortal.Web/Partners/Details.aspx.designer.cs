@@ -8,8 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HPPortal.Web.Outlets {
-    public partial class Default {
+namespace HPPortal.Web.Partners {
+    public partial class Details {
         /// <summary>
         /// form1 control.
         /// </summary>

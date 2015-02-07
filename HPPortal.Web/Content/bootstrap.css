@@ -52,7 +52,7 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: sans-serif;
+  font-family: arial, sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -247,12 +247,7 @@ table {
     content: "";
   }
   pre,
-  block,
-
-
-
-
-ote {
+  blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
@@ -2096,7 +2091,7 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
+  background-color: #0096D6;
   border-color: #357ebd;
 }
 
@@ -4030,9 +4025,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   z-index: 1000;
-  min leight: 50px;
+  min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  font-weight: bold;
 }
 
 .navbar:before,
@@ -4198,7 +4194,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
+  padding: 5px 15px;
   font-size: 18px;
   line-height: 20px;
 }
@@ -4389,22 +4385,26 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {
-  backgroun border-bottom-color: #fffr: #fff: #e7e7e7;
+  background-color: #0096D6;
+  border-color: #0096D6;
 }
 
 .navbar-default .navbar-brand {
-  .caret {
-  border-top-color: #999999;
-  border-bottom-color: #999999;
+  color: #ffffff;
 }
 
-.navbar-inverse .navbar-nav > .open > a .caret,
-.navbar-inverse .navbar-nav > .open > a:hover .caret,
-.navbar-inverse .navb: #777777;
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
 }
 
-.navbar-default .navbar-nav > li >fff;
-   color: #777777;
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
