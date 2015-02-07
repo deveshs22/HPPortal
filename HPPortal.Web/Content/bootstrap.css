@@ -50,9 +50,36 @@ audio:not([controls]) {
 [hidden] {
   display: none;
 }
+@font-face {
+    font-family: 'HPSimplified_Bd';
+    src: url('HPSimplified/HPSimplified_Bd.eot') format('embedded-opentype'); /* IE9 Compat Modes */
+    src: url('HPSimplified/HPSimplified_Bd.eot.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+
+     url('HPSimplified/HPSimplified_Bd.ttf') format('truetype'), /* Safari, Android, iOS */
+     url('HPSimplified/HPSimplified_Bd-webfont.svg#levenim') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'HPSimplified_Rg';
+    src: url('HPSimplified/HPSimplified_Rg.eot') format('embedded-opentype'); /* IE9 Compat Modes */
+    src: url('HPSimplified/HPSimplified_Rg.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+
+     url('HPSimplified/HPSimplified_Rg.ttf') format('truetype'), /* Safari, Android, iOS */
+     url('HPSimplified/HPSimplified_Rg-webfont.svg#levenim') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'HPSimplified_Lt';
+    src: url('HPSimplified/HPSimplified_Lt.eot') format('embedded-opentype'); /* IE9 Compat Modes */
+    src: url('HPSimplified/HPSimplified_Lt.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+
+     url('HPSimplified/HPSimplified_Lt.ttf') format('truetype'), /* Safari, Android, iOS */
+     url('HPSimplified/HPSimplified_Lt-webfont.svg#levenim') format('svg'); /* Legacy iOS */
+}
+
 
 html {
-  font-family: arial, sans-serif;
+  font-family: HPSimplified_Rg, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -103,7 +130,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, serif;
+  font-family: HPSimplified_Rg, monospace, serif;
   font-size: 1em;
 }
 
@@ -311,7 +338,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: HPSimplified_Rg, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -473,7 +500,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: HPSimplified_Bd, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
 }
@@ -4025,10 +4052,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   z-index: 1000;
-  min-height: 50px;
+  min-height: 55px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  font-weight: bold;
+  font-family: HPSimplified_Bd;
+  font-size: 16px;
 }
 
 .navbar:before,
@@ -4195,8 +4223,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   padding: 5px 15px;
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 20px;
+
 }
 
 .navbar-brand:hover,
@@ -4292,6 +4320,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
   .navbar-right {
     float: right !important;
+    font-family: HPSimplified_Rg;
+    font-size: 15px;
   }
 }
 

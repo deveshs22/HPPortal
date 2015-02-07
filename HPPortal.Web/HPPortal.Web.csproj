@@ -164,7 +164,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\hp.png" />
+    <Content Include="Content\images\hp.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="DynamicData\FieldTemplates\Boolean.ascx" />
     <Content Include="DynamicData\FieldTemplates\Boolean_Edit.ascx" />
@@ -195,6 +195,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <Content Include="Content\HPSimplified\HPSimplified_Bd.ttf" />
+    <Content Include="Content\HPSimplified\HPSimplified_BdIt.ttf" />
+    <Content Include="Content\HPSimplified\HPSimplified_It.ttf" />
+    <Content Include="Content\HPSimplified\HPSimplified_Lt.ttf" />
+    <Content Include="Content\HPSimplified\HPSimplified_LtIt.ttf" />
+    <Content Include="Content\HPSimplified\HPSimplified_Rg.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
