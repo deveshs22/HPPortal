@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HPPortal.Data.Models
 {
+    /// <summary>
+    /// City
+    /// </summary>
     public partial class City
     {
         public City()
