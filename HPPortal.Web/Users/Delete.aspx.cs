@@ -25,11 +25,16 @@ namespace HPPortal.Web.Users
         {
             using (_db)
             {
-                var item = _db.Users.Find(UserId);
+                var item = _db.Users.Include(u=>u.Cities).FirstOrDefault(u=>u.UserId == UserId);
 
                 if (item != null)
                 {
-                    _db.Users.Remove(item);
+                    var cities = item.Cities.ToList();
+                    foreach (var city in cities)
+                        item.Cities.Remove(city);
+
+                    item.Active = false;
+                    _db.Entry(item).State = EntityState.Modified;
                     _db.SaveChanges();
                 }
             }

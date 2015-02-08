@@ -15,7 +15,21 @@ namespace HPPortal.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                FormsAuthentication.SignOut();
+                Session.Abandon();
 
+                // clear authentication cookie
+                HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+                cookie1.Expires = DateTime.Now.AddYears(-1);
+                Response.Cookies.Add(cookie1);
+
+                // clear session cookie (not necessary for your current problem but i would recommend you do it anyway)
+                HttpCookie cookie2 = new HttpCookie("ASP.NET_SessionId", "");
+                cookie2.Expires = DateTime.Now.AddYears(-1);
+                Response.Cookies.Add(cookie2);
+            }
         }
 
         protected void LogIn(object sender, EventArgs e)
@@ -33,9 +47,9 @@ namespace HPPortal.Web
                     var authTicket =
                        new FormsAuthenticationTicket(
                             1,                                   // version
-                            email,                               // get email
+                            user.UserId.ToString(),                               // get email
                             DateTime.Now,                        // issue time is now
-                            DateTime.Now.AddMinutes(30),         // expires in 10 minutes
+                            DateTime.Now.AddMinutes(15),         // expires in 10 minutes
                             RememberMe.Checked,     // cookie is not persistent
                             user.Role.Description   // role assignment is stored in userData
                             );
@@ -43,8 +57,7 @@ namespace HPPortal.Web
                     HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName,
                                                                 FormsAuthentication.Encrypt(authTicket));
                     Response.Cookies.Add(authCookie);
-
-
+                    
                     var returnUrl = Request.QueryString["ReturnUrl"];
 
                     // the login is successful

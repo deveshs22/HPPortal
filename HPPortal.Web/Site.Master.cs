@@ -49,8 +49,23 @@ namespace HPPortal.Web
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
-            //if (Response.Cookies.K == null)
-            //    Response.Redirect("Logon.aspx");
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                Response.Redirect("Logon.aspx");
+            else if(!IsPostBack)
+            {
+                var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                string userId = ticket.Name;
+                if (!string.IsNullOrEmpty(userId))
+                { 
+                    using(var db = new HPPortal.Data.Models.HPSiteDBContext())
+                    {
+                        var user = db.Users.Find(Convert.ToInt32(userId));
+                        lblName.Text = user.Name;
+                    }
+                }
+
+            }
 
             if (!IsPostBack)
             {

@@ -18,7 +18,8 @@ namespace HPPortal.Web
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-        }
+        }    
+        
 
         protected void FormsAuthentication_OnAuthenticate(Object sender, FormsAuthenticationEventArgs e)
         {
@@ -47,11 +48,11 @@ namespace HPPortal.Web
             }
         }
 
-        void Application_BeginRequest(object sender, EventArgs e)
-        {
-            if (Request.Cookies[FormsAuthentication.FormsCookieName] == null && !Request.Url.AbsoluteUri.Contains("Logon"))
-                Response.Redirect("Logon.aspx");
+        //void Application_BeginRequest(object sender, EventArgs e)
+        //{
+        //    if (Request.Cookies[FormsAuthentication.FormsCookieName] == null && !Request.Url.AbsoluteUri.Contains("Logon"))
+        //        Response.Redirect("Logon.aspx");
                  
-        }
+        //}
     }
 }
