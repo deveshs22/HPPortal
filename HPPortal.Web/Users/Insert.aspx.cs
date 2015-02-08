@@ -40,8 +40,9 @@ namespace HPPortal.Web.Users
                     TreeNode child = new TreeNode
                     {
                         Value = city.CityId.ToString(),
-                        Text = city.Description
+                        Text = city.Description                   
                     };
+
                     treeViewCity.Nodes[count].ChildNodes.Add(child);
                 }
                 count++;
@@ -83,9 +84,11 @@ namespace HPPortal.Web.Users
                     {
                         if (child.Checked)
                         {
-                            City city = new City();
-                            city.CityId = Convert.ToInt32(child.Value);
-                            cities.Add(city);
+                            var id = Convert.ToInt32(child.Value);
+                            var city = _db.Cities.FirstOrDefault(c => c.CityId == id);
+                            
+                            if (city != null)
+                                cities.Add(city);
                         }
                     }
                 }

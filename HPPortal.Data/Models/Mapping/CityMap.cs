@@ -27,6 +27,16 @@ namespace HPPortal.Data.Models.Mapping
                 .WithMany(t => t.Cities)
                 .HasForeignKey(d => d.ZoneId);
 
+            // Many to many relationship with User
+            this.HasMany(t => t.Users)
+                .WithMany(t => t.Cities)
+                .Map(m =>
+                {
+                    m.ToTable("UserCity");
+                    m.MapLeftKey("CityId");
+                    m.MapRightKey("UserId");
+                });
+
         }
     }
 }
