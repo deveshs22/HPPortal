@@ -25,6 +25,8 @@ namespace HPPortal.Web.Users
         private void FillTreeView(List<Zone> zones)
         {
             var count = 0;
+            var treeViewCity = (TreeView)frmUserInsert.FindControl("treeViewCity");
+
             foreach (var zone in zones)
             {
                 TreeNode node = new TreeNode
@@ -75,6 +77,7 @@ namespace HPPortal.Web.Users
 
         private void SaveCiyData(Data.Models.User item)
         {
+            var treeViewCity = (TreeView)frmUserInsert.FindControl("treeViewCity");
             List<City> cities = new List<City>();
             foreach (TreeNode node in treeViewCity.Nodes)
             {
