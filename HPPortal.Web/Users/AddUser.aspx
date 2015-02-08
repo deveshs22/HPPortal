@@ -2,71 +2,86 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div class="row">
-        <h2>Insert User</h2>
+
         <div>
             <p>&nbsp;</p>
             <fieldset class="form-horizontal">
-                <div class="form-group">
-                    <span class="col-sm-2 control-label">Email Address</span>
-                    <div class="col-sm-3">
-                        <asp:TextBox ID="txtEmail" CssClass="form-control DDTextBox" ValidateRequestMode="Enabled" runat="server" />
-                        <asp:RequiredFieldValidator ID="emailReq" runat="server" CssClass="validation" ErrorMessage="Required" ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2"
-                            runat="server" ErrorMessage="Please Enter Valid Email ID"
-                            ControlToValidate="txtEmail"
-                            CssClass="validation"
-                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
-                        </asp:RegularExpressionValidator>
-                    </div>
-                </div>
+                <legend>Insert User</legend>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Email Address</span>
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtEmail" CssClass="form-control DDTextBox" ValidateRequestMode="Enabled" runat="server" TextMode="Email" />
+                                <asp:RequiredFieldValidator ID="emailReq" runat="server" CssClass="validation" ErrorMessage="Required" ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2"
+                                    runat="server" ErrorMessage="Please Enter Valid Email ID"
+                                    ControlToValidate="txtEmail"
+                                    CssClass="validation"
+                                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                                </asp:RegularExpressionValidator>
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <span class="col-sm-2 control-label">Password</span>
-                    <div class="col-sm-3">
-                        <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control DDTextBox" ValidateRequestMode="Enabled" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="validation" runat="server" ErrorMessage="Required" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <span class="col-sm-2 control-label">Name</span>
-                    <div class="col-sm-3">
-                        <asp:TextBox ID="txtName" CssClass="form-control DDTextBox" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" CssClass="validation" runat="server" ErrorMessage="Required" ControlToValidate="txtName"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <span class="col-sm-2 control-label">Mobile</span>
-                    <div class="col-sm-3">
-                        <asp:TextBox ID="txtPhone" CssClass="form-control DDTextBox" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" CssClass="validation" runat="server" ErrorMessage="Required" ControlToValidate="txtPhone"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
-                            ControlToValidate="txtPhone"
-                            ValidationExpression="\d{10}"
-                            ErrorMessage="Mobile number must be 10 numeric digits"
-                            EnableClientScript="False"
-                            CssClass="validation"
-                            runat="server" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <span class="col-sm-2 control-label">Roles</span>
-                    <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlRoles" CssClass="form-control" runat="server"></asp:DropDownList>
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Password</span>
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control DDTextBox" ValidateRequestMode="Enabled" runat="server" />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="validation" runat="server" ErrorMessage="Required" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Name</span>
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtName" CssClass="form-control DDTextBox" runat="server" />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" CssClass="validation" runat="server" ErrorMessage="Required" ControlToValidate="txtName"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Mobile</span>
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtPhone" CssClass="form-control DDTextBox" runat="server" />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" CssClass="validation" runat="server" ErrorMessage="Required" ControlToValidate="txtPhone"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                                    ControlToValidate="txtPhone"
+                                    ValidationExpression="\d{10}"
+                                    ErrorMessage="Mobile number must be 10 numeric digits"
+                                    EnableClientScript="False"
+                                    CssClass="validation"
+                                    runat="server" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Roles</span>
+                            <div class="col-md-7">
+                                <asp:DropDownList ID="ddlRoles" CssClass="form-control maxWidth" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="validation" ErrorMessage="Required" ControlToValidate="ddlRoles" InitialValue="0"></asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Reporting</span>
+                            <div class="col-md-7">
+                                <asp:DropDownList ID="ddlReporting" CssClass="form-control maxWidth" OnSelectedIndexChanged="ddlReporting_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" CssClass="validation" ErrorMessage="Required" ControlToValidate="ddlReporting" InitialValue="0"></asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>                                  
 
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <span class="col-sm-2 control-label">Reporting</span>
-                    <div class="col-sm-3">
-                        <asp:DropDownList ID="ddlReporting" CssClass="form-control" OnSelectedIndexChanged="ddlReporting_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h3>Select City</h3>
-                    <div class="col-sm-3">
-                        <asp:TreeView ID="treeViewCity" ShowCheckBoxes="All" runat="server">
-                        </asp:TreeView>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <h4>Select City</h4>
+                            <div>
+                                <p><asp:Label ID="lblNoReporting" Text="Please select Reporting Person to get City list" style="color:gray;" runat="server"></asp:Label></p>
+                                <asp:TreeView ID="treeViewCity" ShowCheckBoxes="All" runat="server">
+                                </asp:TreeView>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,10 +91,8 @@
                     </div>
                 </div>
             </fieldset>
-
-        </div>
-
-
+     </div>
+        
     </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">

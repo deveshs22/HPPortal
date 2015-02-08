@@ -49,6 +49,9 @@ namespace HPPortal.Web
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
+            //if (Response.Cookies.K == null)
+            //    Response.Redirect("Logon.aspx");
+
             if (!IsPostBack)
             {
                 // Set Anti-XSRF token

@@ -45,10 +45,12 @@ namespace HPPortal.Web.Users
         {
             using (_db)
             {
+                var item = new HPPortal.Data.Models.User();
+
                 if (IsNew)
                 {
-                    var item = new HPPortal.Data.Models.User();
-                    CommitToItem(item);
+                    
+                   item = CommitToItem(item);
 
                     if (ModelState.IsValid)
                     {
@@ -59,10 +61,12 @@ namespace HPPortal.Web.Users
                 }
                 else
                 {
-                    CommitToItem(User);
+                    item = CommitToItem(User);
 
                     if (ModelState.IsValid)
                     {
+                        _db.Entry(item).State = EntityState.Modified;
+
                         _db.SaveChanges();
                         Response.Redirect("../Default");
                     }
@@ -70,8 +74,11 @@ namespace HPPortal.Web.Users
             }
         }
 
-        private void CommitToItem(Data.Models.User item)
+        private User CommitToItem(Data.Models.User item)
         {
+            var user = _db.Users.FirstOrDefault(u => u.UserId == item.UserId);
+            if (user != null)
+                item = user;
             item.EmailId = txtEmail.Text.Trim();
             item.Name = txtName.Text.Trim();
             item.Pwd = txtPassword.Text.Trim();
@@ -81,7 +88,14 @@ namespace HPPortal.Web.Users
             item.User2 = _db.Users.Find(Convert.ToInt32(ddlReporting.SelectedValue));
             item.Mobile = txtPhone.Text.Trim();
             item.Active = true;
-            item.Cities = GetSelectedCities();
+
+            item.Cities.Clear();
+            
+            var cityList = GetSelectedCities();
+            foreach (var city in cityList)
+                item.Cities.Add(city);
+
+            return item;
         }
 
         protected void btnCancelClick(object sender, EventArgs e)
@@ -101,6 +115,7 @@ namespace HPPortal.Web.Users
             ddlRoles.DataBind();
             if (!IsNew)
                 ddlRoles.SelectedValue = User.RoleId.ToString();
+
         }
 
         private void FillReportingManagers()
@@ -118,7 +133,7 @@ namespace HPPortal.Web.Users
             ddlReporting.DataTextField = "Name";
             ddlReporting.DataValueField = "UserId";
             ddlReporting.DataBind();
-            var reportingId = roles.FirstOrDefault().UserId.ToString();
+            var reportingId = "0";
             if (!IsNew)
             {
                 ddlReporting.SelectedValue = User.ReportingId.ToString();
@@ -130,16 +145,25 @@ namespace HPPortal.Web.Users
 
         private void FillTreeView(string reportingId)
         {
-            var items = _db.Users.Include(u => u.Cities).ToList();
-            var item = items.FirstOrDefault(i => i.UserId == Convert.ToInt32(reportingId));
-            var zones = _db.Zones.Include(z => z.Cities).ToList();
             var zonesToBind = new List<Zone>();
-
-            foreach (var zone in zones)
+            var zones = _db.Zones.Include(z => z.Cities).ToList();
+            var items = _db.Users.Include(u => u.Cities).ToList();
+            if (!string.IsNullOrEmpty(reportingId))
             {
-                var data = zone.Cities.Where(t2 => item.Cities.Any(t1 => t1.CityId.Equals(t2.CityId)));
-                if (data != null && data.ToList().Count > 0)
-                    zonesToBind.Add(zone);
+                var item = items.FirstOrDefault(i => i.UserId == Convert.ToInt32(reportingId));
+                if (item != null)
+                {
+                    foreach (var zone in zones)
+                    {
+                        var data = zone.Cities.Where(t2 => item.Cities.Any(t1 => t1.CityId.Equals(t2.CityId)));
+                        if (data != null && data.ToList().Count > 0)
+                            zonesToBind.Add(zone);
+                    }
+                }
+            }
+            else
+            {
+                zonesToBind = zones;
             }
 
             BindDataInTreeView(zonesToBind);
