@@ -45,6 +45,8 @@ namespace HPPortal.Data.Models.Mapping
                 .WithMany(t => t.User1)
                 .HasForeignKey(d => d.ReportingId);
 
+            this.HasMany(t => t.Cities);
+
         }
     }
 }

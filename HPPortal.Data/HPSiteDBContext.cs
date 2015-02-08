@@ -32,7 +32,7 @@ namespace HPPortal.Data.Models
             modelBuilder.Configurations.Add(new PartnerCategoryMap());
             modelBuilder.Configurations.Add(new RoleMap());
             modelBuilder.Configurations.Add(new UserMap());
-            // modelBuilder.Configurations.Add(new UserCityMap());
+            //modelBuilder.Configurations.Add(new UserCityMap());
             // modelBuilder.Configurations.Add(new UserPartnerCategoryMap());
             modelBuilder.Configurations.Add(new ZoneMap());
         }

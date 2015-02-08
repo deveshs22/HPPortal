@@ -6,6 +6,8 @@ namespace HPPortal.Data.Models
     /// <summary>
     /// City
     /// </summary>
+    /// 
+    [Serializable]
     public partial class City
     {
         public City()

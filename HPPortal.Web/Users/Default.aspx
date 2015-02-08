@@ -9,7 +9,7 @@
         <div class="col-md-2">
             <br />
             <div class="btn btn-default">
-                <asp:HyperLink runat="server" NavigateUrl="Insert" Text="Create new" />
+                <asp:HyperLink runat="server" NavigateUrl="AddUser" Text="Create new" />
             </div>
         </div>
         <div>
@@ -70,6 +70,7 @@
                         </td>
                         <td>
                             <asp:DynamicControl runat="server" DataField="ReportingId" ID="ReportingId" Mode="ReadOnly" />
+
                         </td>
 
                         <td>
@@ -78,7 +79,7 @@
                         <td>
                             <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/Details", Item.UserId) %>' Text="Details" />
                             | 
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/Edit", Item.UserId) %>' Text="Edit" />
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/AddUser", Item.UserId) %>' Text="Edit" />
                             | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/Delete", Item.UserId) %>' Text="Delete" />
                         </td>

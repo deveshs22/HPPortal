@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 namespace HPPortal.Data.Models
 {
+    [Serializable]
     public partial class User
     {
         public User()

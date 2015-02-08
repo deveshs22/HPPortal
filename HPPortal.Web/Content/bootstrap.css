@@ -5114,6 +5114,11 @@ a.thumbnail:focus {
   border-color: #eed3d7;
 }
 
+.validation {
+  color: #b94a48; 
+  border-color: #eed3d7;
+}
+
 .alert-danger hr {
   border-top-color: #e6c1c7;
 }

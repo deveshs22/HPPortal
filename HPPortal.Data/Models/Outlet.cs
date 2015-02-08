@@ -4,11 +4,12 @@ using System.ComponentModel;
 
 namespace HPPortal.Data.Models
 {
+    [Serializable]
     public partial class Partner
     {
-        
+
         public int PartnerId { get; set; }
-        
+
         [DisplayName("Partner Name")]
         public string PartnerName { get; set; }
 

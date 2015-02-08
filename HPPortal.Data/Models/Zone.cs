@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace HPPortal.Data.Models
 {
+    [Serializable]
     public partial class Zone
     {
         public Zone()
