@@ -14,149 +14,137 @@
                 <fieldset class="form-horizontal">
                     <legend>Partner Details</legend>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>PartnerId</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="PartnerId" ID="PartnerId" Mode="ReadOnly" />
-								</div>
+								
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>PartnerName</strong>
+								<div class="col-sm-2 control-label">
+									Partner Name
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="PartnerName" ID="PartnerName" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>ContactPerson</strong>
+								<div class="col-sm-2 control-label">
+									Contact Person
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="ContactPerson" ID="ContactPerson" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Email</strong>
+								<div class="col-sm-2 control-label">
+									Email
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="Email" ID="Email" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Phone</strong>
+								<div class="col-sm-2 control-label">
+									Phone
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="Phone" ID="Phone" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Mobile</strong>
+								<div class="col-sm-2 control-label">
+									Mobile
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="Mobile" ID="Mobile" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Address</strong>
+								<div class="col-sm-2 control-label">
+									Address
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="Address" ID="Address" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>CustomerSegmentsAddressed</strong>
+								<div class="col-sm-2 control-label">
+									Customer Segments
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="CustomerSegmentsAddressed" ID="CustomerSegmentsAddressed" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>CoreBusiness</strong>
+								<div class="col-sm-2 control-label">
+									Core Business
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="CoreBusiness" ID="CoreBusiness" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>CurrentBrands</strong>
+								<div class="col-sm-2 control-label">
+									Current Brands
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="CurrentBrands" ID="CurrentBrands" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>MainCompetitors</strong>
+								<div class="col-sm-2 control-label">
+									Main Competitors
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="MainCompetitors" ID="MainCompetitors" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>StaffCount</strong>
+								<div class="col-sm-2 control-label">
+									Staff Count
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="StaffCount" ID="StaffCount" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>PartnerCategoryId</strong>
+								<div class="col-sm-2 control-label">
+									Category
 								</div>
 								<div class="col-sm-4">
 									<%#: Item.PartnerCategory != null ? Item.PartnerCategory.Description : "" %>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>CityId</strong>
+								<div class="col-sm-2 control-label">
+									City
 								</div>
 								<div class="col-sm-4">
 									<%#: Item.City != null ? Item.City.Description : "" %>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>AssociatedUserId</strong>
+								<div class="col-sm-2 control-label">
+									Account Manager
 								</div>
 								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="AssociatedUserId" ID="AssociatedUserId" Mode="ReadOnly" />
+									<%#: Item.User != null ? Item.User.Name : "" %>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>FrequencyOfEngagement</strong>
+								<div class="col-sm-2 control-label">
+									Frequency of Engagement
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="FrequencyOfEngagement" ID="FrequencyOfEngagement" Mode="ReadOnly" />
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>RelationshipStatus</strong>
+								<div class="col-sm-2 control-label">
+									Relationship Status
 								</div>
 								<div class="col-sm-4">
 									<asp:DynamicControl runat="server" DataField="RelationshipStatus" ID="RelationshipStatus" Mode="ReadOnly" />
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Active</strong>
-								</div>
-								<div class="col-sm-4">
-									<asp:DynamicControl runat="server" DataField="Active" ID="Active" Mode="ReadOnly" />
-								</div>
-							</div>
+							
                  	<div class="row">
 					  &nbsp;
 					</div>
