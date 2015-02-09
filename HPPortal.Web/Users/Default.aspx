@@ -71,15 +71,19 @@
                         <td>
                             <asp:DynamicControl runat="server" DataField="ReportingId" ID="ReportingId" Mode="ReadOnly" />
 
+                           <%-- <asp:DynamicControl Mode="ReadOnly"
+                                ID="ReportingId"
+                                DataField="ReportingId"
+                                DataTypeName="HPPortal.Data.Models.User"
+                                DataTextField="Name"
+                                DataValueField="UserId"
+                                UIHint="ForeignKey" runat="server" />--%>
                         </td>
-
                         <td>
                             <asp:DynamicControl runat="server" DataField="Mobile" ID="Mobile" Mode="ReadOnly" />
                         </td>
                         <td>
-                            <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/Details", Item.UserId) %>' Text="Details" />
-                            | 
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/AddUser", Item.UserId) %>' Text="Edit" />
+                            <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/AddUser", Item.UserId) %>' Text="Edit" />
                             | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Users/Delete", Item.UserId) %>' Text="Delete" />
                         </td>
