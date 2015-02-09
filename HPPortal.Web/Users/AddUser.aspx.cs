@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
 using HPPortal.Data.Models;
+using System.Reflection;
+using System.Collections;
 
 
 namespace HPPortal.Web.Users
@@ -49,8 +51,8 @@ namespace HPPortal.Web.Users
 
                 if (IsNew)
                 {
-                    
-                   item = CommitToItem(item);
+
+                    item = CommitToItem(item);
 
                     if (ModelState.IsValid)
                     {
@@ -81,7 +83,7 @@ namespace HPPortal.Web.Users
                 item = user;
             item.EmailId = txtEmail.Text.Trim();
             item.Name = txtName.Text.Trim();
-            item.Pwd = txtPassword.Text.Trim();
+            item.Pwd = Utility.Encrypt(txtPassword.Text, true);
             item.RoleId = Convert.ToInt32(ddlRoles.SelectedValue);
             item.Role = _db.Roles.Find(Convert.ToInt32(ddlRoles.SelectedValue));
             item.ReportingId = Convert.ToInt32(ddlReporting.SelectedValue);
@@ -90,7 +92,7 @@ namespace HPPortal.Web.Users
             item.Active = true;
 
             item.Cities.Clear();
-            
+
             var cityList = GetSelectedCities();
             foreach (var city in cityList)
                 item.Cities.Add(city);
@@ -110,6 +112,9 @@ namespace HPPortal.Web.Users
         {
             var roles = _db.Roles.ToList();
             ddlRoles.DataSource = roles;
+            if (IsNew)
+                AddItem(roles, typeof(Role), "RoleId", "Description", "< Please select >");
+
             ddlRoles.DataTextField = "Description";
             ddlRoles.DataValueField = "RoleId";
             ddlRoles.DataBind();
@@ -130,17 +135,44 @@ namespace HPPortal.Web.Users
             }
 
             ddlReporting.DataSource = roles;
+
+            if (IsNew)
+                AddItem(roles, typeof(User), "UserId", "Name", "< Please select >");
+
             ddlReporting.DataTextField = "Name";
             ddlReporting.DataValueField = "UserId";
             ddlReporting.DataBind();
+
             var reportingId = "0";
             if (!IsNew)
             {
                 ddlReporting.SelectedValue = User.ReportingId.ToString();
                 reportingId = User.ReportingId.ToString();
             }
-
             FillTreeView(reportingId);
+        }
+
+        private void AddItem(IList list, Type type, string valueMember,
+    string displayMember, string displayText)
+        {
+            //Creates an instance of the specified type 
+            //using the constructor that best matches the specified parameters.
+            Object obj = Activator.CreateInstance(type);
+
+            // Gets the Display Property Information
+            PropertyInfo displayProperty = type.GetProperty(displayMember);
+
+            // Sets the required text into the display property
+            displayProperty.SetValue(obj, displayText, null);
+
+            // Gets the Value Property Information
+            PropertyInfo valueProperty = type.GetProperty(valueMember);
+
+            // Sets the required value into the value property
+            valueProperty.SetValue(obj, -1, null);
+
+            // Insert the new object on the list
+            list.Insert(0, obj);
         }
 
         private void FillTreeView(string reportingId)
@@ -159,17 +191,20 @@ namespace HPPortal.Web.Users
                         if (data != null && data.ToList().Count > 0)
                             zonesToBind.Add(zone);
                     }
+
+                    BindDataInTreeView(zonesToBind, item.Cities);
                 }
             }
-            else
-            {
-                zonesToBind = zones;
-            }
+            //else
+            //{
+            //    zonesToBind = zones;
+            //    BindDataInTreeView(zonesToBind, null);
+            //}
 
-            BindDataInTreeView(zonesToBind);
+
         }
 
-        private void BindDataInTreeView(List<Zone> zonesToBind)
+        private void BindDataInTreeView(List<Zone> zonesToBind, ICollection<City> citiesToBind)
         {
             if (treeViewCity.Nodes.Count > 0)
                 treeViewCity.Nodes.Clear();
@@ -187,16 +222,19 @@ namespace HPPortal.Web.Users
 
                 foreach (var city in zone.Cities)
                 {
-                    TreeNode child = new TreeNode
+                    if (citiesToBind.Any(c => c.CityId == city.CityId))
                     {
-                        Value = city.CityId.ToString(),
-                        Text = city.Description
-                    };
-                    treeViewCity.Nodes[count].ChildNodes.Add(child);
+                        TreeNode child = new TreeNode
+                        {
+                            Value = city.CityId.ToString(),
+                            Text = city.Description
+                        };
+                        treeViewCity.Nodes[count].ChildNodes.Add(child);
 
-                    if (User != null && User.Cities.Any(c => c.CityId == city.CityId))
-                    {
-                        child.Checked = true;
+                        if (User != null && User.Cities.Any(c => c.CityId == city.CityId))
+                        {
+                            child.Checked = true;
+                        }
                     }
                 }
                 count++;

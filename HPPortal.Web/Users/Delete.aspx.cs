@@ -13,32 +13,40 @@ namespace HPPortal.Web.Users
 {
     public partial class Delete : System.Web.UI.Page
     {
-		protected HPPortal.Data.Models.HPSiteDBContext _db = new HPPortal.Data.Models.HPSiteDBContext();
+        protected HPPortal.Data.Models.HPSiteDBContext _db = new HPPortal.Data.Models.HPSiteDBContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+                lblDeleteFailed.Style.Add("display", "none");
         }
 
         // This is the Delete methd to delete the selected User item
         // USAGE: <asp:FormView DeleteMethod="DeleteItem">
         public void DeleteItem(int UserId)
         {
-            using (_db)
+            if (!_db.Users.Any(u => u.ReportingId == UserId))
             {
-                var item = _db.Users.Include(u=>u.Cities).FirstOrDefault(u=>u.UserId == UserId);
-
-                if (item != null)
+                using (_db)
                 {
-                    var cities = item.Cities.ToList();
-                    foreach (var city in cities)
-                        item.Cities.Remove(city);
+                    var item = _db.Users.Include(u => u.Cities).FirstOrDefault(u => u.UserId == UserId);
+                    if (item != null)
+                    {
+                        var cities = item.Cities.ToList();
+                        foreach (var city in cities)
+                            item.Cities.Remove(city);
 
-                    item.Active = false;
-                    _db.Entry(item).State = EntityState.Modified;
-                    _db.SaveChanges();
+                        item.Active = false;
+                        _db.Entry(item).State = EntityState.Modified;
+                        _db.SaveChanges();
+                    }
                 }
+                Response.Redirect("../Default");
             }
-            Response.Redirect("../Default");
+            else
+            {
+                lblDeleteFailed.Style.Add("display", "block");
+            }
         }
 
         // This is the Select methd to selects a single User item with the id
@@ -52,7 +60,7 @@ namespace HPPortal.Web.Users
 
             using (_db)
             {
-	            return _db.Users.Where(m => m.UserId == UserId).Include(m => m.Role).FirstOrDefault();
+                return _db.Users.Where(m => m.UserId == UserId).Include(m => m.Role).FirstOrDefault();
             }
         }
 
