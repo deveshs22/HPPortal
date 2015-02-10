@@ -8,7 +8,7 @@
      <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
@@ -36,30 +36,25 @@
          <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="navbar-brand" runat="server" href="~/">
-                        <img src="/Content/images/hp.gif" style="max-height:50px;"/>
-                        &nbsp; &nbsp;HP Joint Business Plan Portal Login
+                        <img src="/Content/images/hp.gif" style="max-height: 50px;" />
+                        &nbsp; &nbsp;HP Joint Business Plan Portal
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                      
                     </ul>
                     
                 </div>
             </div>
         </div>
         <div class="container body-content">
-            <br />
-    <h4>Login</h4>
 
     <div class="row">
+
         <div class="col-md-8">
+                    <br />
+                    <h4>Login</h4>
             <section id="loginForm">
                 <div class="form-horizontal">
                     <hr />
@@ -108,10 +103,20 @@
         </div>
 
         <div class="col-md-4">
-           
         </div>
         </div>
+            
             </div>
     </form>
+    
+    <div class="row col-md-offset-1 col-md-10">
+        <br />
+        <hr />
+                <div class="col-md-2"><img src="/Content/images/hp_desktop.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-md-2"><img src="/Content/images/hp_laptop.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-md-2"><img src="/Content/images/hp_printer.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-md-2"><img src="/Content/images/hp_toner.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-md-2"><img src="/Content/images/hp_desktop.jpg" style="height:120px; width:140px;"/></div>
+            </div>
 </body>
 </html>

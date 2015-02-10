@@ -30,7 +30,11 @@ namespace HPPortal.Web.Partners
 
             using (_db)
             {
-	            return _db.Partners.Where(m => m.PartnerId == PartnerId).Include(m => m.City).Include(m => m.PartnerCategory).FirstOrDefault();
+	            return _db.Partners.Where(m => m.PartnerId == PartnerId)
+                    .Include(m => m.City)
+                    .Include(m => m.PartnerCategory)
+                    .Include(m => m.User)
+                    .FirstOrDefault();
             }
         }
 

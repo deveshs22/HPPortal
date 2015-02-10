@@ -37,9 +37,9 @@ namespace HPPortal.Web
             if (IsValid)
             {
                 var email = Email.Text.Trim();
-                var user = _db.Users.FirstOrDefault(u => u.EmailId == email && u.Pwd == Password.Text && (bool)u.Active);
+                var user = _db.Users.FirstOrDefault(u => u.EmailId == email && (bool)u.Active);
 
-                if (user != null)
+                if (user != null && Utility.Decrypt(user.Pwd, true) == Password.Text)
                 {
                     // Success, create authentication cookie.
                     FormsAuthentication.SetAuthCookie(email, RememberMe.Checked);

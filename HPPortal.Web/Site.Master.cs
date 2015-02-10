@@ -50,7 +50,7 @@ namespace HPPortal.Web
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
             if (Request.Cookies[FormsAuthentication.FormsCookieName] == null)
-                Response.Redirect("Logon.aspx");
+                Response.Redirect("~/Logon.aspx");
             else if(!IsPostBack)
             {
                 var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
