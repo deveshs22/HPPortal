@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" Inherits="HPPortal.Web.Logon" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" Inherits="HPPortal.Web.ForgotPassword" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Login - HP</title>
-     <asp:PlaceHolder runat="server">
+    <title>Forgot Password - HP</title>
+      <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
@@ -33,7 +33,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-         <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,7 +43,7 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">
                         <img src="/Content/images/hp.gif" style="max-height:50px;"/>
-                        &nbsp; &nbsp;HP Joint Business Plan Portal Login
+                        &nbsp; &nbsp;HP Joint Business Plan Portal Forgot Password
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
@@ -54,9 +54,9 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+         <div class="container body-content">
             <br />
-    <h4>Login</h4>
+    <h4>Forgot Password</h4>
 
     <div class="row">
         <div class="col-md-8">
@@ -68,6 +68,7 @@
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>
+
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
                         <div class="col-md-10">
@@ -76,34 +77,13 @@
                                 CssClass="text-danger" ErrorMessage="The email field is required." />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
-                        </div>
-                    </div>
+                  
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
-                            &nbsp;&nbsp;&nbsp;<a href="/ForgotPassword.aspx">Forgot your password?</a>
+                            <asp:Button runat="server" Text="Proceed" CssClass="btn btn-default" />
                         </div>
                     </div>
                 </div>
-                
-                <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
-                </p>
             </section>
         </div>
 
