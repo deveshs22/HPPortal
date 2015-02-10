@@ -63,12 +63,9 @@
             <section id="loginForm">
                 <div class="form-horizontal">
                     <hr />
-                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                        <p class="text-danger">
-                            <asp:Literal runat="server" ID="FailureText" />
-                        </p>
-                    </asp:PlaceHolder>
-
+                    <p>
+                        Please enter your E-mail Id to get a temporary password.
+                    </p>
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
                         <div class="col-md-10">
@@ -80,7 +77,13 @@
                   
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" Text="Proceed" CssClass="btn btn-default" />
+                            <asp:Button ID="btnProceed" runat="server" Text="Proceed" CssClass="btn btn-default" OnClick="btnProceed_Click" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                           <asp:Label ID="lblErrorMessage" runat="server"></asp:Label> 
                         </div>
                     </div>
                 </div>
