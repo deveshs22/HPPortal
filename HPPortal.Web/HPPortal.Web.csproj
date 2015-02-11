@@ -160,6 +160,8 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Content\images\Graph.png" />
+    <Content Include="Content\images\UserImg.png" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -247,7 +249,9 @@
     <Content Include="Users\Edit.aspx" />
     <Content Include="Users\Insert.aspx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -620,8 +624,8 @@
     <Compile Include="Users\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\UtilityBL.cs" />
     <Compile Include="Utility\MailFormat.cs" />
-    <Compile Include="Utility.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
