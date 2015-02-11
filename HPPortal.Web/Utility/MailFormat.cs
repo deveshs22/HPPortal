@@ -5,6 +5,7 @@ using System.Text;
 using System.Net.Mail;
 using System.IO;
 using System.Web;
+using System.Configuration;
 
 namespace HPPortal.Web.Utility
 {
@@ -68,24 +69,19 @@ namespace HPPortal.Web.Utility
                 mSmtpClient.Dispose();
             }
         }
-               
-        public static object SendForgotPasswordMailBody(string customerFirstName, string urlInitial, string restId)
+
+        public static object SendForgotPasswordMailBody(string UserName, string Password)
         {
-            StringBuilder sBuilderBody = new StringBuilder();
+            string strBody = "";
             try
             {
-                sBuilderBody.Append("<table>");
-                sBuilderBody.Append("<tr> <td style='width:1%; font-size:small; font-family:Tahoma;'> Dear " + customerFirstName + ",</td> <td colspan=4></td> </tr>");
-                sBuilderBody.Append("<tr> <td style='width:1%'> </td> <td colspan=4></td> </tr>");
-                sBuilderBody.Append("<tr> <td style='width:1%'> </td> <td colspan=4></td> </tr>");
-                sBuilderBody.Append("<tr> <td style='font-size:small; font-family:Tahoma;' colspan=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please click the below link to create your new password :</td> </tr>");
-                sBuilderBody.Append("<tr>");
-                sBuilderBody.Append("<td style='width:1%'> </td> <td style='width:50%; font-size:small;font-family:Tahoma;'>");
-                sBuilderBody.AppendLine("</br><a href=" + urlInitial + "/CustomerGUI/CustomerChangePassword.aspx?id=" + "&rid=" + restId + ">Click here to change your password</a></td>");
-                sBuilderBody.Append("<td style=' font-size:small; font-family:Tahoma;'>&nbsp;&nbsp;</td>");
-                sBuilderBody.Append("</tr>");
-
-                sBuilderBody.Append(" </table>");
+                strBody = "Dear " + UserName + " ,";
+                strBody += "<br/>";
+                strBody += "Your password " + Password + " has been generated.  Please note that Hp Portal passwords are case sensitive." + "<br/>";
+                strBody += "<br/>";
+                strBody += "Please login to the Hp Portal with the provided Password." + "<br/>";
+                strBody += "<br/>";
+                strBody += "<a href=" + ConfigurationManager.AppSettings["URL"] + ">" + ConfigurationManager.AppSettings["URL"] + "</a>";
 
             }
             catch (Exception ex)
@@ -95,7 +91,7 @@ namespace HPPortal.Web.Utility
             finally
             {
             }
-            return sBuilderBody.ToString();
+            return strBody;
         }
     
         public static bool SendMailMessages(string froms, string to, string bcc, string cc, string subject, string body, string attachment1, string attachment2)
@@ -145,6 +141,7 @@ namespace HPPortal.Web.Utility
 
             try
             {
+                mSmtpClient.EnableSsl = true;
                 mSmtpClient.Send(mMailMessage);
 
                 sBuilderBody.AppendLine(" email sent successfully ");
