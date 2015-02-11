@@ -7,7 +7,7 @@ using System.Web;
 
 namespace HPPortal.Web
 {
-    public static class Utility
+    public static class UtilityBL
     {
         public static string Encrypt(string toEncrypt, bool useHashing)
         {
