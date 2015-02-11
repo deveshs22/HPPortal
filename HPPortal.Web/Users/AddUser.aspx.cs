@@ -83,7 +83,7 @@ namespace HPPortal.Web.Users
                 item = user;
             item.EmailId = txtEmail.Text.Trim();
             item.Name = txtName.Text.Trim();
-            item.Pwd = Utility.Encrypt(txtPassword.Text, true);
+            item.Pwd = UtilityBL.Encrypt(txtPassword.Text, true);
             item.RoleId = Convert.ToInt32(ddlRoles.SelectedValue);
             item.Role = _db.Roles.Find(Convert.ToInt32(ddlRoles.SelectedValue));
             item.ReportingId = Convert.ToInt32(ddlReporting.SelectedValue);
