@@ -24,6 +24,8 @@ namespace HPPortal.Data.Models
         //public DbSet<UserCity> UserCities { get; set; }
         //public DbSet<UserPartnerCategory> UserPartnerCategories { get; set; }
         public DbSet<Zone> Zones { get; set; }
+        public DbSet<StrategicPlan> StrategicPlans { get; set; }
+        public DbSet<OverviewPlan> OverviewPlans { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -35,6 +37,9 @@ namespace HPPortal.Data.Models
             //modelBuilder.Configurations.Add(new UserCityMap());
             // modelBuilder.Configurations.Add(new UserPartnerCategoryMap());
             modelBuilder.Configurations.Add(new ZoneMap());
+            modelBuilder.Configurations.Add(new StrategicPlanMap());
+            modelBuilder.Configurations.Add(new OverviewPlanMap());
+            
         }
     }
 }

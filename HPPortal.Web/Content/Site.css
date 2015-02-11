@@ -28,7 +28,8 @@ input[type="password"],
 input[type="email"],
 input[type="tel"],
 input[type="select"],
-input[type="number"]
+input[type="number"],
+input[type="date"]
  {
     max-width: 280px;
 }

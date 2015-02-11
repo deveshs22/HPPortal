@@ -31,5 +31,7 @@ namespace HPPortal.Data.Models
         public virtual ICollection<User> User1 { get; set; }
         public virtual User User2 { get; set; }
         public virtual ICollection<City> Cities { get; set; }
+        public virtual ICollection<StrategicPlan> StrategicPlans { get; set; }
+        
     }
 }
