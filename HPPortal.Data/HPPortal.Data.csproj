@@ -49,13 +49,13 @@
     <Compile Include="Models\City.cs" />
     <Compile Include="HPSiteDBContext.cs" />
     <Compile Include="Models\Mapping\CityMap.cs" />
-    <Compile Include="Models\Mapping\OutletCategoryMap.cs" />
-    <Compile Include="Models\Mapping\OutletMap.cs" />
+    <Compile Include="Models\Mapping\PartnerCategoryMap.cs" />
+    <Compile Include="Models\Mapping\PartnerMap.cs" />
     <Compile Include="Models\Mapping\RoleMap.cs" />
     <Compile Include="Models\Mapping\UserMap.cs" />
     <Compile Include="Models\Mapping\ZoneMap.cs" />
-    <Compile Include="Models\Outlet.cs" />
-    <Compile Include="Models\OutletCategory.cs" />
+    <Compile Include="Models\Partner.cs" />
+    <Compile Include="Models\PartnerCategory.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Zone.cs" />

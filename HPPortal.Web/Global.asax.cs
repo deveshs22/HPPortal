@@ -48,11 +48,13 @@ namespace HPPortal.Web
             }
         }
 
-        //void Application_BeginRequest(object sender, EventArgs e)
-        //{
-        //    if (Request.Cookies[FormsAuthentication.FormsCookieName] == null && !Request.Url.AbsoluteUri.Contains("Logon"))
-        //        Response.Redirect("Logon.aspx");
-                 
-        //}
+        void Application_Error(object sender, EventArgs e)
+        {
+            // Code that runs when an unhandled error occurs
+            Exception exc = Server.GetLastError();
+                //TODO: Implement Email to Admin 
+                Server.Transfer("~/Error.aspx");
+           
+        } 
     }
 }

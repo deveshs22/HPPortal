@@ -1438,6 +1438,7 @@ table {
 
 th {
   text-align: left;
+  font-family: HPSimplified_Bd, Arial
 }
 
 .table {
@@ -1981,6 +1982,10 @@ textarea.input-lg {
     float: none;
     margin-left: 0;
   }
+}
+
+.form-horizontal .control-label{
+    font-family: HPSimplified_Bd, Arial;
 }
 
 .form-horizontal .control-label,
