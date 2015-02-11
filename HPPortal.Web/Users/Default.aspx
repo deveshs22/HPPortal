@@ -34,9 +34,9 @@
                                 <th>
                                     <asp:LinkButton Text="Role" CommandName="Sort" CommandArgument="RoleId" runat="Server" />
                                 </th>
-                                <th>
+                                <%--<th>
                                     <asp:LinkButton Text="Reporting Manager" CommandName="Sort" CommandArgument="ReportingId" runat="Server" />
-                                </th>
+                                </th>--%>
 
                                 <th>
                                     <asp:LinkButton Text="Mobile Number" CommandName="Sort" CommandArgument="Mobile" runat="Server" />
@@ -68,17 +68,17 @@
                         <td>
                             <%#: Item.Role != null ? Item.Role.Description : "" %>
                         </td>
-                        <td>
+                       <%-- <td>
                             <asp:DynamicControl runat="server" DataField="ReportingId" ID="ReportingId" Mode="ReadOnly" />
 
-                           <%-- <asp:DynamicControl Mode="ReadOnly"
+                            <asp:DynamicControl Mode="ReadOnly"
                                 ID="ReportingId"
                                 DataField="ReportingId"
                                 DataTypeName="HPPortal.Data.Models.User"
                                 DataTextField="Name"
                                 DataValueField="UserId"
-                                UIHint="ForeignKey" runat="server" />--%>
-                        </td>
+                                UIHint="ForeignKey" runat="server" />
+                        </td>--%>
                         <td>
                             <asp:DynamicControl runat="server" DataField="Mobile" ID="Mobile" Mode="ReadOnly" />
                         </td>

@@ -700,8 +700,8 @@
     <Compile Include="Users\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Utility\MailFormat.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="Utility\MailFormat.cs" />
     <Compile Include="Utility\Quarter.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

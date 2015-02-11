@@ -21,7 +21,7 @@ namespace HPPortal.Web.Users
         // USAGE: <asp:ListView SelectMethod="GetData">
         public IQueryable<HPPortal.Data.Models.User> GetData()
         {
-            return _db.Users.Include(m => m.Role);
+            return _db.Users.Where(u=>(bool)u.Active).Include(m => m.Role);
         }
     }
 }

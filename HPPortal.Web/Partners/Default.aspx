@@ -78,19 +78,21 @@
 							</td>
 							
 							<td>
-								<%#: Item.PartnerCategory != null ? Item.PartnerCategory.Description : "" %>
+							<div style="padding-top:7px;"><%#: Item.PartnerCategory != null ? Item.PartnerCategory.Description : "" %></div>
 							</td>
 							<td>
-								<%#: Item.City != null ? Item.City.Description : "" %>
+								<div style="padding-top:7px;"><%#: Item.City != null ? Item.City.Description : "" %></div>
 							</td>
 							<td>
-								<%#: Item.User != null ? Item.User.Name : "" %>
+								<div style="padding-top:7px;"><%#: Item.User != null ? Item.User.Name : "" %></div>
 							</td>
 							
                     <td>
+                        <div style="padding-top:7px;">
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Details", Item.PartnerId) %>' Text="Details" /> | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Edit", Item.PartnerId) %>' Text="Edit" /> | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Delete", Item.PartnerId) %>' Text="Delete" />
+                            </div>
                     </td>
                 </tr>
             </ItemTemplate>
