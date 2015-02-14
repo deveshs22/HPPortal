@@ -74,7 +74,6 @@
                                 CssClass="text-danger" ErrorMessage="The email field is required." />
                         </div>
                     </div>
-                  
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button ID="btnProceed" runat="server" Text="Proceed" CssClass="btn btn-default" OnClick="btnProceed_Click" />
