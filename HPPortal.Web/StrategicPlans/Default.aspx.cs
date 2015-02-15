@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
 using HPPortal.Data.Models;
+using HPPortal.Web.Utility;
 
 namespace HPPortal.Web.StrategicPlans
 {
@@ -22,6 +23,48 @@ namespace HPPortal.Web.StrategicPlans
         public IQueryable<HPPortal.Data.Models.StrategicPlan> GetData()
         {
             return _db.StrategicPlans;
+        }
+
+
+        public IEnumerable<Quarter> GetQuarter()
+        {
+            return QuarterHelper.GetNextnCurrentQuarter(DateTime.Now);
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+            return _db.Users.ToList();
+        }
+
+        // This is the Insert method to insert the entered StrategicPlan item
+        // USAGE: <asp:FormView InsertMethod="InsertItem">
+        public void InsertItem()
+        {
+            using (_db)
+            {
+                var item = new HPPortal.Data.Models.StrategicPlan();
+
+
+                TryUpdateModel(item);
+
+
+                if (ModelState.IsValid)
+                {
+                    // Save changes
+                    _db.StrategicPlans.Add(item);
+                    _db.SaveChanges();
+
+                    Response.Redirect("Default");
+                }
+            }
+        }
+
+        protected void ItemCommand(object sender, FormViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("Cancel", StringComparison.OrdinalIgnoreCase))
+            {
+                Response.Redirect("Default");
+            }
         }
     }
 }
