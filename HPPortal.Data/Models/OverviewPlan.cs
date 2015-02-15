@@ -19,5 +19,7 @@ namespace HPPortal.Data.Models
         public Nullable<int> ModifiedUser { get; set; }
         public string Comments { get; set; }
         public string Quarter { get; set; }
+        public int PartnerId { get; set; }
+        public virtual Partner Partner { get; set; }
     }
 }

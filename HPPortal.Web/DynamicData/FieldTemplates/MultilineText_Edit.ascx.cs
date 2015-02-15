@@ -8,7 +8,9 @@ using System.Web.UI.WebControls;
 
 namespace HPPortal.Web {
     public partial class MultilineText_EditField : System.Web.DynamicData.FieldTemplateUserControl {
-		
+
+        public int TextRows { get; set; }
+
 		protected void Page_Init(object sender, EventArgs e)
         {
             TextBox1.ToolTip = Column.Description;
