@@ -1,12 +1,9 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="HPPortal.Web._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="jumbotron">
-        <h2>Dashboard</h2>
-        
+    <div>
+        &nbsp;
     </div>
-
     <div class="row">
         <div class="col-md-3">
            <img src="Content/images/UserImg.png" height="350px" width="140px" />

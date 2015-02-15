@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
+                            <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-primary" />
                             &nbsp;&nbsp;&nbsp;<a href="/ForgotPassword.aspx">Forgot your password?</a>
                         </div>
                     </div>
@@ -109,14 +109,14 @@
             </div>
     </form>
     
-    <div class="row col-md-offset-1 col-md-10">
+    <div class="row col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
         <br />
         <hr />
-                <div class="col-md-2"><img src="/Content/images/hp_desktop.jpg" style="height:120px; width:140px;"/></div>
-                <div class="col-md-2"><img src="/Content/images/hp_laptop.jpg" style="height:120px; width:140px;"/></div>
-                <div class="col-md-2"><img src="/Content/images/hp_printer.jpg" style="height:120px; width:140px;"/></div>
-                <div class="col-md-2"><img src="/Content/images/hp_toner.jpg" style="height:120px; width:140px;"/></div>
-                <div class="col-md-2"><img src="/Content/images/hp_desktop.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-sm-2 col-md-2"><img src="/Content/images/hp_desktop.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-sm-2 col-md-2"><img src="/Content/images/hp_laptop.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-sm-2 col-md-2"><img src="/Content/images/hp_printer.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-sm-2 col-md-2"><img src="/Content/images/hp_toner.jpg" style="height:120px; width:140px;"/></div>
+                <div class="col-sm-2 col-md-2"><img src="/Content/images/hp_desktop.jpg" style="height:120px; width:140px;"/></div>
             </div>
 </body>
 </html>
