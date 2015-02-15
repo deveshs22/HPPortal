@@ -53,7 +53,7 @@ namespace HPPortal.Web
             // Code that runs when an unhandled error occurs
             //Exception exc = Server.GetLastError();
             //    //TODO: Implement Email to Admin 
-            Server.Transfer("~/Error.aspx");
+            //    Server.Transfer("~/Error.aspx");
            
         } 
     }

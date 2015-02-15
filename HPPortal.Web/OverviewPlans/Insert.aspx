@@ -10,18 +10,35 @@
                 <fieldset class="form-horizontal">
 				<legend>Insert OverviewPlan</legend>
 		        <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
-						    <asp:DynamicControl Mode="Insert" DataField="Strength" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="Weakness" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="Opportunity" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="SupportReqd" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="CreatedDate" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="CreatedUser" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="ModifiedDate" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="ModifiedUser" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="Comments" runat="server" />
-						    <asp:DynamicControl Mode="Insert" DataField="Quarter" runat="server" />
+                    <div class="row">
+                    <div class="col-md-6">
+                    <asp:DynamicControl Mode="Insert" DataField="Partner" runat="server" />
+                         </div>
+                        <div class="col-md-6">
+                            <asp:DynamicControl Mode="Insert" DataField="Quarter" runat="server" />
+                            <//div>
+
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+						    <asp:DynamicControl Mode="Insert" DataField="Strength" runat="server" UIHint="MultilineText" TextRows="6"/>
+                        </div>
+                        <div class="col-md-6">
+						    <asp:DynamicControl Mode="Insert" DataField="Weakness" runat="server" UIHint="MultilineText" TextRows="6"/>
+                        </div>
+                        </div>
+                         <div class="row">
+                    <div class="col-md-6">
+						    <asp:DynamicControl Mode="Insert" DataField="Opportunity" runat="server" UIHint="MultilineText" TextRows="6" />
+                         </div>
+                        <div class="col-md-6">
+						    <asp:DynamicControl Mode="Insert" DataField="SupportReqd" runat="server" UIHint="MultilineText" TextRows="6"/>
+						    
+						    </div>
+                             </div>
+                    <%--<asp:DynamicControl Mode="Insert" DataField="Comments" runat="server" UIHint="MultilineText"/>--%>
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <div class="col-sm-offset-5 col-sm-7">
                             <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-primary" />
                             <asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
                         </div>
