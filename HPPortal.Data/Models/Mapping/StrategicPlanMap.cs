@@ -11,8 +11,7 @@ namespace HPPortal.Data.Models.Mapping
             this.HasKey(t => t.StrategicPlanId);
 
             // Properties
-            this.Property(t => t.StrategicPlanId)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            this.Property(t => t.StrategicPlanId);
 
             this.Property(t => t.QuarterYear)
                 .HasMaxLength(50);
@@ -28,6 +27,7 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.Metrics).HasColumnName("Metrics");
             this.Property(t => t.QuarterYear).HasColumnName("QuarterYear");
             this.Property(t => t.AssignedUserId).HasColumnName("AssignedUserId");
+            this.Property(t => t.PartnerId).HasColumnName("PartnerId");
             this.Property(t => t.CreatedDate).HasColumnName("CreatedDate");
             this.Property(t => t.CreatedUser).HasColumnName("CreatedUser");
             this.Property(t => t.ModifiedDate).HasColumnName("ModifiedDate");
@@ -39,6 +39,10 @@ namespace HPPortal.Data.Models.Mapping
             this.HasOptional(t => t.User)
                 .WithMany(t => t.StrategicPlans)
                 .HasForeignKey(d => d.AssignedUserId);
+
+            this.HasOptional(t => t.Partner)
+                .WithMany(t => t.StrategicPlans)
+                .HasForeignKey(d => d.PartnerId);
 
         }
     }

@@ -24,61 +24,105 @@
                 </div>
                 <div class="modal-body" id="content">
 
-                    <asp:FormView runat="server"
-                        ItemType="HPPortal.Data.Models.StrategicPlan" DefaultMode="Insert"
-                        InsertItemPosition="FirstItem" InsertMethod="InsertItem"
-                        OnItemCommand="ItemCommand" RenderOuterTable="false">
-                        <InsertItemTemplate>
-                            <fieldset class="form-horizontal">
-                                <legend>Insert StrategicPlan</legend>
-                                <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
-                                <div id="Div1" runat="server" class="form-group">
-                                    <asp:Label ID="Quarter" Text="Quater" runat="server" CssClass="col-md-3 control-label" />
-                                    <div class="col-md-7" style="margin-bottom: 5px;">
-                                        <asp:DropDownList
-                                            ID="ddlQuarter"
-                                            SelectMethod="GetQuarter"
-                                            DataTextField="QuarterYear"
-                                            DataValueField="MonthId"
-                                            CssClass="maxWidth form-control"
-                                            AppendDataBoundItems="true"
-                                            runat="server">
-                                            <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
+                    <fieldset class="form-horizontal">
+                        <legend>Insert StrategicPlan</legend>
+                        <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
 
-                                    <asp:Label ID="AssignedUser" Text="Assigned User" runat="server" CssClass="col-md-3 control-label" />
+                        <div class="form-group">
 
-                                    <div class="col-md-7">
+                            <span class="col-md-3 control-label">Partner</span>
+                            <div class="col-md-7">
+                                <asp:Label ID="lblPartner" runat="server" CssClass="col-md-3 control-label"></asp:Label>
 
-                                        <asp:DropDownList
-                                            ID="ddlUser"
-                                            SelectMethod="GetUsers"
-                                            DataTextField="Name"
-                                            DataValueField="UserId"
-                                            CssClass="maxWidth form-control"
-                                            AppendDataBoundItems="true"
-                                            runat="server">
-                                            <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
 
-                                </div>
-                                <asp:DynamicControl Mode="Insert" DataField="BusinessObjective" UIHint="MultilineText" runat="server" />
+                            <span class="col-md-3 control-label">Quater</span>
+                            <div class="col-md-7">
+                                <asp:Label ID="lblQuater" runat="server" CssClass="col-md-3 control-label"></asp:Label>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Label ID="AssignedUser" Text="Assigned User" runat="server" CssClass="col-md-3 control-label" />
+                            <div class="col-md-7">
+
+                                <asp:DropDownList
+                                    ID="ddlUser"
+                                    SelectMethod="GetUsers"
+                                    DataTextField="Name"
+                                    DataValueField="UserId"
+                                    CssClass="maxWidth form-control"
+                                    AppendDataBoundItems="true"
+                                    runat="server">
+                                    <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <span class="col-md-3 control-label">BusinessObjective</span>
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtBusinessObjective"
+                                    TextMode="MultiLine" CssClass="form-control DDTextBox"
+                                    runat="server" />
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Strategies</span>
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtStrategies"
+                                    TextMode="MultiLine" CssClass="form-control DDTextBox"
+                                    runat="server" />
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Metrics</span>
+
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtMetrics"
+                                    TextMode="MultiLine" CssClass="form-control DDTextBox"
+                                    runat="server" />
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <%--<asp:DynamicControl Mode="Insert" DataField="BusinessObjective" UIHint="MultilineText" runat="server" />
                                 <asp:DynamicControl Mode="Insert" DataField="Strategies" runat="server" UIHint="MultilineText" />
                                 <asp:DynamicControl Mode="Insert" DataField="Metrics" runat="server" UIHint="MultilineText" />
-                                <%--   <asp:DynamicControl Mode="Insert" DataField="QuarterYear" runat="server" />--%>
                                 <asp:DynamicControl Mode="Insert" DataField="Comments" runat="server" UIHint="MultilineText" />
-                                <asp:DynamicControl Mode="Insert" DataField="CheckpointState" runat="server" />
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-primary" />
-                                        <asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </InsertItemTemplate>
-                    </asp:FormView>
+                                <asp:DynamicControl Mode="Insert" DataField="CheckpointState" runat="server" />--%>
+
+                            <asp:Label ID="CheckpointState" Text="Checkpoint State" runat="server" CssClass="col-md-3 control-label" />
+
+                            <div class="col-md-7">
+
+                                <asp:DropDownList
+                                    ID="ddlCheckpointState"
+                                    SelectMethod="GetCheckpointState"
+                                    DataTextField="Value"
+                                    DataValueField="Value"
+                                    CssClass="maxWidth form-control"
+                                    AppendDataBoundItems="true"
+                                    runat="server">
+                                    <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <asp:Button runat="server" ID="InsertButton" OnClick="InsertButton_Click" Text="Insert" CssClass="btn btn-primary" />
+                                <asp:Button runat="server" ID="CancelButton" OnClick="CancelButton_Click" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
+                            </div>
+                        </div>
+                    </fieldset>
+
                 </div>
             </div>
         </div>
@@ -96,9 +140,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>
+                            <%--  <th>
                                 <asp:LinkButton Text="StrategicPlanId" CommandName="Sort" CommandArgument="StrategicPlanId" runat="Server" />
-                            </th>
+                            </th>--%>
                             <th>
                                 <asp:LinkButton Text="BusinessObjective" CommandName="Sort" CommandArgument="BusinessObjective" runat="Server" />
                             </th>
@@ -108,11 +152,11 @@
                             <th>
                                 <asp:LinkButton Text="Metrics" CommandName="Sort" CommandArgument="Metrics" runat="Server" />
                             </th>
-                            <th>
+                            <%--  <th>
                                 <asp:LinkButton Text="QuarterYear" CommandName="Sort" CommandArgument="QuarterYear" runat="Server" />
-                            </th>
+                            </th>--%>
                             <th>
-                                <asp:LinkButton Text="AssignedUserId" CommandName="Sort" CommandArgument="AssignedUserId" runat="Server" />
+                                <asp:LinkButton Text="AssignedUser" CommandName="Sort" CommandArgument="AssignedUserId" runat="Server" />
                             </th>
                             <th>
                                 <asp:LinkButton Text="CreatedDate" CommandName="Sort" CommandArgument="CreatedDate" runat="Server" />
@@ -126,9 +170,9 @@
                             <th>
                                 <asp:LinkButton Text="ModifiedUser" CommandName="Sort" CommandArgument="ModifiedUser" runat="Server" />
                             </th>
-                            <th>
+                            <%-- <th>
                                 <asp:LinkButton Text="Comments" CommandName="Sort" CommandArgument="Comments" runat="Server" />
-                            </th>
+                            </th>--%>
                             <th>
                                 <asp:LinkButton Text="CheckpointState" CommandName="Sort" CommandArgument="CheckpointState" runat="Server" />
                             </th>
@@ -149,9 +193,9 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-                    <td>
+                    <%--<td>
                         <asp:DynamicControl runat="server" DataField="StrategicPlanId" ID="StrategicPlanId" Mode="ReadOnly" />
-                    </td>
+                    </td>--%>
                     <td>
                         <asp:DynamicControl runat="server" DataField="BusinessObjective" ID="BusinessObjective" Mode="ReadOnly" />
                     </td>
@@ -161,11 +205,14 @@
                     <td>
                         <asp:DynamicControl runat="server" DataField="Metrics" ID="Metrics" Mode="ReadOnly" />
                     </td>
-                    <td>
+                    <%-- <td>
                         <asp:DynamicControl runat="server" DataField="QuarterYear" ID="QuarterYear" Mode="ReadOnly" />
-                    </td>
+                    </td>--%>
                     <td>
-                        <asp:DynamicControl runat="server" DataField="AssignedUserId" ID="AssignedUserId" Mode="ReadOnly" />
+                        <%--<asp:DynamicControl runat="server" DataField="AssignedUserId" ID="AssignedUserId" Mode="ReadOnly" />--%>
+                        <div style="padding-top: 7px;"><%#: Item.User != null ? Item.User.Name : "" %></div>
+                    </td>
+
                     </td>
                     <td>
                         <asp:DynamicControl runat="server" DataField="CreatedDate" ID="CreatedDate" Mode="ReadOnly" />
@@ -179,16 +226,18 @@
                     <td>
                         <asp:DynamicControl runat="server" DataField="ModifiedUser" ID="ModifiedUser" Mode="ReadOnly" />
                     </td>
-                    <td>
+                    <%--<td>
                         <asp:DynamicControl runat="server" DataField="Comments" ID="Comments" Mode="ReadOnly" />
-                    </td>
+                    </td>--%>
                     <td>
                         <asp:DynamicControl runat="server" DataField="CheckpointState" ID="CheckpointState" Mode="ReadOnly" />
                     </td>
                     <td>
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/StrategicPlans/Details", Item.StrategicPlanId) %>' Text="Details" />
                         | 
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/StrategicPlans/Edit", Item.StrategicPlanId) %>' Text="Edit" />
+					    <%--<asp:HyperLink runat="server"  OnClick="EditButton_Click" NavigateUrl='<%# FriendlyUrl.Href("~/StrategicPlans/Edit", Item.StrategicPlanId) %>' Text="Edit" />--%>
+
+                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("StrategicPlanId") %>' OnClick="EditButton_Click" Text="Edit" />
                         | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/StrategicPlans/Delete", Item.StrategicPlanId) %>' Text="Delete" />
                     </td>

@@ -45,7 +45,7 @@ namespace HPPortal.Web.Utility
             foreach (var qtr in qtrs)
             {
                 var qtrYr = qtr.QuarterDescription + " " + date.Year.ToString();
-                
+
                 list.Add(
                 new Quarter
                 {
@@ -58,8 +58,8 @@ namespace HPPortal.Web.Utility
             }
 
             return list;
-        }      
-        
+        }
+
         public static List<Quarter> Quarters { get; set; }
     }
 
@@ -69,5 +69,5 @@ namespace HPPortal.Web.Utility
         public int QuarterId { get; set; }
         public string QuarterDescription { get; set; }
         public string QuarterYear { get; set; }
-    }
+    }   
 }
