@@ -3,7 +3,7 @@
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
 
-    <div class="form-group" style="margin-top: 20px;">
+    <div class="row" style="margin-top: 20px;">
         <div class="col-md-2 control-label">
             <span style="font-weight: bold;">Partner:</span>
 
@@ -30,7 +30,7 @@
         </div>
 
     </div>
-    <div class="form-group">
+    <div class="row">
         <div class="col-md-2 control-label">
             <span style="font-weight: bold;">City:</span>
         </div>
@@ -47,15 +47,31 @@
 
         </div>
 
-        <div class="col-md-4 control-label">
+
+    </div>
+
+    <div class="row" style="margin-top: 15px; margin-bottom: 5px;">
+
+        <div class="col-md-3 btn btn-primary">
+           <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
+            <span style="font-weight: bold;">Strategic Plans</span>
+        </div>
+        <div class="col-md-3 btn btn btn-default">
+            <asp:HyperLink runat="server" NavigateUrl="~/OverviewPlans/Default" Text="Overview Plans" />
+        </div>
+        <div class="col-md-3 btn btn btn-default">
+            <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/StrategicPlans/Default") %>' Text="Target Entry" />
+        </div>
+        <div class="col-md-3 btn btn btn-default">
+            <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/StrategicPlans/Default") %>' Text="Primary Sales Entry" />
         </div>
 
     </div>
 
-    <div class="form-group">
+    <div class="row">
         <div class="col-md-6">
             <h2>StrategicPlans List</h2>
-            <p>
+            <p class="btn btn-default">
                 <a href='#' data-toggle='modal' data-target='#modalC'>Create new</a>
             </p>
         </div>
@@ -275,6 +291,5 @@
             </ItemTemplate>
         </asp:ListView>
     </div>
-
 </asp:Content>
 
