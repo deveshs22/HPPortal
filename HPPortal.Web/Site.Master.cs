@@ -61,6 +61,7 @@ namespace HPPortal.Web
                     using(var db = new HPPortal.Data.Models.HPSiteDBContext())
                     {
                         var user = db.Users.Find(Convert.ToInt32(userId));
+                        Session["User"] = user;
                         lblName.Text = user.Name;
                     }
                 }

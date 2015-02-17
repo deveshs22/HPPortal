@@ -32,8 +32,12 @@ namespace HPPortal.Web.StrategicPlans
                     Quater = QuarterHelper.GetNextnCurrentQuarter(DateTime.Now).FirstOrDefault().QuarterYear;
 
                 ClearData();
-                lblPartner.Text = _db.Partners.Find(PartnerId).PartnerName;
+                var partner = _db.Partners.Find(PartnerId);
+                lblPartner.Text = partner.PartnerName;
                 lblQuater.Text = Quater;
+                lblCity.Text = partner.City.Description;
+                lblOutletType.Text = partner.PartnerCategory.Description;
+                lblAccountManager.Text = partner.ContactPerson;
             }
         }
 
@@ -109,7 +113,7 @@ namespace HPPortal.Web.StrategicPlans
             item.AssignedUserId = Convert.ToInt32(ddlUser.SelectedValue);
             item.CheckpointState = ddlCheckpointState.SelectedValue;
             item.PartnerId = PartnerId;
-            item.QuarterYear = Quater;
+            item.QuarterYear = Quater;            
         }
 
         private int PartnerId
@@ -156,7 +160,7 @@ namespace HPPortal.Web.StrategicPlans
 
                 if (PlanId != null && PlanId > 0)
                     item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
-
+                var user = Session["User"] as User;
                 if (ModelState.IsValid)
                 {
                     CommitToItem(item);
@@ -164,7 +168,9 @@ namespace HPPortal.Web.StrategicPlans
                     if (PlanId != null && PlanId > 0)
                     {
                         item.ModifiedDate = DateTime.Now;
-                        //item.ModifiedUser = 
+                        if (user != null)
+                            item.ModifiedUser = user.UserId;
+                        
                         _db.Entry(item).State = EntityState.Modified;
                         _db.SaveChanges();
                         Response.Redirect("Default");
@@ -173,7 +179,9 @@ namespace HPPortal.Web.StrategicPlans
                     {
                         // Save changes
                         item.CreatedDate = DateTime.Now;
-                        //item.CreatedUser = 
+                        if (user != null)
+                            item.CreatedUser = user.UserId;
+                       
                         _db.StrategicPlans.Add(item);
                         _db.SaveChanges();
 

@@ -17,6 +17,7 @@ namespace HPPortal.Web.StrategicPlans
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
         // This is the Select methd to selects a single StrategicPlan item with the id

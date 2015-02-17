@@ -2,18 +2,66 @@
 
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    <script type="text/javascript">
-        function ShowDiv() {
-            var div = document.getElementById("divInsert");
-            div.style.display = "block";
-            return false;
-        }
-    </script>
 
-    <h2>StrategicPlans List</h2>
-    <p>
-        <a href='#' data-toggle='modal' data-target='#modalC'>Create new</a>
-    </p>
+    <div class="form-group" style="margin-top: 20px;">
+        <div class="col-md-2 control-label">
+            <span style="font-weight: bold;">Partner:</span>
+
+        </div>
+        <div class="col-md-2 control-label">
+            <asp:Label ID="lblPartner" runat="server" Style="font-weight: bold;"></asp:Label>
+
+        </div>
+
+        <div class="col-md-2 control-label">
+            <span style="font-weight: bold;">Outlet Type:</span>
+        </div>
+        <div class="col-md-2 control-label">
+            <asp:Label ID="lblOutletType" runat="server" Style="font-weight: bold;"></asp:Label>
+
+        </div>
+
+        <div class="col-md-2 control-label">
+            <span style="font-weight: bold;">Quater:</span>
+        </div>
+        <div class="col-md-2 control-label">
+            <asp:Label ID="lblQuater" runat="server" Style="font-weight: bold;"></asp:Label>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-2 control-label">
+            <span style="font-weight: bold;">City:</span>
+        </div>
+        <div class="col-md-2 control-label">
+            <asp:Label ID="lblCity" runat="server" Style="font-weight: bold;"></asp:Label>
+
+        </div>
+
+        <div class="col-md-2 control-label">
+            <span style="font-weight: bold;">HP Account Manager:</span>
+        </div>
+        <div class="col-md-2 control-label">
+            <asp:Label ID="lblAccountManager" runat="server" Style="font-weight: bold;"></asp:Label>
+
+        </div>
+
+        <div class="col-md-4 control-label">
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6">
+            <h2>StrategicPlans List</h2>
+            <p>
+                <a href='#' data-toggle='modal' data-target='#modalC'>Create new</a>
+            </p>
+        </div>
+
+    </div>
+
 
     <div class="modal fade" id="modalC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width: 1000px;">
@@ -27,25 +75,6 @@
                     <fieldset class="form-horizontal">
                         <legend>Insert StrategicPlan</legend>
                         <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
-
-                        <div class="form-group">
-
-                            <span class="col-md-3 control-label">Partner</span>
-                            <div class="col-md-7">
-                                <asp:Label ID="lblPartner" runat="server" CssClass="col-md-3 control-label"></asp:Label>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <span class="col-md-3 control-label">Quater</span>
-                            <div class="col-md-7">
-                                <asp:Label ID="lblQuater" runat="server" CssClass="col-md-3 control-label"></asp:Label>
-
-
-                            </div>
-
-                        </div>
 
                         <div class="form-group">
                             <asp:Label ID="AssignedUser" Text="Assigned User" runat="server" CssClass="col-md-3 control-label" />
@@ -197,13 +226,13 @@
                         <asp:DynamicControl runat="server" DataField="StrategicPlanId" ID="StrategicPlanId" Mode="ReadOnly" />
                     </td>--%>
                     <td>
-                        <asp:DynamicControl runat="server" DataField="BusinessObjective" ID="BusinessObjective" Mode="ReadOnly" />
+                        <asp:DynamicControl runat="server" DataField="BusinessObjective" UIHint="MultilineText" ID="BusinessObjective" Mode="ReadOnly" />
                     </td>
                     <td>
-                        <asp:DynamicControl runat="server" DataField="Strategies" ID="Strategies" Mode="ReadOnly" />
+                        <asp:DynamicControl runat="server" DataField="Strategies" UIHint="MultilineText" ID="Strategies" Mode="ReadOnly" />
                     </td>
                     <td>
-                        <asp:DynamicControl runat="server" DataField="Metrics" ID="Metrics" Mode="ReadOnly" />
+                        <asp:DynamicControl runat="server" DataField="Metrics" UIHint="MultilineText" ID="Metrics" Mode="ReadOnly" />
                     </td>
                     <%-- <td>
                         <asp:DynamicControl runat="server" DataField="QuarterYear" ID="QuarterYear" Mode="ReadOnly" />
@@ -225,6 +254,7 @@
                     </td>
                     <td>
                         <asp:DynamicControl runat="server" DataField="ModifiedUser" ID="ModifiedUser" Mode="ReadOnly" />
+
                     </td>
                     <%--<td>
                         <asp:DynamicControl runat="server" DataField="Comments" ID="Comments" Mode="ReadOnly" />
