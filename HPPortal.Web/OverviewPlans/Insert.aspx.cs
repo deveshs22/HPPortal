@@ -46,15 +46,5 @@ namespace HPPortal.Web.OverviewPlans
                 Response.Redirect("Default");
             }
         }
-
-        protected void Unnamed2_PageIndexChanging(object sender, FormViewPageEventArgs e)
-        {
-            
-        }
-        protected void SaveButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("OverviewPlan.aspx?PartnerId=1&Quarter=1st2015");
-        }
-
     }
 }
