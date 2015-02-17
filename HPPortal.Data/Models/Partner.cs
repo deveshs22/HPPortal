@@ -55,5 +55,8 @@ namespace HPPortal.Data.Models
         public virtual City City { get; set; }
         public virtual PartnerCategory PartnerCategory { get; set; }
         public virtual User User { get; set; }
+
+        public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Target> Targets { get; set; }
     }
 }

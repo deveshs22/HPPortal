@@ -28,7 +28,7 @@ namespace HPPortal.Web
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/");
+            Response.Redirect("/StrategicPlans");
         }
     }
 }

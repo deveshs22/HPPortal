@@ -49,7 +49,11 @@
                     </div>
                 </div>
             </div>
+            <div class="row col-md-4">
+                <br />
+                <br />
             <asp:Button runat="server" ID="btnCreate" Text="Create / Edit Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click" />
+                </div>
         </div>
     </div>
 </asp:Content>
