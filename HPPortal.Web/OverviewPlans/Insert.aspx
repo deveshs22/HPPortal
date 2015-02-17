@@ -5,7 +5,7 @@
         <asp:FormView runat="server"
             ItemType="HPPortal.Data.Models.OverviewPlan" DefaultMode="Insert"
             InsertItemPosition="FirstItem" InsertMethod="InsertItem"
-            OnItemCommand="ItemCommand" RenderOuterTable="false">
+            OnItemCommand="ItemCommand" RenderOuterTable="false" OnPageIndexChanging="Unnamed2_PageIndexChanging">
             <InsertItemTemplate>
                 <fieldset class="form-horizontal">
 				<legend>Insert OverviewPlan</legend>
@@ -41,6 +41,7 @@
                         <div class="col-sm-offset-5 col-sm-7">
                             <asp:Button runat="server" ID="InsertButton" CommandName="Insert" Text="Insert" CssClass="btn btn-primary" />
                             <asp:Button runat="server" ID="CancelButton" CommandName="Cancel" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
+                            <asp:Button runat="server" ID="test" Text="test" CssClass="btn btn-default" OnClick="SaveButton_Click"/>
                         </div>
 					</div>
                 </fieldset>

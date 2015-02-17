@@ -201,6 +201,7 @@
     <Content Include="OverviewPlans\Details.aspx" />
     <Content Include="OverviewPlans\Edit.aspx" />
     <Content Include="OverviewPlans\Insert.aspx" />
+    <Content Include="OverviewPlans\OverviewPlan.aspx" />
     <Content Include="Partners\Default.aspx" />
     <Content Include="Partners\Delete.aspx" />
     <Content Include="Partners\Details.aspx" />
@@ -587,6 +588,13 @@
     </Compile>
     <Compile Include="OverviewPlans\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OverviewPlans\OverviewPlan.aspx.cs">
+      <DependentUpon>OverviewPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OverviewPlans\OverviewPlan.aspx.designer.cs">
+      <DependentUpon>OverviewPlan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Partners\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
