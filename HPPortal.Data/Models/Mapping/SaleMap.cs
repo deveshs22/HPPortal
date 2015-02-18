@@ -8,20 +8,7 @@ namespace HPPortal.Data.Models.Mapping
         public SaleMap()
         {
             // Primary Key
-            this.HasKey(t => new { t.SaleId, t.M1, t.M2, t.M3 });
-
-            // Properties
-            this.Property(t => t.SaleId)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-
-            this.Property(t => t.M1)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
-            this.Property(t => t.M2)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
-            this.Property(t => t.M3)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            this.HasKey(t => t.SaleId);
 
             this.Property(t => t.QuarterYear)
                 .HasMaxLength(50);
