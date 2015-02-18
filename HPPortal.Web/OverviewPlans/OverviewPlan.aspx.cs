@@ -30,12 +30,12 @@ namespace HPPortal.Web.OverviewPlans
 
                 FillData();
 
-                var partner = _db.Partners.Find(PartnerId);
+                var partner = _db.Partners.Include(p => p.User).FirstOrDefault(p => p.PartnerId == PartnerId);
                 lblPartner.Text = partner.PartnerName;
                 lblQuater.Text = Quater;
                 lblCity.Text = partner.City.Description;
                 lblOutletType.Text = partner.PartnerCategory.Description;
-                lblAccountManager.Text = partner.ContactPerson;
+                lblAccountManager.Text = partner.User.Name;
             }
         }
 
