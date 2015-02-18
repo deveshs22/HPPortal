@@ -108,10 +108,10 @@ namespace HPPortal.Web.Targets
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                //for (int i = 0; i < e.Row.Cells.Count; i++)
-                //{
-                //    e.Row.Cells[i].HorizontalAlign = HorizontalAlign.Center;
-                //}
+                for (int i = 0; i < e.Row.Cells.Count; i++)
+                {
+                    e.Row.Cells[i].CssClass = "centeralign";
+                }
 
                 e.Row.Cells[0].ColumnSpan = 2;
                 e.Row.Cells[0].Text = "Category";

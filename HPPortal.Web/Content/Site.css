@@ -35,7 +35,7 @@ input[type="date"]
 }
 
 .centeralign {
-    text-align: center;
+    text-align: center !important;
 }
 
 

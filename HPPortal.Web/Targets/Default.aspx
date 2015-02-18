@@ -79,9 +79,8 @@
 
             <div class="form-horizontal">
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProductId" 
-                    OnDataBound="GridView1_DataBound1" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped" 
-                    >
-                    <HeaderStyle CssClass="centeralign" />
+                    OnDataBound="GridView1_DataBound1" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
+                    
                     <Columns>
                         <asp:BoundField DataField="ProductDescription" HeaderText="Category" />
                         <asp:BoundField DataField="ProductCategory" ControlStyle-CssClass="form-control" />
@@ -115,9 +114,9 @@
                             </ItemTemplate>
                             <ItemStyle Width="80px" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="centeralign"/>
-                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"/>
-                        <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"/>
+                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center"/>
+                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center"/>
+                        <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" />
                         
                     </Columns>
                 </asp:GridView>
