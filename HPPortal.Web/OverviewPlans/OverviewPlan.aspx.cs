@@ -27,6 +27,7 @@ namespace HPPortal.Web.OverviewPlans
                 string quater = SessionData.Current.QuarterYear;
                 PartnerId = id;
                 Quater = quater;
+                PlanId = 0;
 
                 FillData();
 
@@ -46,8 +47,8 @@ namespace HPPortal.Web.OverviewPlans
             if (objPlan != null)
                 PlanId = objPlan.OverviewPlanId;
             else
-                return;
-
+               return;
+            
             txtStrength.Text = objPlan.Strength;
             txtWeakness.Text = objPlan.Weakness;
             txtOpportunity.Text = objPlan.Opportunity;
@@ -56,6 +57,11 @@ namespace HPPortal.Web.OverviewPlans
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
+            txtStrength.Text = "";
+            txtWeakness.Text = "";
+            txtOpportunity.Text = "";
+            txtSupportReqd.Text = "";
+
             if (PlanId > 0)
                 FillData();
         }
