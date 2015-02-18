@@ -735,7 +735,9 @@
     <Compile Include="Users\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Utility\SessionData.cs" />
+    <Compile Include="Utility\SessionData.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Utility\UtilityBL.cs" />
     <Compile Include="Utility\MailFormat.cs" />
     <Compile Include="Utility\Quarter.cs" />
