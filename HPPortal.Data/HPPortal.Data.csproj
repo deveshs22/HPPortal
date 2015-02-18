@@ -77,6 +77,7 @@
   <ItemGroup>
     <Content Include="Sql\Create dbo.Partner.sql" />
     <Content Include="Sql\Create dbo.StrategicPlan.sql" />
+    <Content Include="Sql\CreateWithData.sql" />
     <Content Include="Sql\DBCreate.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
