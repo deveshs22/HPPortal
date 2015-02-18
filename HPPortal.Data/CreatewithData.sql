@@ -362,8 +362,13 @@ CREATE TABLE [dbo].[Sale](
 	[M3] [int] NOT NULL,
 	[ProductId] [int] NULL,
 	[PartnerId] [int] NULL,
-	[QuarterYear] [varchar](50) NULL
+	[QuarterYear] [varchar](50) NULL,
+ CONSTRAINT [PK_Sale] PRIMARY KEY CLUSTERED 
+(
+	[SaleId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
 END
 GO
 SET ANSI_PADDING OFF
