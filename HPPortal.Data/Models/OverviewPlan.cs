@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HPPortal.Data.Models
 {
+    [Serializable]
     public partial class OverviewPlan
     {
         public int OverviewPlanId { get; set; }
