@@ -20,17 +20,14 @@ namespace HPPortal.Web.StrategicPlans
         {
             if (!Page.IsPostBack)
             {
-                string id = Request.QueryString["Partner"];
-                string quarter = Request.QueryString["QuarterYear"];
-                if (!string.IsNullOrEmpty(id))
-                    PartnerId = Convert.ToInt32(id);
-                else
-                    PartnerId = 1;
-                if (!string.IsNullOrEmpty(quarter))
-                    Quater = quarter;
-                else
-                    Quater = QuarterHelper.GetNextnCurrentQuarter(DateTime.Now).FirstOrDefault().QuarterYear;
+                int id = SessionData.Current.PartnerId;
+                string quarter = SessionData.Current.QuarterYear;
+                if (id == 0)
+                    Response.Redirect("/Logon.aspx");
 
+                PartnerId = id;
+                Quater = quarter;
+                
                 ClearData();
                 var partner = _db.Partners.Find(PartnerId);
                 lblPartner.Text = partner.PartnerName;
@@ -111,7 +108,7 @@ namespace HPPortal.Web.StrategicPlans
             item.Strategies = txtStrategies.Text;
             item.Metrics = txtMetrics.Text;
 
-            if (ddlUser.SelectedIndex >= 0)
+            if (ddlUser.SelectedIndex > 0)
                 item.AssignedUserId = Convert.ToInt32(ddlUser.SelectedValue);
 
             item.CheckpointState = ddlCheckpointState.SelectedValue;
@@ -201,6 +198,13 @@ namespace HPPortal.Web.StrategicPlans
         protected void CancelButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default");
+        }
+
+        protected void btnNavigate_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            var path = btn.CommandArgument;
+            Response.Redirect(string.Format("/{0}",path));
         }
     }
 }

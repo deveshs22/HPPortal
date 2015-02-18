@@ -17,20 +17,34 @@ namespace HPPortal.Web.Targets
         {
             if (!IsPostBack)
             {
+                int id = SessionData.Current.PartnerId;
+                if (id == 0)
+                    Response.Redirect("/JBPlan.aspx");
+
+                string quater = SessionData.Current.QuarterYear;
+                PartnerId = id;
+                Quater = quater;
+
+                var partner = _db.Partners.Find(PartnerId);
+                lblPartner.Text = partner.PartnerName;
+                lblQuater.Text = Quater;
+                lblCity.Text = partner.City.Description;
+                lblOutletType.Text = partner.PartnerCategory.Description;
+                lblAccountManager.Text = partner.ContactPerson;
+
                 FillGridView();
             }
         }
 
         private void FillGridView()
         {
-            var qtr = "Q1 2015";
-            var partnerId = 1;
+            var qtr = Quater;
+            var partnerId = PartnerId;
             var targetVMList = new List<TargetViewModel>();
             var products = _db.Products;
 
             foreach (var product in products)
             {
-
                 var target = _db.Targets.FirstOrDefault(t => t.PartnerId == partnerId && t.QuarterYear == qtr && t.ProductId == product.ProductId);
 
                 if (target == null)
@@ -48,12 +62,20 @@ namespace HPPortal.Web.Targets
                      ProductId = product.ProductId,
                      QuarterYear = target.QuarterYear
                  };
+                
+                var prevQtr = Utility.QuarterHelper.GetPrevQuarter(Quater);
+                var prevQtrTarget = _db.Targets.Where(t => t.PartnerId == PartnerId && t.ProductId == product.ProductId && t.QuarterYear == prevQtr.QuarterYear).ToList();
+                if (prevQtrTarget.Any())
+                    targetVM.PrevQtr = prevQtrTarget.Sum(t => t.M1 + t.M2 + t.M3);
 
                 targetVMList.Add(targetVM);
 
             }
             GridView1.DataSource = targetVMList;
             GridView1.DataBind();
+            GridView1.UseAccessibleHeader = true;
+            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+            
         }
 
         protected void GridView1_DataBound1(object sender, EventArgs e)
@@ -86,85 +108,26 @@ namespace HPPortal.Web.Targets
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                for (int i = 0; i < e.Row.Cells.Count; i++)
-                {
-                    e.Row.Cells[i].HorizontalAlign = HorizontalAlign.Center;
-                }
+                //for (int i = 0; i < e.Row.Cells.Count; i++)
+                //{
+                //    e.Row.Cells[i].HorizontalAlign = HorizontalAlign.Center;
+                //}
 
                 e.Row.Cells[0].ColumnSpan = 2;
                 e.Row.Cells[0].Text = "Category";
                 
+                e.Row.Cells[1].Text = Utility.QuarterHelper.GetMonthName(Quater, 1);
+                e.Row.Cells[2].Text = Utility.QuarterHelper.GetMonthName(Quater, 2);
+                e.Row.Cells[3].Text = Utility.QuarterHelper.GetMonthName(Quater, 3);
 
-                e.Row.Cells[1].Text = "Jan";
-                e.Row.Cells[2].Text = "Feb";
-                e.Row.Cells[3].Text = "Mar";
+                e.Row.Cells[4].Text = Quater + " Target";
 
-               
+                e.Row.Cells[5].Text = Utility.QuarterHelper.GetPrevQuarter(Quater).QuarterYear;
+                e.Row.Cells[6].Text = "YoY";
+                            
             }
         }
-
-        void AddHeaderRow1()
-        {
-            GridViewRow gr = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
-
-            TableHeaderCell thc1 = new TableHeaderCell();
-            TableHeaderCell thc2 = new TableHeaderCell();
-            
-
-            thc1.Text = "Category";
-            thc2.Text = "Q1 2015";
-            
-            thc1.ColumnSpan = 2;
-            thc2.ColumnSpan = 3;
-            
-            // Assign CSS
-            thc1.CssClass = "panel panel-success";
-            thc2.CssClass = "panel panel-success";
-
-            gr.Cells.AddRange(new TableCell[] { thc1, thc2 });
-
-            GridView1.Controls[0].Controls.AddAt(0, gr);
-        }
-
-        void AddHeaderRow2()
-        {
-            GridViewRow gr = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
-
-            TableHeaderCell thc1 = new TableHeaderCell();
-            TableHeaderCell thc2 = new TableHeaderCell();
-            TableHeaderCell thc3 = new TableHeaderCell();
-            TableHeaderCell thc4 = new TableHeaderCell();
-            TableHeaderCell thc5 = new TableHeaderCell();
-            //TableHeaderCell thc6 = new TableHeaderCell();
-            //TableHeaderCell thc7 = new TableHeaderCell();
-            //TableHeaderCell thc8 = new TableHeaderCell();
-            //TableHeaderCell thc9 = new TableHeaderCell();
-
-            thc1.Text = "";
-            thc2.Text = "Bus";
-            thc3.Text = "Taxi";
-            thc4.Text = "Car";
-            thc5.Text = "Bus";
-            //thc6.Text = "Taxi";
-            //thc7.Text = "Car";
-            //thc8.Text = "Bus";
-            //thc9.Text = "Taxi";
-
-            // Assign CSS
-            thc1.CssClass = "Car";
-            thc2.CssClass = "Bus";
-            thc3.CssClass = "Taxi";
-            thc4.CssClass = "Car";
-            thc5.CssClass = "Bus";
-            //thc6.CssClass = "Taxi";
-            //thc7.CssClass = "Car";
-            //thc8.CssClass = "Bus";
-            //thc9.CssClass = "Taxi";
-
-            gr.Cells.AddRange(new TableCell[] { thc1, thc2, thc3, thc4, thc5, });//thc6, thc7, thc8, thc9 });
-
-            GridView1.Controls[0].Controls.AddAt(1, gr);
-        } 
+               
         protected void btnSave_Click(object sender, EventArgs e)
         {
             foreach (GridViewRow row in GridView1.Rows)
@@ -208,6 +171,49 @@ namespace HPPortal.Web.Targets
                 FillGridView();
             
             }
+        }
+
+        private int PlanId
+        {
+            get
+            {
+                return (int)ViewState["PlanId"];
+            }
+            set
+            {
+                ViewState["PlanId"] = value;
+            }
+        }
+
+        private int PartnerId
+        {
+            get
+            {
+                return (int)ViewState["PartnerId"];
+            }
+            set
+            {
+                ViewState["PartnerId"] = value;
+            }
+        }
+
+        private string Quater
+        {
+            get
+            {
+                return ViewState["Quarter"] as string;
+            }
+            set
+            {
+                ViewState["Quarter"] = value;
+            }
+        }
+
+        protected void btnNavigate_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            var path = btn.CommandArgument;
+            Response.Redirect(string.Format("/{0}", path));
         }
     }
 }

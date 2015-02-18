@@ -14,6 +14,7 @@ namespace HPPortal.Data.Models
         public int ProductId { get; set; }
         public string ProductDescription { get; set; }
         public string ProductCategory { get; set; }
+        public string Type { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }
         public virtual ICollection<Target> Targets { get; set; }
     }

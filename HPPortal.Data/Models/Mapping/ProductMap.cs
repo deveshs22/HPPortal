@@ -22,6 +22,7 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.ProductId).HasColumnName("ProductId");
             this.Property(t => t.ProductDescription).HasColumnName("ProductDescription");
             this.Property(t => t.ProductCategory).HasColumnName("ProductCategory");
+            this.Property(t => t.Type).HasColumnName("Type");
         }
     }
 }

@@ -5,55 +5,67 @@
         &nbsp;
     </div>
     <div class="row form-horizontal">
+        <br />
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading">
 
-        <div class="row col-md-offset-1 col-md-8">
-            <div class="row col-md-12">
-                <h3 style="align-content: center">Welcome to HP JB Plan Creation</h3>
-                <hr />
+                <h2 class="panel-title">Welcome to HP JB Plan Creation</h2>
+
             </div>
-            <div class="row">
-                <div class="col-md-7">
-                    <div id="div1" class="form-group">
-                        <asp:Label ID="Label1" runat="server" CssClass="col-md-2 control-label h4" Text="Partner:" />
-                        <div class="col-md-8">
-                            <asp:DropDownList
-                                ID="ddlPartner"
-                                SelectMethod="GetPartners"
-                                DataTextField="PartnerName"
-                                DataValueField="PartnerId"
-                                CssClass="form-control"
-                                Width="300px"
-                                AppendDataBoundItems="true"
-                                runat="server">
-                                <asp:ListItem Text="Select Partner" Value=""></asp:ListItem>
-                            </asp:DropDownList>
+            <div class="panel-body">
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="div1" class="form-group">
+                            <asp:Label ID="Label1" runat="server" CssClass="col-md-2 control-label" Text="Partner:" />
+                            <div class="col-md-6">
+                                <asp:DropDownList
+                                    ID="ddlPartner"
+                                    SelectMethod="GetPartners"
+                                    DataTextField="PartnerName"
+                                    DataValueField="PartnerId"
+                                    CssClass="form-control"
+                                    Width="300px"
+                                    AppendDataBoundItems="true"
+                                    runat="server">
+                                    <asp:ListItem Text="Select Partner" Value="0"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-2">
+                                &nbsp;&nbsp;&nbsp;
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlPartner" InitialValue="0" ErrorMessage="Required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div id="div2" class="form-group">
+                            <asp:Label ID="Quarter" runat="server" CssClass="col-md-2 control-label" Text="Quarter:" />
+                            <div class="col-md-6">
+                                <asp:DropDownList
+                                    ID="ddlQuarter"
+                                    SelectMethod="GetQuarters"
+                                    DataTextField="QuarterYear"
+                                    DataValueField="QuarterId"
+                                    CssClass="maxWidth form-control"
+                                    AppendDataBoundItems="true"
+                                    runat="server">
+                                    <asp:ListItem Text="Select Quarter" Value="0"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-2">
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlQuarter" InitialValue="0" ErrorMessage="Required" CssClass="text-danger"></asp:RequiredFieldValidator>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-5">
-                    <div id="div2" class="form-group">
-                        <asp:Label ID="Quarter" runat="server" CssClass="col-md-3 control-label h4" Text="Quarter:" />
-                        <div class="col-md-8">
-                            <asp:DropDownList
-                                ID="ddlQuarter"
-                                SelectMethod="GetQuarters"
-                                DataTextField="QuarterYear"
-                                DataValueField="QuarterId"
-                                CssClass="maxWidth form-control"
-                                AppendDataBoundItems="true"
-                                runat="server">
-                                <asp:ListItem Text="Select Quarter" Value=""></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                </div>
+                <br />
             </div>
-            <div class="row col-md-4">
-                <br />
-                <br />
-            <asp:Button runat="server" ID="btnCreate" Text="Create / Edit Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click" />
-                </div>
+            <div class="panel-footer" style="align-content: center;">
+                <asp:Button runat="server" ID="btnCreate" Text="Create / Edit Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click" />
+            </div>
+
         </div>
     </div>
 </asp:Content>

@@ -20,144 +20,103 @@ namespace HPPortal.Web.OverviewPlans
         {
             if (!Page.IsPostBack)
             {
-                string id = Request.QueryString["Partner"];
-                string quater = Request.QueryString["QuaterYear"];
-                if (!string.IsNullOrEmpty(id))
-                    PartnerId = Convert.ToInt32(id);
-                else
-                    PartnerId = 1;
-                if (!string.IsNullOrEmpty(quater))
-                    Quater = quater;
-                else
-                    Quater = QuarterHelper.GetNextnCurrentQuarter(DateTime.Now).FirstOrDefault().QuarterYear;
+                int id = SessionData.Current.PartnerId;
+                if (id == 0)
+                    Response.Redirect("/JBPlan.aspx");
 
-                OverView_Plan = _db.OverviewPlans.FirstOrDefault(o => o.PartnerId == PartnerId && o.Quarter == Quater);
-                if (OverView_Plan != null)
-                {
-                    IsNew = false;
-                    FillData(OverView_Plan);
-                }
-                else
-                {
-                    IsNew = true;
-                }
+                string quater = SessionData.Current.QuarterYear;
+                PartnerId = id;
+                Quater = quater;
 
+                FillData();
+
+                var partner = _db.Partners.Find(PartnerId);
+                lblPartner.Text = partner.PartnerName;
+                lblQuater.Text = Quater;
+                lblCity.Text = partner.City.Description;
+                lblOutletType.Text = partner.PartnerCategory.Description;
+                lblAccountManager.Text = partner.ContactPerson;
             }
         }
 
-        private void FillData(HPPortal.Data.Models.OverviewPlan objPlan)
+        private void FillData()
         {
+            var objPlan = _db.OverviewPlans.FirstOrDefault(o => o.PartnerId == PartnerId && o.Quarter == Quater);
+
+            if (objPlan != null)
+                PlanId = objPlan.OverviewPlanId;
+            else
+                return;
+
             txtStrength.Text = objPlan.Strength;
             txtWeakness.Text = objPlan.Weakness;
             txtOpportunity.Text = objPlan.Opportunity;
             txtSupportReqd.Text = objPlan.SupportReqd;
         }
 
-        private void AddItem(IList list, Type type, string valueMember,
-  string displayMember, string displayText)
-        {
-            //Creates an instance of the specified type 
-            //using the constructor that best matches the specified parameters.
-            Object obj = Activator.CreateInstance(type);
-
-            // Gets the Display Property Information
-            PropertyInfo displayProperty = type.GetProperty(displayMember);
-
-            // Sets the required text into the display property
-            displayProperty.SetValue(obj, displayText, null);
-
-            // Gets the Value Property Information
-            PropertyInfo valueProperty = type.GetProperty(valueMember);
-
-            // Sets the required value into the value property
-            valueProperty.SetValue(obj, -1, null);
-
-            // Insert the new object on the list
-            list.Insert(0, obj);
-        }
-
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            if (IsNew)
-                Response.Redirect("Default");
-            else
-                Response.Redirect("../Default");
+            if (PlanId > 0)
+                FillData();
         }
 
         protected void InsertButton_Click(object sender, EventArgs e)
         {
-            using (_db)
-            {
-                var item = new HPPortal.Data.Models.OverviewPlan();
-
-                if (IsNew)
-                {
-                    item = CommitToItem(item);
-
-                    if (ModelState.IsValid)
-                    {
-                        _db.OverviewPlans.Add(item);
-                        _db.SaveChanges();
-                    }
-                }
-                else
-                {
-                    item = CommitToItem(OverView_Plan);
-
-                    if (ModelState.IsValid)
-                    {
-                        _db.Entry(item).State = EntityState.Modified;
-                        _db.SaveChanges();
-                    }
-                }
-            }
+            CommitToItem();
+            FillData();
         }
 
-        private HPPortal.Data.Models.OverviewPlan CommitToItem(Data.Models.OverviewPlan item)
+        private void CommitToItem()
         {
-            var Plans = _db.OverviewPlans.FirstOrDefault(o => o.PartnerId == item.PartnerId && o.Quarter == item.Quarter);
-            if (Plans != null)
-                item = Plans;
+            var userId = SessionData.Current.UserId;
+
+            if (userId == 0)
+                Response.Redirect("/Logon");
+
+            var item = new HPPortal.Data.Models.OverviewPlan();
+
+            if (PlanId > 0)
+                item = _db.OverviewPlans.Find(PlanId);
+
             item.Strength = txtStrength.Text.Trim();
             item.Weakness = txtWeakness.Text.Trim();
             item.Opportunity = txtOpportunity.Text.Trim();
             item.SupportReqd = txtSupportReqd.Text.Trim();
-            item.PartnerId = Convert.ToInt32(Request.QueryString["PartnerId"]);
-            item.Quarter = Convert.ToString(Request.QueryString["Quarter"]);
-            if (IsNew)
+
+            if (PlanId > 0)
             {
-                item.CreatedDate = System.DateTime.Now;
-                //item.CreatedUser = 1;
+                item.ModifiedDate = System.DateTime.Now;
+                item.ModifiedUser = userId;
             }
             else
             {
-                item.ModifiedDate = System.DateTime.Now;
-                //item.ModifiedUser = 1;
+                item.PartnerId = PartnerId;
+                item.Quarter = Quater;
+                item.CreatedDate = System.DateTime.Now;
+                item.CreatedUser = userId;
             }
-            return item;
+
+            if (ModelState.IsValid)
+            {
+                if (PlanId > 0)
+                    _db.Entry<HPPortal.Data.Models.OverviewPlan>(item).State = EntityState.Modified;
+                else
+                    _db.OverviewPlans.Add(item);
+
+                _db.SaveChanges();
+            }
         }
 
-        private bool IsNew
+
+        private int PlanId
         {
             get
             {
-                return (bool)ViewState["isNew"];
+                return (int)ViewState["PlanId"];
             }
             set
             {
-                ViewState["isNew"] = value;
-            }
-        }
-
-        private HPPortal.Data.Models.OverviewPlan OverView_Plan
-        {
-            get
-            {
-                return ViewState["OverView_Plan"] as HPPortal.Data.Models.OverviewPlan;
-            }
-            set
-            {
-                ViewState["OverView_Plan"] = value;
+                ViewState["PlanId"] = value;
             }
         }
 
@@ -183,6 +142,13 @@ namespace HPPortal.Web.OverviewPlans
             {
                 ViewState["Quarter"] = value;
             }
+        }
+
+        protected void btnNavigate_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            var path = btn.CommandArgument;
+            Response.Redirect(string.Format("/{0}", path));
         }
     }
 }

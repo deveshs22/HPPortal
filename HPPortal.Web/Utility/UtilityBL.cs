@@ -106,7 +106,14 @@ namespace HPPortal.Web
             Average = 2,
             Bad = 3
         }
-        
+
+        public enum ProductType
+        {
+            Amount,
+            Unit,
+            Wallet
+        }
+
         public static IDictionary<int, string> GetAll<TEnum>() where TEnum : struct
         {
             var enumerationType = typeof(TEnum);

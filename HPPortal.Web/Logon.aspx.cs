@@ -57,6 +57,8 @@ namespace HPPortal.Web
                     HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName,
                                                                 FormsAuthentication.Encrypt(authTicket));
                     Response.Cookies.Add(authCookie);
+
+                    SessionData.Current.UserId = user.UserId;
                     
                     var returnUrl = Request.QueryString["ReturnUrl"];
 

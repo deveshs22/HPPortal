@@ -9,11 +9,7 @@ namespace HPPortal.Data.Models.Mapping
         {
             // Primary Key
             this.HasKey(t => t.OverviewPlanId);
-
-            // Properties
-            this.Property(t => t.OverviewPlanId)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
+      
             this.Property(t => t.Quarter)
                 .HasMaxLength(50);
 

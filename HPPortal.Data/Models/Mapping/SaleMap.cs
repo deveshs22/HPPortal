@@ -37,10 +37,10 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.QuarterYear).HasColumnName("QuarterYear");
 
             // Relationships
-            this.HasOptional(t => t.Partner)
+            this.HasRequired(t => t.Partner)
                 .WithMany(t => t.Sales)
                 .HasForeignKey(d => d.PartnerId);
-            this.HasOptional(t => t.Product)
+            this.HasRequired(t => t.Product)
                 .WithMany(t => t.Sales)
                 .HasForeignKey(d => d.ProductId);
 

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using HPPortal.Data.Models;
+using System.Data.Entity;
 
 namespace HPPortal.Web
 {
@@ -18,7 +19,12 @@ namespace HPPortal.Web
 
         public IEnumerable<Partner> GetPartners()
         {
-            return _db.Partners;
+            if (SessionData.Current.UserId == 0)
+                Response.Redirect("/Logon.aspx");
+
+            var userId = SessionData.Current.UserId;
+            var userData = _db.Users.Include(u=>u.Cities.Select(c=>c.Partners)).First(u => u.UserId == userId);
+            return userData.Cities.SelectMany(c => c.Partners).ToList();
         }
 
         public IEnumerable<Utility.Quarter> GetQuarters()
@@ -28,7 +34,9 @@ namespace HPPortal.Web
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            Response.Redirect(String.Format("/StrategicPlans/Default.aspx?Partner={0}&QuarterYear={1}", ddlPartner.SelectedValue, ddlQuarter.SelectedItem.Text));
+            SessionData.Current.PartnerId = Convert.ToInt32(ddlPartner.SelectedValue);
+            SessionData.Current.QuarterYear = ddlQuarter.SelectedItem.Text;
+            Response.Redirect("/StrategicPlans");
         }
     }
 }

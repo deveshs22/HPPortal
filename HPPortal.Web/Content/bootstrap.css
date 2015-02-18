@@ -1437,8 +1437,8 @@ table {
 }
 
 th {
-  text-align: left;
-  font-family: HPSimplified_Bd, Arial
+  text-align: left !important;
+  font-family: HPSimplified_Bd, Arial;
 }
 
 .table {

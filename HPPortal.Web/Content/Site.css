@@ -34,6 +34,11 @@ input[type="date"]
     max-width: 280px;
 }
 
+.centeralign {
+    text-align: center;
+}
+
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {

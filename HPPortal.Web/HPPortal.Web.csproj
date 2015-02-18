@@ -47,6 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -554,6 +555,7 @@
     <Compile Include="Logon.aspx.designer.cs">
       <DependentUpon>Logon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PerformanceViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\TargetViewModel.cs" />
     <Compile Include="OverviewPlans\Default.aspx.cs">
@@ -733,6 +735,7 @@
     <Compile Include="Users\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\SessionData.cs" />
     <Compile Include="Utility\UtilityBL.cs" />
     <Compile Include="Utility\MailFormat.cs" />
     <Compile Include="Utility\Quarter.cs" />

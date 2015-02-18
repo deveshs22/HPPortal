@@ -7,6 +7,13 @@ namespace HPPortal.Data.Models
     [Serializable]
     public partial class Partner
     {
+        public Partner()
+        {
+            this.Sales = new List<Sale>();
+            this.Targets = new List<Target>();
+            this.StrategicPlans = new List<StrategicPlan>();
+
+        }
 
         public int PartnerId { get; set; }
 
