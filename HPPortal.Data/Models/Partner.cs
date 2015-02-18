@@ -58,5 +58,7 @@ namespace HPPortal.Data.Models
 
         public virtual ICollection<Sale> Sales { get; set; }
         public virtual ICollection<Target> Targets { get; set; }
+
+        public virtual ICollection<StrategicPlan> StrategicPlans { get; set; }
     }
 }

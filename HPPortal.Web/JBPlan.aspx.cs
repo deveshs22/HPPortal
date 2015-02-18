@@ -28,7 +28,7 @@ namespace HPPortal.Web
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/StrategicPlans");
+            Response.Redirect(String.Format("/StrategicPlans/Default.aspx?Partner={0}&QuarterYear={1}", ddlPartner.SelectedValue, ddlQuarter.SelectedItem.Text));
         }
     }
 }

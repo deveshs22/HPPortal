@@ -94,5 +94,36 @@ namespace HPPortal.Web
             //return the Clear decrypted TEXT
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
+
+        public static IDictionary<int, string> GetCheckpointState()
+        {
+            return GetAll<CheckpointState>();
+        }
+
+        public enum CheckpointState
+        {
+            Good = 1,
+            Average = 2,
+            Bad = 3
+        }
+        
+        public static IDictionary<int, string> GetAll<TEnum>() where TEnum : struct
+        {
+            var enumerationType = typeof(TEnum);
+
+            if (!enumerationType.IsEnum)
+                throw new ArgumentException("Enumeration type is expected.");
+
+            var dictionary = new Dictionary<int, string>();
+
+            foreach (int value in Enum.GetValues(enumerationType))
+            {
+                var name = Enum.GetName(enumerationType, value);
+                dictionary.Add(value, name);
+            }
+
+            return dictionary;
+        }
+        
     }
 }

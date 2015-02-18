@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace HPPortal.Web {
     public partial class TextField : System.Web.DynamicData.FieldTemplateUserControl {
-        private const int MAX_DISPLAYLENGTH_IN_LIST = 25;
+        private const int MAX_DISPLAYLENGTH_IN_LIST = 2000;
     
         public override string FieldValueString {
             get {
@@ -18,7 +18,7 @@ namespace HPPortal.Web {
                        value = value.Substring(0, MAX_DISPLAYLENGTH_IN_LIST - 3) + "...";
                     }
                 }
-                return value;
+                return value.Replace(Environment.NewLine, "<br />");
             }
         }
     
