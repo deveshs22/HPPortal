@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using HPPortal.Data.Models;
 using System.Data.Entity;
+using System.Configuration;
 
 namespace HPPortal.Web
 {
@@ -52,7 +53,8 @@ namespace HPPortal.Web
         {
             // Code that runs when an unhandled error occurs
             Exception exc = Server.GetLastError();
-            
+            Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], ConfigurationManager.AppSettings["PortolError"],
+                "", "", "Portal Error", exc.ToString(), "", "");
             //TODO: Implement Email to Admin 
             Server.Transfer("~/Error.aspx");
            

@@ -49,6 +49,7 @@
     <Compile Include="Models\City.cs" />
     <Compile Include="HPSiteDBContext.cs" />
     <Compile Include="Models\Mapping\CityMap.cs" />
+    <Compile Include="Models\Mapping\OpenHouseMap.cs" />
     <Compile Include="Models\Mapping\OverviewPlanMap.cs" />
     <Compile Include="Models\Mapping\PartnerCategoryMap.cs" />
     <Compile Include="Models\Mapping\PartnerMap.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Models\Mapping\TargetMap.cs" />
     <Compile Include="Models\Mapping\UserMap.cs" />
     <Compile Include="Models\Mapping\ZoneMap.cs" />
+    <Compile Include="Models\OpenHouse.cs" />
     <Compile Include="Models\OverviewPlan.cs" />
     <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\PartnerCategory.cs" />

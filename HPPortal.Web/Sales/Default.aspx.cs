@@ -215,5 +215,20 @@ namespace HPPortal.Web.Sales
             var path = btn.CommandArgument;
             Response.Redirect(string.Format("/{0}", path));
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PartnerId > 0)
+                {
+                    FillGridView();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

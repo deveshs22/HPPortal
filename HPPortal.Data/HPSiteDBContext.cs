@@ -29,6 +29,7 @@ namespace HPPortal.Data.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Target> Targets { get; set; }
+        public DbSet<OpenHouse> OpenHouse { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -45,6 +46,7 @@ namespace HPPortal.Data.Models
             modelBuilder.Configurations.Add(new TargetMap());
             modelBuilder.Configurations.Add(new SaleMap());
             modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new OpenHouseMap());
         }
     }
 }

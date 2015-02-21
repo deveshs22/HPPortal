@@ -70,6 +70,9 @@
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
         </div>
+         <div class="btn btn-default">
+                <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
+         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -125,6 +128,7 @@
            <div class="form-group">
                         <div class="col-sm-offset-5 col-sm-7">
             <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="btnCancel_Click" />
                             </div>
                </div>
         </div>

@@ -197,6 +197,7 @@
     <Content Include="Error.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Logon.aspx" />
+    <Content Include="OpenHouse\OpenHouseUI.aspx" />
     <Content Include="OverviewPlans\Default.aspx" />
     <Content Include="OverviewPlans\Delete.aspx" />
     <Content Include="OverviewPlans\Details.aspx" />
@@ -560,6 +561,13 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SalesViewModel.cs" />
     <Compile Include="Models\TargetViewModel.cs" />
+    <Compile Include="OpenHouse\OpenHouseUI.aspx.cs">
+      <DependentUpon>OpenHouseUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OpenHouse\OpenHouseUI.aspx.designer.cs">
+      <DependentUpon>OpenHouseUI.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OverviewPlans\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
