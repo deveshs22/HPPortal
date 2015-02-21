@@ -69,9 +69,9 @@
         <div class="btn btn-primary">
             <span style="font-family: HPSimplified_Bd;">Primary Sales Entry</span>
         </div>
-       <%-- <div class="btn btn-default">
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
-        </div>--%>
+        </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">

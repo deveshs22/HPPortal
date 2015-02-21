@@ -28,6 +28,8 @@ namespace HPPortal.Web.Partners
             var userData = _db.Users.Include(u => u.Cities.Select(c => c.Partners)).First(u => u.UserId == userId);
             var partners = userData.Cities.SelectMany(c => c.Partners);
 
+
+            
             var partnersToReturn = _db.Partners.Include(m => m.City).Include(m => m.PartnerCategory);
             var partnerData = new List<Partner>();
 

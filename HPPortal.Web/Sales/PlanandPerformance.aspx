@@ -82,17 +82,26 @@
             <div class="form-horizontal">
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProductId"
                     OnDataBound="GridView1_DataBound1" OnRowDataBound="GridView1_RowDataBound" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
-
                     <Columns>
                         <asp:BoundField DataField="ProductDescription" HeaderText="Category" />
                         <asp:BoundField DataField="ProductCategory" HeaderText="ProductCategory" ControlStyle-CssClass="form-control" />
+                        <asp:BoundField DataField="CQ1" HeaderText="CQ1" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CQ2" HeaderText="CQ2" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CQ3" HeaderText="CQ3" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CQ4" HeaderText="CQ4" ItemStyle-HorizontalAlign="Center" />
+
+                        <asp:BoundField DataField="PQ1" HeaderText="PQ1" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="PQ2" HeaderText="PQ2" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="PQ3" HeaderText="PQ3" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="PQ4" HeaderText="PQ4" ItemStyle-HorizontalAlign="Center" />
+
                         <asp:BoundField DataField="M1" HeaderText="M1" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="M2" HeaderText="M2" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="M3" HeaderText="M3" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center" />
+                        <%-- <asp:BoundField DataField="QuarterTotal" HeaderText="Quarter Total" ItemStyle-HorizontalAlign="Center" />--%>
+                        <%-- <asp:BoundField DataField="PrevQtr" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" />--%>
                         <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" />
-
+                         <asp:BoundField DataField="SegGrowth" ItemStyle-HorizontalAlign="Center" />
 
                     </Columns>
                 </asp:GridView>
