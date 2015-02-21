@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Target Plan" Language="C#" MasterPageFile="~/Site.Master" EnableViewState="true" CodeBehind="Default.aspx.cs" Inherits="HPPortal.Web.Targets.Default" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    
+
     <div>&nbsp;</div>
     <div class="well">
         <div class="row">
@@ -59,7 +59,6 @@
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Strategic Plans" CommandArgument="StrategicPlans/Default.aspx" />
             <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
-            
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" Text="Overview Plans" OnClick="btnNavigate_Click" CommandArgument="OverViewPlans/OverviewPlan.aspx" />
@@ -70,6 +69,9 @@
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
         </div>
+       <%-- <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
+        </div>--%>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -78,9 +80,9 @@
         <div class="panel-body">
 
             <div class="form-horizontal">
-                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProductId" 
+                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProductId"
                     OnDataBound="GridView1_DataBound1" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
-                    
+
                     <Columns>
                         <asp:BoundField DataField="ProductDescription" HeaderText="Category" />
                         <asp:BoundField DataField="ProductCategory" ControlStyle-CssClass="form-control" />
@@ -114,19 +116,19 @@
                             </ItemTemplate>
                             <ItemStyle Width="100px" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center"/>
-                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center"/>
+                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" />
-                        
+
                     </Columns>
                 </asp:GridView>
 
             </div>
-           <div class="form-group">
-                        <div class="col-sm-offset-5 col-sm-7">
-            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
-                            </div>
-               </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-7">
+                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>

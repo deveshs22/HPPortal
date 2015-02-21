@@ -1,4 +1,6 @@
-﻿USE [HPSiteDB]
+﻿CREATE DATABASE [HPSiteDBNew];
+GO
+USE [HPSiteDBNew]
 GO
 GO
 /****** Object:  Table [dbo].[Role]   added  Script Date: 02/19/2015 00:08:45  ******/

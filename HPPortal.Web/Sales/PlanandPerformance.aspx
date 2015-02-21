@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sales" Language="C#" MasterPageFile="~/Site.Master" EnableViewState="true" CodeBehind="Default.aspx.cs" Inherits="HPPortal.Web.Sales.Default" %>
+﻿<%@ Page Title="Plans and Performance" Language="C#" MasterPageFile="~/Site.Master" EnableViewState="true" CodeBehind="PlanandPerformance.aspx.cs" Inherits="HPPortal.Web.Sales.PlanandPerformance" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
 
@@ -65,70 +65,40 @@
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx" />
-        </div>        
-        <div class="btn btn-primary">
-            <span style="font-family: HPSimplified_Bd;">Primary Sales Entry</span>
         </div>
-       <%-- <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
-        </div>--%>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
+        </div>
+        <div class="btn btn-primary">
+            <span style="font-family: HPSimplified_Bd;">Plan and Performance</span>
+        </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Sales</h3>
+            <h3 class="panel-title">Categorywise Plan and Performance</h3>
         </div>
         <div class="panel-body">
 
             <div class="form-horizontal">
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProductId"
-                    OnDataBound="GridView1_DataBound1" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
+                    OnDataBound="GridView1_DataBound1" OnRowDataBound="GridView1_RowDataBound" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
 
                     <Columns>
                         <asp:BoundField DataField="ProductDescription" HeaderText="Category" />
-                        <asp:BoundField DataField="ProductCategory" ControlStyle-CssClass="form-control" />
-                        <asp:TemplateField>
-                            <%--<HeaderTemplate>
-                            <asp:Label ID="lblM1" runat="server"></asp:Label>
-                        </HeaderTemplate>--%>
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtM1" runat="server" TextMode="Number" Text='<%# Eval("M1") %>' CssClass="form-control DDTextBox"></asp:TextBox>
-                                <asp:HiddenField ID="hdnSaleId" runat="server" Value='<%# Eval("SaleId") %>' />
-                            </ItemTemplate>
-                            <ItemStyle Width="100px" />
-                        </asp:TemplateField>
-
-                        <asp:TemplateField>
-                            <%-- <HeaderTemplate>
-                            <asp:Label ID="lblM2" runat="server"></asp:Label>
-                        </HeaderTemplate>--%>
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtM2" runat="server" TextMode="Number" Text='<%# Eval("M2") %>' CssClass="form-control DDTextBox"></asp:TextBox>
-                            </ItemTemplate>
-                            <ItemStyle Width="100px" />
-                        </asp:TemplateField>
-
-                        <asp:TemplateField>
-                            <%-- <HeaderTemplate>
-                            <asp:Label ID="lblM3" runat="server"></asp:Label>
-                        </HeaderTemplate>--%>
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtM3" runat="server" TextMode="Number" Text='<%# Eval("M3") %>' CssClass="form-control DDTextBox"></asp:TextBox>
-                            </ItemTemplate>
-                            <ItemStyle Width="100px" />
-                        </asp:TemplateField>
+                        <asp:BoundField DataField="ProductCategory" HeaderText="ProductCategory" ControlStyle-CssClass="form-control" />
+                        <asp:BoundField DataField="M1" HeaderText="M1" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="M2" HeaderText="M2" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="M3" HeaderText="M3" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" />
+
 
                     </Columns>
                 </asp:GridView>
 
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-7">
-                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
-                </div>
-            </div>
+
         </div>
     </div>
 </asp:Content>

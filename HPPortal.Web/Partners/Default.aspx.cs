@@ -21,7 +21,24 @@ namespace HPPortal.Web.Partners
         // USAGE: <asp:ListView SelectMethod="GetData">
         public IQueryable<HPPortal.Data.Models.Partner> GetData()
         {
-            return _db.Partners.Include(m => m.City).Include(m => m.PartnerCategory);
+            if (SessionData.Current.UserId == 0)
+                Response.Redirect("/Logon.aspx");
+
+            var userId = SessionData.Current.UserId;
+            var userData = _db.Users.Include(u => u.Cities.Select(c => c.Partners)).First(u => u.UserId == userId);
+            var partners = userData.Cities.SelectMany(c => c.Partners);
+
+            var partnersToReturn = _db.Partners.Include(m => m.City).Include(m => m.PartnerCategory);
+            var partnerData = new List<Partner>();
+
+            foreach (var par in partnersToReturn)
+            {
+                if (partners.Any(p => p.PartnerId == par.PartnerId))
+                {
+                    partnerData.Add(par);
+                }
+            }
+            return partnerData.AsQueryable();
         }
     }
 }
