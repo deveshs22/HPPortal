@@ -59,7 +59,6 @@
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Strategic Plans" CommandArgument="StrategicPlans/Default.aspx" />
             <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
-            
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" Text="Overview Plans" OnClick="btnNavigate_Click" CommandArgument="OverViewPlans/OverviewPlan.aspx" />
@@ -70,9 +69,12 @@
         <div class="btn btn-primary">
              <span style="font-family: HPSimplified_Bd;">Primary Sales Entry</span>
         </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
+            </div>
          <div class="btn btn-default">
                 <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
-         </div>
+    </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -117,8 +119,8 @@
                             </ItemTemplate>
                             <ItemStyle Width="100px" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center"/>
-                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center"/>
+                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" />
                         
                     </Columns>

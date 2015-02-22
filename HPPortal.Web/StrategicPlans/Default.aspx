@@ -4,7 +4,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>&nbsp;</div>
         
-    <div class="well"  >
+    <div class="well">
     
         <div class="row">
             <div class="col-md-offset-1 col-md-1 control-label">
@@ -65,13 +65,16 @@
                 <span style="font-family: HPSimplified_Bd;">Strategic Plans</span>
             </div>
             <div class="btn btn-default">
-                <asp:LinkButton runat="server" Text="Overview Plans" OnClick="btnNavigate_Click" CommandArgument="OverViewPlans/OverviewPlan.aspx"/>
+            <asp:LinkButton runat="server" Text="Overview Plans" OnClick="btnNavigate_Click" CommandArgument="OverViewPlans/OverviewPlan.aspx" />
+        </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx" />
             </div>
             <div class="btn btn-default">
-                <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx"/>
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
             </div>
             <div class="btn btn-default">
-                <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx"/>
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
             </div>
             <div class="btn btn-default">
                 <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>

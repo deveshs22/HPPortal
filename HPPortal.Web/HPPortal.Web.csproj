@@ -223,6 +223,7 @@
     <None Include="Properties\PublishProfiles\hpjbplans.com.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Sales\Default.aspx" />
+    <Content Include="Sales\PlanandPerformance.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -652,6 +653,13 @@
     </Compile>
     <Compile Include="Sales\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\PlanandPerformance.aspx.cs">
+      <DependentUpon>PlanandPerformance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\PlanandPerformance.aspx.designer.cs">
+      <DependentUpon>PlanandPerformance.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

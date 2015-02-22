@@ -22,13 +22,23 @@ namespace HPPortal.Web.Models
         public int AchievedAmount
         {
             get
-            { return (SalesAmount*100)/TargetAmount; }
+            {
+                if (TargetAmount != 0)
+                    return (SalesAmount * 100) / TargetAmount;
+                else
+                    return 0;
+            }
         }
 
         public int AchievedUnit
         {
             get
-            { return (SalesUnit * 100) / TargetUnit; }
+            {
+                if (TargetUnit != 0)
+                    return (SalesUnit * 100) / TargetUnit;
+                else
+                    return 0;
+            }
         }
 
     }
