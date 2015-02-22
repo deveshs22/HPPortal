@@ -19,13 +19,13 @@ namespace HPPortal.Web.Partners
         {
             if (!Page.IsPostBack)
             {
-                PartnerId = SessionData.Current.PartnerId;
+                if (!string.IsNullOrEmpty(Convert.ToString(Request.QueryString["pid"])))
+                {
+                    PartnerId = Convert.ToInt32(Request.QueryString["pid"]);
+                    Quater = Convert.ToString(Request.QueryString["qtr"]);
+                }
                 if (PartnerId == 0)
                     Response.Redirect("/JBPlan.aspx");
-
-                string quater = SessionData.Current.QuarterYear;
-                PartnerId = PartnerId;
-                Quater = quater;
                
                 var partner = _db.Partners.Include(p => p.User).FirstOrDefault(p => p.PartnerId == PartnerId);
                 lblPartner.Text = partner.PartnerName;
@@ -59,7 +59,7 @@ namespace HPPortal.Web.Partners
         {
             LinkButton btn = (LinkButton)sender;
             var path = btn.CommandArgument;
-            Response.Redirect(string.Format("/{0}", path));
+            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
         }
 
         protected void ItemCommand(object sender, FormViewCommandEventArgs e)

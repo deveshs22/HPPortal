@@ -34,9 +34,9 @@ namespace HPPortal.Web
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            SessionData.Current.PartnerId = Convert.ToInt32(ddlPartner.SelectedValue);
-            SessionData.Current.QuarterYear = ddlQuarter.SelectedItem.Text;
-            Response.Redirect("/Partners/Details");
+           // SessionData.Current.PartnerId = Convert.ToInt32(ddlPartner.SelectedValue);
+           // SessionData.Current.QuarterYear = ddlQuarter.SelectedItem.Text;
+            Response.Redirect("/Partners/Details.aspx?pid=" + Convert.ToString(ddlPartner.SelectedValue) + "&qtr=" + ddlQuarter.SelectedItem.Text);
         }
     }
 }
