@@ -63,7 +63,9 @@
                 <br />
             </div>
             <div class="panel-footer" style="align-content: center;">
-                <asp:Button runat="server" ID="btnCreate" Text="Create / Edit Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click" />
+                <asp:Button runat="server" ID="btnCreate" Text="Create / Edit Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click" CommandArgument="Create" />
+                &nbsp; &nbsp;
+                <asp:Button runat="server" ID="btnView" Text="View Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click"  CommandArgument="View"/>
             </div>
 
         </div>

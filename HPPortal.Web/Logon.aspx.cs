@@ -59,6 +59,7 @@ namespace HPPortal.Web
                     Response.Cookies.Add(authCookie);
 
                     SessionData.Current.UserId = user.UserId;
+                    SessionData.Current.RoleId = user.RoleId;
                     
                     var returnUrl = Request.QueryString["ReturnUrl"];
 

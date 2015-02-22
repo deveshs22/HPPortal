@@ -63,7 +63,7 @@
                             Please login again to continue
                         </p>
                         <div>
-                            <a href="Logon.aspx" class="btn btn-default">Click here to Log in again </a>
+                            <a href="/Logon.aspx" class="btn btn-default">Click here to Log in again </a>
                         </div>
                     </div>
 

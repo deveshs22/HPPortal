@@ -42,7 +42,7 @@ namespace HPPortal.Web.OpenHouse
 
         private void FillData()
         {
-            var objOpenHouse = _db.OpenHouse.FirstOrDefault(o => o.PartnerId == PartnerId && o.Quarter == Quater);
+            var objOpenHouse = _db.OpenHouses.FirstOrDefault(o => o.PartnerId == PartnerId && o.Quarter == Quater);
 
             if (objOpenHouse != null)
                 OpenId = objOpenHouse.OpenHouseId;
@@ -76,7 +76,7 @@ namespace HPPortal.Web.OpenHouse
             var item = new HPPortal.Data.Models.OpenHouse();
 
             if (OpenId > 0)
-                item = _db.OpenHouse.Find(OpenId);
+                item = _db.OpenHouses.Find(OpenId);
 
             item.Description = txtDescription.Text.Trim();
 
@@ -98,7 +98,7 @@ namespace HPPortal.Web.OpenHouse
                 if (OpenId > 0)
                     _db.Entry<HPPortal.Data.Models.OpenHouse>(item).State = EntityState.Modified;
                 else
-                    _db.OpenHouse.Add(item);
+                    _db.OpenHouses.Add(item);
 
                 _db.SaveChanges();
             }

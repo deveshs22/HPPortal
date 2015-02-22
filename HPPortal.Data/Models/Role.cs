@@ -15,5 +15,6 @@ namespace HPPortal.Data.Models
         public string Description { get; set; }
         public bool Active { get; set; }
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

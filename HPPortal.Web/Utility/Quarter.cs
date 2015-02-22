@@ -10,18 +10,18 @@ namespace HPPortal.Web.Utility
         static QuarterHelper()
         {
             Quarters = new List<Quarter>();
-            Quarters.Add(new Quarter { MonthId = 1, QuarterId = 1, QuarterDescription = "Q1", MonthIndex = 1 });
-            Quarters.Add(new Quarter { MonthId = 2, QuarterId = 1, QuarterDescription = "Q1", MonthIndex = 2 });
-            Quarters.Add(new Quarter { MonthId = 3, QuarterId = 1, QuarterDescription = "Q1", MonthIndex = 3 });
-            Quarters.Add(new Quarter { MonthId = 4, QuarterId = 2, QuarterDescription = "Q2", MonthIndex = 1 });
-            Quarters.Add(new Quarter { MonthId = 5, QuarterId = 2, QuarterDescription = "Q2", MonthIndex = 2 });
-            Quarters.Add(new Quarter { MonthId = 6, QuarterId = 2, QuarterDescription = "Q2", MonthIndex = 3 });
-            Quarters.Add(new Quarter { MonthId = 7, QuarterId = 3, QuarterDescription = "Q3", MonthIndex = 1 });
-            Quarters.Add(new Quarter { MonthId = 8, QuarterId = 3, QuarterDescription = "Q3", MonthIndex = 2 });
-            Quarters.Add(new Quarter { MonthId = 9, QuarterId = 3, QuarterDescription = "Q3", MonthIndex = 3 });
-            Quarters.Add(new Quarter { MonthId = 10, QuarterId = 4, QuarterDescription = "Q4", MonthIndex = 1 });
-            Quarters.Add(new Quarter { MonthId = 11, QuarterId = 4, QuarterDescription = "Q4", MonthIndex = 2 });
-            Quarters.Add(new Quarter { MonthId = 12, QuarterId = 4, QuarterDescription = "Q4", MonthIndex = 3 });
+            Quarters.Add(new Quarter { MonthId = 1, QuarterId = 1, QuarterDescription = "Q1", MonthIndex = 3 });
+            Quarters.Add(new Quarter { MonthId = 2, QuarterId = 2, QuarterDescription = "Q2", MonthIndex = 1 });
+            Quarters.Add(new Quarter { MonthId = 3, QuarterId = 2, QuarterDescription = "Q2", MonthIndex = 2 });
+            Quarters.Add(new Quarter { MonthId = 4, QuarterId = 2, QuarterDescription = "Q2", MonthIndex = 3 });
+            Quarters.Add(new Quarter { MonthId = 5, QuarterId = 3, QuarterDescription = "Q3", MonthIndex = 1 });
+            Quarters.Add(new Quarter { MonthId = 6, QuarterId = 3, QuarterDescription = "Q3", MonthIndex = 2 });
+            Quarters.Add(new Quarter { MonthId = 7, QuarterId = 3, QuarterDescription = "Q3", MonthIndex = 3 });
+            Quarters.Add(new Quarter { MonthId = 8, QuarterId = 4, QuarterDescription = "Q4", MonthIndex = 1 });
+            Quarters.Add(new Quarter { MonthId = 9, QuarterId = 4, QuarterDescription = "Q4", MonthIndex = 2 });
+            Quarters.Add(new Quarter { MonthId = 10, QuarterId = 4, QuarterDescription = "Q4", MonthIndex = 3 });
+            Quarters.Add(new Quarter { MonthId = 11, QuarterId = 1, QuarterDescription = "Q1", MonthIndex = 1 });
+            Quarters.Add(new Quarter { MonthId = 12, QuarterId = 1, QuarterDescription = "Q1", MonthIndex = 2 });
         }
 
         public static Quarter GetCurrentQuarter(DateTime date)
@@ -40,7 +40,7 @@ namespace HPPortal.Web.Utility
         public static string GetMonthName(string quarterYear, int monthIndex)
         {
             var qtr = Quarters.Find(q => q.QuarterDescription == quarterYear.Substring(0,2) && q.MonthIndex==monthIndex);
-            var date = new DateTime(DateTime.Now.Year, qtr.MonthIndex, 1);
+            var date = new DateTime(DateTime.Now.Year, qtr.MonthId, 1);
             return date.ToString("MMMM");
         }
 
@@ -57,7 +57,7 @@ namespace HPPortal.Web.Utility
             }
 
             var preQtr = Quarters.First(q => q.QuarterId == prevQtrId);
-            var qtrYr = qtr.QuarterDescription + " " + year;
+            var qtrYr = preQtr.QuarterDescription + " " + year;
 
             return new Quarter
                 {

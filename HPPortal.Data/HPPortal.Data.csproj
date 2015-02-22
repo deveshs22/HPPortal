@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Models\City.cs" />
     <Compile Include="HPSiteDBContext.cs" />
+    <Compile Include="Models\Mapping\PermissionMap.cs" />
     <Compile Include="Models\Mapping\CityMap.cs" />
     <Compile Include="Models\Mapping\OpenHouseMap.cs" />
     <Compile Include="Models\Mapping\OverviewPlanMap.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Models\OverviewPlan.cs" />
     <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\PartnerCategory.cs" />
+    <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Sale.cs" />

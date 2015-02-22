@@ -144,8 +144,8 @@ namespace HPPortal.Web.Targets
                 else
                 {
                     target.ProductId = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value.ToString());
-                    target.PartnerId = 1;
-                    target.QuarterYear = "Q1 2015";
+                    target.PartnerId = PartnerId;
+                    target.QuarterYear = Quater;
                 }
 
                 var txtM1 = (TextBox)row.FindControl("txtM1");

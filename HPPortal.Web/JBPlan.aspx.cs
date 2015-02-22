@@ -14,9 +14,22 @@ namespace HPPortal.Web
         HPSiteDBContext _db = new HPSiteDBContext();
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (SessionData.Current.UserId == 0)
+                Response.Redirect("/Logon.aspx");
+
+           // Authenticate();
         }
 
+        private void Authenticate()
+        {
+            var permission = _db.Permissions.FirstOrDefault(p => p.ModuleName == Modules.JBPlan && p.RoleId == SessionData.Current.RoleId);
+            if (!permission.CanView)
+                Response.Redirect("/Default.aspx");
+
+            if (!permission.CanAdd || !permission.CanEdit)
+                btnCreate.Visible = false;
+        }
+               
         public IEnumerable<Partner> GetPartners()
         {
             if (SessionData.Current.UserId == 0)

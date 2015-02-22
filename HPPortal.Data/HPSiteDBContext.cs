@@ -29,7 +29,8 @@ namespace HPPortal.Data.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Target> Targets { get; set; }
-        public DbSet<OpenHouse> OpenHouse { get; set; }
+        public DbSet<OpenHouse> OpenHouses { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

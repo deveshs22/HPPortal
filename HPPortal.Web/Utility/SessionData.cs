@@ -28,6 +28,7 @@ namespace HPPortal.Web
         }
 
         public int UserId { get; set; }
+        public int RoleId { get; set; }
         public int PartnerId { get; set; }
         public string QuarterYear { get; set; }
     }
