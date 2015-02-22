@@ -17,11 +17,28 @@ namespace HPPortal.Web.Partners
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                if (!string.IsNullOrEmpty(Convert.ToString(Request.QueryString["pid"])))
+                {
+                    PartnerId = Convert.ToInt32(Request.QueryString["pid"]);
+                    Quater = Convert.ToString(Request.QueryString["qtr"]);
+                }
+                if (PartnerId == 0)
+                    Response.Redirect("/JBPlan.aspx");
+               
+                var partner = _db.Partners.Include(p => p.User).FirstOrDefault(p => p.PartnerId == PartnerId);
+                lblPartner.Text = partner.PartnerName;
+                lblQuater.Text = Quater;
+                lblCity.Text = partner.City.Description;
+                lblOutletType.Text = partner.PartnerCategory.Description;
+                lblAccountManager.Text = partner.User.Name;
+            }
         }
 
         // This is the Select methd to selects a single Partner item with the id
         // USAGE: <asp:FormView SelectMethod="GetItem">
-        public HPPortal.Data.Models.Partner GetItem([FriendlyUrlSegmentsAttribute(0)]int? PartnerId)
+        public HPPortal.Data.Models.Partner GetItem()
         {
             if (PartnerId == null)
             {
@@ -38,11 +55,42 @@ namespace HPPortal.Web.Partners
             }
         }
 
+        protected void btnNavigate_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            var path = btn.CommandArgument;
+            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+        }
+
         protected void ItemCommand(object sender, FormViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("Cancel", StringComparison.OrdinalIgnoreCase))
             {
                 Response.Redirect("../Default");
+            }
+        }
+
+        private int PartnerId
+        {
+            get
+            {
+                return (int)ViewState["PartnerId"];
+            }
+            set
+            {
+                ViewState["PartnerId"] = value;
+            }
+        }
+
+        private string Quater
+        {
+            get
+            {
+                return ViewState["Quarter"] as string;
+            }
+            set
+            {
+                ViewState["Quarter"] = value;
             }
         }
     }

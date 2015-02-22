@@ -61,6 +61,9 @@
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn btn-default">
+            <asp:LinkButton runat="server" Text="Partner Details" OnClick="btnNavigate_Click" CommandArgument="Partners/Details.aspx" />
+        </div>
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Strategic Plans" CommandArgument="StrategicPlans/" />
         </div>
         <div class="btn btn-default">

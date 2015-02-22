@@ -20,13 +20,14 @@ namespace HPPortal.Web.OverviewPlans
         {
             if (!Page.IsPostBack)
             {
-                int id = SessionData.Current.PartnerId;
-                if (id == 0)
+                if (!string.IsNullOrEmpty(Convert.ToString(Request.QueryString["pid"])))
+                {
+                    PartnerId = Convert.ToInt32(Request.QueryString["pid"]);
+                    Quater = Convert.ToString(Request.QueryString["qtr"]);
+                }
+                if (PartnerId == 0)
                     Response.Redirect("/JBPlan.aspx");
-
-                string quater = SessionData.Current.QuarterYear;
-                PartnerId = id;
-                Quater = quater;
+                
                 PlanId = 0;
 
                 FillData();
@@ -154,7 +155,7 @@ namespace HPPortal.Web.OverviewPlans
         {
             LinkButton btn = (LinkButton)sender;
             var path = btn.CommandArgument;
-            Response.Redirect(string.Format("/{0}", path));
+            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
         }
     }
 }

@@ -60,6 +60,9 @@
         
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" Text="Partner Details" OnClick="btnNavigate_Click" CommandArgument="Partners/Details.aspx" />
+        </div>
             <div class="btn btn-primary">
                 <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
                 <span style="font-family: HPSimplified_Bd;">Strategic Plans</span>

@@ -62,8 +62,11 @@
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn btn-default">
+            <asp:LinkButton runat="server" Text="Partner Details" OnClick="btnNavigate_Click" CommandArgument="Partners/Details.aspx" />
+        </div>
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" Text="Strategic Plans" OnClick="btnNavigate_Click" CommandArgument="StrategicPlans/" />
-            
+
         </div>
         <div class="btn btn-primary">
             <span style="font-family: HPSimplified_Bd;">Overview Plans</span>
@@ -78,64 +81,64 @@
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
         </div>
         <div class="btn btn-default">
-                <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
-         </div>
-    </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Insert OverviewPlan</h3>
-            </div>
-            <div class="panel-body">
-                <fieldset class="form-horizontal">
-                    <div class="row">
-                        <asp:ValidationSummary ID="summary" runat="server" ShowMessageBox="false" ShowSummary="true" CssClass="alert alert-danger" />
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span class="col-md-3 control-label">Strength</span>
-                                <div class="col-md-8">
-                                    <asp:TextBox ID="txtStrength" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span class="col-md-3 control-label">Weakness</span>
-                                <div class="col-md-8">
-                                    <asp:TextBox ID="txtWeakness" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span class="col-md-3 control-label">Opportunity</span>
-                                <div class="col-md-8">
-                                    <asp:TextBox ID="txtOpportunity" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span class="col-md-3 control-label">SupportReqd</span>
-                                <div class="col-md-8">
-                                    <asp:TextBox ID="txtSupportReqd" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-5 col-sm-7">
-                            <asp:Button runat="server" ID="InsertButton" Text="Save" CssClass="btn btn-primary" OnClick="InsertButton_Click" />
-                            <asp:Button runat="server" ID="CancelButton" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" OnClick="CancelButton_Click" />
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
         </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Insert OverviewPlan</h3>
+        </div>
+        <div class="panel-body">
+            <fieldset class="form-horizontal">
+                <div class="row">
+                    <asp:ValidationSummary ID="summary" runat="server" ShowMessageBox="false" ShowSummary="true" CssClass="alert alert-danger" />
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Strength</span>
+                            <div class="col-md-8">
+                                <asp:TextBox ID="txtStrength" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Weakness</span>
+                            <div class="col-md-8">
+                                <asp:TextBox ID="txtWeakness" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Opportunity</span>
+                            <div class="col-md-8">
+                                <asp:TextBox ID="txtOpportunity" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">SupportReqd</span>
+                            <div class="col-md-8">
+                                <asp:TextBox ID="txtSupportReqd" Rows="6" TextMode="MultiLine" CssClass="form-control DDTextBox" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-5 col-sm-7">
+                        <asp:Button runat="server" ID="InsertButton" Text="Save" CssClass="btn btn-primary" OnClick="InsertButton_Click" />
+                        <asp:Button runat="server" ID="CancelButton" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" OnClick="CancelButton_Click" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 
-   
+
 
 </asp:Content>
