@@ -90,8 +90,6 @@
 
                     <td>
                         <div style="padding-top: 7px;">
-                            <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Details", Item.PartnerId) %>' Text="Details" />
-                            | 
 					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Edit", Item.PartnerId) %>' Text="Edit" />
                             | 
                         <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Delete", Item.PartnerId) %>' Text="Delete" />

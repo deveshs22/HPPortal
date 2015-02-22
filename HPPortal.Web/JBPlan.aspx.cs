@@ -36,7 +36,7 @@ namespace HPPortal.Web
         {
             SessionData.Current.PartnerId = Convert.ToInt32(ddlPartner.SelectedValue);
             SessionData.Current.QuarterYear = ddlQuarter.SelectedItem.Text;
-            Response.Redirect("/StrategicPlans");
+            Response.Redirect("/Partners/Details");
         }
     }
 }
