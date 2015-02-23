@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="UserInsert" Language="C#" MasterPageFile="~/Site.Master" EnableViewState="true" CodeBehind="AddUser.aspx.cs" Inherits="HPPortal.Web.Users.AddUser" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always"><ContentTemplate>
     <div class="row">
 
         <div>
@@ -79,6 +80,18 @@
                         </div>
 
                         <div class="form-group">
+                            <span class="col-md-3 control-label">Partner Category</span>
+                            <div class="col-md-7">
+                                <asp:CheckBoxList ID="chkPartnerCategory" runat="server" AutoPostBack="true" RepeatColumns="4" RepeatDirection="Vertical"></asp:CheckBoxList>
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator6"
+                                    Text="*" runat="server" CssClass="validation" ErrorMessage="Reporting Required" 
+                                    ControlToValidate="ddlReporting"
+                                     InitialValue="-1"></asp:RequiredFieldValidator>--%>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <span class="col-md-3 control-label">Reporting</span>
                             <div class="col-md-7">
                                 <asp:DropDownList ID="ddlReporting" CssClass="form-control maxWidth" OnSelectedIndexChanged="ddlReporting_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
@@ -113,7 +126,7 @@
             </fieldset>
         </div>
 
-    </div>
+    </div></ContentTemplate></asp:UpdatePanel>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         $(function () {

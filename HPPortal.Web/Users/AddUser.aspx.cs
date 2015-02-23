@@ -31,6 +31,7 @@ namespace HPPortal.Web.Users
                 }
 
                 FillRoles();
+                FillPartnerCategory();
                 FillReportingManagers();
             }
         }
@@ -43,6 +44,36 @@ namespace HPPortal.Web.Users
             txtPhone.Text = User.Mobile;
         }
 
+        private void FillPartnerCategory()
+        {
+            var Partner_category = _db.PartnerCategories.ToList();
+            chkPartnerCategory.DataSource = Partner_category;
+
+            chkPartnerCategory.DataTextField = "Description";
+            chkPartnerCategory.DataValueField = "PartnerCategoryId";
+            chkPartnerCategory.DataBind();
+            if (!IsNew)
+            {
+                var items = _db.Users.Include(u => u.PartnerCategorys).ToList();
+                var item = items.FirstOrDefault(i => i.UserId == Convert.ToInt32(User.UserId));
+                SetUsercetogory(item.PartnerCategorys);
+            }
+        }
+
+        private void SetUsercetogory(ICollection<PartnerCategory> category)
+        {
+            foreach (PartnerCategory c in category) 
+            {
+                for (int i = 0; i < chkPartnerCategory.Items.Count; i++ )
+                {
+                    ListItem chk = chkPartnerCategory.Items[i];
+                    if (Convert.ToInt32(chk.Value) == c.PartnerCategoryId)
+                    {
+                        chkPartnerCategory.Items[i].Selected = true;
+                    }
+                }
+            }
+        }
         protected void btnInsertClick(object sender, EventArgs e)
         {
             using (_db)
@@ -95,8 +126,15 @@ namespace HPPortal.Web.Users
 
             var cityList = GetSelectedCities();
             foreach (var city in cityList)
+            {
                 item.Cities.Add(city);
-
+            }
+            item.PartnerCategorys.Clear();
+            var category = GetSelectedPartnerCategory();
+            foreach (var partner in category)
+            {
+                item.PartnerCategorys.Add(partner);
+            }
             return item;
         }
 
@@ -259,6 +297,20 @@ namespace HPPortal.Web.Users
                 }
             }
             return cities;
+        }
+
+        private List<PartnerCategory> GetSelectedPartnerCategory()
+        {
+            List<PartnerCategory> category = new List<PartnerCategory>();
+            foreach (ListItem item in chkPartnerCategory.Items)
+            {
+                if (item.Selected)
+                {
+                    var Partner = _db.PartnerCategories.Find(Convert.ToInt32(item.Value));
+                    category.Add(Partner);
+                }
+            }
+            return category;
         }
 
         protected void ddlReporting_SelectedIndexChanged(object sender, EventArgs e)

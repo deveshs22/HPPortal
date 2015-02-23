@@ -19,6 +19,16 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.PartnerCategoryId).HasColumnName("PartnerCategoryId");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.Active).HasColumnName("Active");
+
+            // Many to many relationship with User
+            this.HasMany(t => t.Users)
+                .WithMany(t => t.PartnerCategorys)
+                .Map(m =>
+                {
+                    m.ToTable("UserPartnerCategory");
+                    m.MapLeftKey("PartnerCategoryId");
+                    m.MapRightKey("UserId");
+                });
         }
     }
 }

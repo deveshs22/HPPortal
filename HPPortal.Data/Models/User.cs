@@ -12,6 +12,7 @@ namespace HPPortal.Data.Models
             this.Partners = new List<Partner>();
             this.User1 = new List<User>();
             this.Cities = new List<City>();
+            this.PartnerCategorys=new List<PartnerCategory>();
         }
 
         public int UserId { get; set; }
@@ -32,6 +33,7 @@ namespace HPPortal.Data.Models
         public virtual User User2 { get; set; }
         public virtual ICollection<City> Cities { get; set; }
         public virtual ICollection<StrategicPlan> StrategicPlans { get; set; }
+        public virtual ICollection<PartnerCategory> PartnerCategorys { get; set; }
         
     }
 }
