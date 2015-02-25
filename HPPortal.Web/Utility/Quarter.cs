@@ -42,7 +42,7 @@ namespace HPPortal.Web.Utility
             var qtr = Quarters.Find(q => q.QuarterDescription == quarterYear.Substring(0,2) && q.MonthIndex==monthIndex);
             var date = new DateTime(DateTime.Now.Year, qtr.MonthId, 1);
             return date.ToString("MMMM");
-        }
+        }     
 
         public static Quarter GetPrevQuarter(string quarterYear)
         {

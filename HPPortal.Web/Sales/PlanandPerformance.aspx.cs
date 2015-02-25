@@ -179,21 +179,19 @@ namespace HPPortal.Web.Sales
                     gvPreviousRow.Cells[0].Visible = false;
                 }
             }
-
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
         {
+            var currentYear = Quater.Split(' ')[1];
+            var previousYear = (Convert.ToInt32(currentYear) - 1).ToString();
+
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 for (int i = 0; i < e.Row.Cells.Count; i++)
                 {
                     e.Row.Cells[i].CssClass = "centeralign";
                 }
-
-                var currentYear = Quater.Split(' ')[1];
-
-                var previousYear = (Convert.ToInt32(currentYear) - 1).ToString();
 
                 e.Row.Cells[0].ColumnSpan = 2;
                 e.Row.Cells[0].Text = "Category";
@@ -217,8 +215,33 @@ namespace HPPortal.Web.Sales
                 //e.Row.Cells[13].Text = Utility.QuarterHelper.GetPrevQuarter(Quater).QuarterYear;
                 e.Row.Cells[12].Text = "YoY Growth %";
                 e.Row.Cells[13].Text = "Seg Growth %";
+            }
+
+
+            List<int> indexes = new List<int>();
+
+            if (Quater.Contains("Q1"))
+            {
+                indexes.Add(4);
+                indexes.Add(3);
+                indexes.Add(2);
+            }
+
+            else if (Quater.Contains("Q2"))
+            {
+                indexes.Add(4);
+                indexes.Add(3);
 
             }
+            else if (Quater.Contains("Q3"))
+            {
+                indexes.Add(4);
+            }
+
+            foreach (int columnIndex in indexes)
+                if (columnIndex < e.Row.Cells.Count)
+                    e.Row.Cells[columnIndex].Visible = false;
+
         }
 
         private int PlanId
