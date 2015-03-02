@@ -164,6 +164,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Competitor\CompetitiveLandscape.aspx" />
     <Content Include="Content\images\Graph.png" />
     <Content Include="Content\images\UserImg.png" />
     <Content Include="JBPlan.aspx" />
@@ -394,6 +395,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Competitor\CompetitiveLandscape.aspx.cs">
+      <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Competitor\CompetitiveLandscape.aspx.designer.cs">
+      <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
+    </Compile>
     <Compile Include="JBPlan.aspx.cs">
       <DependentUpon>JBPlan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -558,6 +566,7 @@
     <Compile Include="Logon.aspx.designer.cs">
       <DependentUpon>Logon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompetitorViewModel.cs" />
     <Compile Include="Models\PerformanceViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SalesViewModel.cs" />

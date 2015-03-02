@@ -75,6 +75,9 @@
         <div class="btn btn-primary">
             <span style="font-family: HPSimplified_Bd;">Plan and Performance</span>
         </div>
+         <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive Landscape" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
+            </div>
         <div class="btn btn-default">
                 <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
     </div>
