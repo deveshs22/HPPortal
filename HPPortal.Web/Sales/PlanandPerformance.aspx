@@ -76,8 +76,11 @@
             <span style="font-family: HPSimplified_Bd;">Plan and Performance</span>
         </div>
         <div class="btn btn-default">
-                <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
-    </div>
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
+        </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
+        </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -107,7 +110,7 @@
                         <%-- <asp:BoundField DataField="QuarterTotal" HeaderText="Quarter Total" ItemStyle-HorizontalAlign="Center" />--%>
                         <%-- <asp:BoundField DataField="PrevQtr" HeaderText="Quantity" ItemStyle-HorizontalAlign="Center" />--%>
                         <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" />
-                         <asp:BoundField DataField="SegGrowth" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="SegGrowth" ItemStyle-HorizontalAlign="Center" />
 
                     </Columns>
                 </asp:GridView>

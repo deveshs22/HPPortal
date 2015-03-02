@@ -262,6 +262,7 @@
     <Content Include="StrategicPlans\Details.aspx" />
     <Content Include="StrategicPlans\Edit.aspx" />
     <Content Include="StrategicPlans\Insert.aspx" />
+    <Content Include="TargetedGoals\Default.aspx" />
     <Content Include="Targets\Default.aspx" />
     <Content Include="Users\AddUser.aspx" />
     <Content Include="Users\Default.aspx" />
@@ -710,6 +711,13 @@
     </Compile>
     <Compile Include="StrategicPlans\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TargetedGoals\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TargetedGoals\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Targets\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -120,7 +120,7 @@ namespace HPPortal.Web.StrategicPlans
         {
             get
             {
-                return (int)ViewState["PartnerId"];
+                return ViewState["PartnerId"] == null ? 0 : (int)ViewState["PartnerId"];
             }
             set
             {
@@ -177,7 +177,8 @@ namespace HPPortal.Web.StrategicPlans
                         
                         _db.Entry(item).State = EntityState.Modified;
                         _db.SaveChanges();
-                        Response.Redirect("Default");
+                        string path = "StrategicPlans/Default";
+                        Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
                     }
                     else
                     {
@@ -189,7 +190,8 @@ namespace HPPortal.Web.StrategicPlans
                         _db.StrategicPlans.Add(item);
                         _db.SaveChanges();
 
-                        Response.Redirect("Default");
+                        string path = "StrategicPlans/Default";
+                        Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
                     }
                 }
             }
@@ -197,7 +199,8 @@ namespace HPPortal.Web.StrategicPlans
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default");
+            string path = "StrategicPlans/Default";
+            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
         }
 
         protected void btnNavigate_Click(object sender, EventArgs e)
