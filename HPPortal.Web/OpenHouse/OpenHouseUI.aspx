@@ -84,6 +84,9 @@
         <div class="btn btn-primary">
            <span style="font-family: HPSimplified_Bd;">Open House</span>
         </div>
+         <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
+        </div>
     </div>
 
 

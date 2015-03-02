@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Partner Details" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Details.aspx.cs" Inherits="HPPortal.Web.Partners.Details" %>
+
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
       <div class="well">
     
@@ -79,6 +80,9 @@
             </div>
             <div class="btn btn-default">
                 <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
+        </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
             </div>
         </div>
     

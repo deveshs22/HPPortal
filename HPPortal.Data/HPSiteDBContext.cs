@@ -31,6 +31,7 @@ namespace HPPortal.Data.Models
         public DbSet<Target> Targets { get; set; }
         public DbSet<OpenHouse> OpenHouses { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<TargetedGoal> TargetedGoals { get; set; }
         public DbSet<Competitor> Competitors { get; set; }
         public DbSet<CompetitorLandscape> CompetitorLandscapes { get; set; }
 
@@ -50,6 +51,7 @@ namespace HPPortal.Data.Models
             modelBuilder.Configurations.Add(new SaleMap());
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new OpenHouseMap());
+            modelBuilder.Configurations.Add(new TargetedGoalMap());
             modelBuilder.Configurations.Add(new CompetitorMap());
             modelBuilder.Configurations.Add(new CompetitorLandscapeMap());
         }
