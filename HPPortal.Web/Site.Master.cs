@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Linq;
 
 namespace HPPortal.Web
 {
@@ -66,6 +67,15 @@ namespace HPPortal.Web
 
                         if (!user.Role.Description.Contains("Admin"))
                             liUser.Visible = false;
+
+                        var permission = db.Permissions.FirstOrDefault(p => p.ModuleName == Modules.JBPlan && p.RoleId == SessionData.Current.RoleId);
+                        if (permission != null)
+                        {
+                            if (!permission.CanAdd && !permission.CanEdit)
+                                liCreatePlan.Visible = false;
+                            if (!permission.CanView)
+                                liViewPlan.Visible = false;
+                        }
                     }
                 }
 

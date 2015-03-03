@@ -73,10 +73,10 @@
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
         </div>
         <div class="btn btn-primary">
-            <span style="font-family: HPSimplified_Bd;">Plan and Performance</span>
+            <span style="font-family: HPSimplified_Bd;">Plan Performance</span>
         </div>
          <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive Landscape" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
             </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
@@ -87,7 +87,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Categorywise Plan and Performance</h3>
+            <h3 class="panel-title">Categorywise Plan Performance</h3>
         </div>
         <div class="panel-body">
 

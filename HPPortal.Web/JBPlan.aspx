@@ -5,14 +5,19 @@
         &nbsp;
     </div>
     <div class="row form-horizontal">
+
         <br />
+         <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1"><ProgressTemplate>
+                    <p>Loading...</p>
+             </ProgressTemplate></asp:UpdateProgress>
         <br />
         <div class="panel panel-default">
             <div class="panel-heading">
 
                 <h2 class="panel-title">Welcome to HP JB Plan Creation</h2>
-
+                
             </div>
+           
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true">
                 <ContentTemplate>
             <div class="panel-body">

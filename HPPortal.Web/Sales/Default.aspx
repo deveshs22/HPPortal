@@ -73,10 +73,10 @@
              <span style="font-family: HPSimplified_Bd;">Primary Sales Entry</span>
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
             </div>
          <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive Landscape" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
             </div>
          <div class="btn btn-default">
                 <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>

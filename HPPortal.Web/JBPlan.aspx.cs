@@ -71,7 +71,9 @@ namespace HPPortal.Web
             else
              qtr = Utility.QuarterHelper.GetNextnCurrentQuarter(DateTime.Now).ToList();
 
-            ddlQuarter.DataSource = qtr;
+            ddlQuarter.Items.Clear();
+
+            ddlQuarter.DataSource = qtr.OrderBy(q => q.QuarterYear);
             ddlQuarter.DataTextField="QuarterYear";
             ddlQuarter.DataValueField = "QuarterYear";
             ddlQuarter.DataBind();

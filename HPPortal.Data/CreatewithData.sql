@@ -659,3 +659,83 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+/****** Object:  Table [dbo].[ActivityLog]    Script Date: 03/03/2015 22:47:00 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[ActivityLog](
+	[LogId] [int] IDENTITY(1,1) NOT NULL,
+	[Module] [varchar](50) NULL,
+	[UserId] [int] NULL,
+	[PartnerId] [int] NULL,
+	[QuarterYear] [varchar](30) NULL,
+	[LogDate] [datetime] NULL,
+ CONSTRAINT [PK_ActivityLog] PRIMARY KEY CLUSTERED 
+(
+	[LogId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[ActivityLog]  WITH CHECK ADD  CONSTRAINT [FK_ActivityLog_Partner] FOREIGN KEY([PartnerId])
+REFERENCES [dbo].[Partner] ([PartnerId])
+GO
+
+ALTER TABLE [dbo].[ActivityLog] CHECK CONSTRAINT [FK_ActivityLog_Partner]
+GO
+
+ALTER TABLE [dbo].[ActivityLog]  WITH CHECK ADD  CONSTRAINT [FK_ActivityLog_User] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([UserId])
+GO
+
+ALTER TABLE [dbo].[ActivityLog] CHECK CONSTRAINT [FK_ActivityLog_User]
+GO
+
+
+/****** Object:  Table [dbo].[Permission]    Script Date: 03/03/2015 22:46:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Permission](
+	[PermissionId] [int] IDENTITY(1,1) NOT NULL,
+	[ModuleName] [varchar](50) NOT NULL,
+	[RoleId] [int] NOT NULL,
+	[CanView] [bit] NOT NULL,
+	[CanAdd] [bit] NOT NULL,
+	[CanEdit] [bit] NOT NULL,
+	[CanDelete] [bit] NOT NULL,
+ CONSTRAINT [PK_Permission] PRIMARY KEY CLUSTERED 
+(
+	[PermissionId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[Permission]  WITH CHECK ADD  CONSTRAINT [FK_Permission_Role] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[Role] ([RoleId])
+GO
+
+ALTER TABLE [dbo].[Permission] CHECK CONSTRAINT [FK_Permission_Role]
+GO
+
+
