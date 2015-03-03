@@ -1,7 +1,6 @@
-﻿<%@ Page Title="Target Plan" Language="C#" MasterPageFile="~/Site.Master" EnableViewState="true" CodeBehind="Default.aspx.cs" Inherits="HPPortal.Web.Targets.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="CompetitiveLandscape.aspx.cs" Inherits="HPPortal.Web.Competitor.CompetitiveLandscape" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-    
     <div>&nbsp;</div>
     <div class="well">
         <div class="row">
@@ -66,46 +65,39 @@
         <div class="btn btn-default">
             <asp:LinkButton runat="server" Text="Overview Plans" OnClick="btnNavigate_Click" CommandArgument="OverViewPlans/OverviewPlan.aspx" />
         </div>
-        <div class="btn btn-primary">
-            <span style="font-family: HPSimplified_Bd;">Target Entry</span>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx" />
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
-            </div>
-         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive Landscape" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
-            </div>
-         <div class="btn btn-default">
-                <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
+        </div>
+        <div class="btn btn-primary">
+            <span style="font-family: HPSimplified_Bd;">Competitive Landscape</span>
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
-    </div>
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
+        </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Target Plan</h3>
+            <h3 class="panel-title">Competitive Landscape</h3>
         </div>
-        <div class="panel-body">
+         <div class="panel-body">
 
             <div class="form-horizontal">
-                <asp:GridView ID="GridView1" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProductId" 
-                    PageSize="50"
+                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="CategoryId" 
                     OnDataBound="GridView1_DataBound1" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
                     
                     <Columns>
-                        <asp:BoundField DataField="ProductDescription" HeaderText="Category" />
-                        <asp:BoundField DataField="ProductCategory" ControlStyle-CssClass="form-control" />
+                        <asp:BoundField DataField="CategoryName" HeaderText="Category" />
+                        <asp:BoundField DataField="CompetitorName" HeaderText="Competitor Name"/>
                         <asp:TemplateField>
-                            <%--<HeaderTemplate>
-                            <asp:Label ID="lblM1" runat="server"></asp:Label>
-                        </HeaderTemplate>--%>
                             <ItemTemplate>
-                                <asp:TextBox ID="txtM1" runat="server" TextMode="Number" Text='<%# Eval("M1") %>' CssClass="form-control DDTextBox"></asp:TextBox>
-                                <asp:HiddenField ID="hdnTargetId" runat="server" Value='<%# Eval("TargetId") %>' />
+                                <asp:TextBox ID="txtShare" runat="server" TextMode="Number" Text='<%# Eval("Share") %>' CssClass="form-control DDTextBox"></asp:TextBox>
+                                <asp:HiddenField ID="hdnCompetitorId" runat="server" Value='<%# Eval("CategoryId") %>' />
                             </ItemTemplate>
                             <ItemStyle Width="100px" />
                         </asp:TemplateField>
@@ -115,7 +107,7 @@
                             <asp:Label ID="lblM2" runat="server"></asp:Label>
                         </HeaderTemplate>--%>
                             <ItemTemplate>
-                                <asp:TextBox ID="txtM2" runat="server" TextMode="Number" Text='<%# Eval("M2") %>' CssClass="form-control DDTextBox"></asp:TextBox>
+                                <asp:TextBox ID="txtBrandPresenc" runat="server" TextMode="Number" Text='<%# Eval("BrandPresenc") %>' CssClass="form-control DDTextBox"></asp:TextBox>
                             </ItemTemplate>
                             <ItemStyle Width="100px" />
                         </asp:TemplateField>
@@ -125,14 +117,31 @@
                             <asp:Label ID="lblM3" runat="server"></asp:Label>
                         </HeaderTemplate>--%>
                             <ItemTemplate>
-                                <asp:TextBox ID="txtM3" runat="server" TextMode="Number" Text='<%# Eval("M3") %>' CssClass="form-control DDTextBox"></asp:TextBox>
+                                <asp:TextBox ID="txtPriceStrategy" runat="server" TextMode="SingleLine" Text='<%# Eval("PriceStrategy") %>' CssClass="form-control DDTextBox"></asp:TextBox>
                             </ItemTemplate>
                             <ItemStyle Width="100px" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="YoY" ItemStyle-HorizontalAlign="Center" />
-                        
+
+                        <asp:TemplateField>
+                            <%-- <HeaderTemplate>
+                            <asp:Label ID="lblM3" runat="server"></asp:Label>
+                        </HeaderTemplate>--%>
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtStoreInvestment" runat="server" TextMode="SingleLine" Text='<%# Eval("StoreInvestment") %>' CssClass="form-control DDTextBox"></asp:TextBox>
+                            </ItemTemplate>
+                            <ItemStyle Width="100px" />
+                        </asp:TemplateField>
+                                               
+                        <asp:TemplateField>
+                            <%-- <HeaderTemplate>
+                            <asp:Label ID="lblM3" runat="server"></asp:Label>
+                        </HeaderTemplate>--%>
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtAdditionalComment" runat="server" TextMode="MultiLine" Text='<%# Eval("AdditionalComment") %>' CssClass="form-control DDTextBox"></asp:TextBox>
+                            </ItemTemplate>
+                            <ItemStyle Width="300px" />
+                        </asp:TemplateField>
+
                     </Columns>
                 </asp:GridView>
 

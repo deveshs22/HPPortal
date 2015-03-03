@@ -164,6 +164,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Competitor\CompetitiveLandscape.aspx" />
     <Content Include="Content\images\Graph.png" />
     <Content Include="Content\images\UserImg.png" />
     <Content Include="JBPlan.aspx" />
@@ -262,6 +263,7 @@
     <Content Include="StrategicPlans\Details.aspx" />
     <Content Include="StrategicPlans\Edit.aspx" />
     <Content Include="StrategicPlans\Insert.aspx" />
+    <Content Include="TargetedGoals\Default.aspx" />
     <Content Include="Targets\Default.aspx" />
     <Content Include="Users\AddUser.aspx" />
     <Content Include="Users\Default.aspx" />
@@ -394,6 +396,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Competitor\CompetitiveLandscape.aspx.cs">
+      <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Competitor\CompetitiveLandscape.aspx.designer.cs">
+      <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
+    </Compile>
     <Compile Include="JBPlan.aspx.cs">
       <DependentUpon>JBPlan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -558,6 +566,7 @@
     <Compile Include="Logon.aspx.designer.cs">
       <DependentUpon>Logon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompetitorViewModel.cs" />
     <Compile Include="Models\PerformanceViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SalesViewModel.cs" />
@@ -710,6 +719,12 @@
     </Compile>
     <Compile Include="StrategicPlans\Insert.aspx.designer.cs">
       <DependentUpon>Insert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TargetedGoals\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TargetedGoals\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Targets\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

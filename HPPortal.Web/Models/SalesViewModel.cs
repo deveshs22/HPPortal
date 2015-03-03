@@ -78,7 +78,10 @@ namespace HPPortal.Web.Models
             get
             {
                 if (PreviousYearTotal > 0)
-                    return CurrentYearTotal * 100 / PreviousYearTotal;
+                {
+                    decimal percent = (CurrentYearTotal * 100 / PreviousYearTotal);
+                    return Math.Round(percent, 2);
+                }
                 else
                     return 0;
             }
@@ -89,7 +92,10 @@ namespace HPPortal.Web.Models
             get
             {
                 if (PrevQtr > 0)
-                    return QuarterTotal * 100 / PrevQtr;
+                {
+                    decimal percent = (QuarterTotal * 100 / PrevQtr);
+                    return Math.Round(percent, 2);
+                }
                 else
                     return 0;
             }

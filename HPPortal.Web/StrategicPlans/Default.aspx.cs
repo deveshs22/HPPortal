@@ -120,7 +120,7 @@ namespace HPPortal.Web.StrategicPlans
         {
             get
             {
-                return (int)ViewState["PartnerId"];
+                return ViewState["PartnerId"] == null ? 0 : (int)ViewState["PartnerId"];
             }
             set
             {
@@ -155,48 +155,51 @@ namespace HPPortal.Web.StrategicPlans
         protected void InsertButton_Click(object sender, EventArgs e)
         {
 
-            var item = new HPPortal.Data.Models.StrategicPlan();
-
-            if (PlanId != null && PlanId > 0)
-                item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
-
-            if (Session["User"] == null)
-                Response.Redirect("/Logon.aspx");
-
-            var user = Session["User"] as User;
-            if (ModelState.IsValid)
-            {
-                CommitToItem(item);
+                var item = new HPPortal.Data.Models.StrategicPlan();
 
                 if (PlanId != null && PlanId > 0)
+                    item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
+                
+                if (Session["User"] == null)
+                    Response.Redirect("/Logon.aspx");
+
+                var user = Session["User"] as User;
+                if (ModelState.IsValid)
                 {
-                    item.ModifiedDate = DateTime.Now;
-                    if (user != null)
-                        item.ModifiedUser = user.UserId;
+                    CommitToItem(item);
 
-                    _db.Entry(item).State = EntityState.Modified;
-                    _db.SaveChanges();
-                    Response.Redirect("Default");
+                    if (PlanId != null && PlanId > 0)
+                    {
+                        item.ModifiedDate = DateTime.Now;
+                        if (user != null)
+                            item.ModifiedUser = user.UserId;
+                        
+                        _db.Entry(item).State = EntityState.Modified;
+                        _db.SaveChanges();
+                        string path = "StrategicPlans/Default";
+                        Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+                    }
+                    else
+                    {
+                        // Save changes
+                        item.CreatedDate = DateTime.Now;
+                        if (user != null)
+                            item.CreatedUser = user.UserId;
+                       
+                        _db.StrategicPlans.Add(item);
+                        _db.SaveChanges();
+
+                        string path = "StrategicPlans/Default";
+                        Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+                    }
                 }
-                else
-                {
-                    // Save changes
-                    item.CreatedDate = DateTime.Now;
-                    if (user != null)
-                        item.CreatedUser = user.UserId;
-
-                    _db.StrategicPlans.Add(item);
-                    _db.SaveChanges();
-
-                    Response.Redirect("Default");
-                }
-            }
 
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default");
+            string path = "StrategicPlans/Default";
+            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
         }
 
         protected void btnNavigate_Click(object sender, EventArgs e)
