@@ -1,6 +1,6 @@
-﻿CREATE DATABASE [HPSiteDBNew];
+﻿CREATE DATABASE [HPSiteDBNew1];
 GO
-USE [HPSiteDBNew]
+USE [HPSiteDBNew1]
 GO
 GO
 /****** Object:  Table [dbo].[Role]   added  Script Date: 02/19/2015 00:08:45  ******/
@@ -628,3 +628,34 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_UserCity_UserCity]') AND parent_object_id = OBJECT_ID(N'[dbo].[UserCity]'))
 ALTER TABLE [dbo].[UserCity] CHECK CONSTRAINT [FK_UserCity_UserCity]
 GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TargetedGoal]') AND type in (N'U'))
+BEGIN
+
+CREATE TABLE [dbo].[TargetedGoal]
+(
+	[TargetedGoalId]  INT IDENTITY (1, 1) NOT NULL, 
+    [TargetedGoalName] VARCHAR(50) NOT NULL, 
+    [QuarterPlan] VARCHAR(MAX) NOT NULL,
+	[PreviousQuarter] VARCHAR(MAX) NOT NULL, 
+    [QuarterYear] VARCHAR(50) NOT NULL, 
+    [TargetGoal] VARCHAR(500) NOT NULL,
+	[CreatedDate]       DATE          NULL,
+    [CreatedUser]       INT           NULL,
+    [ModifiedDate]      DATE          NULL,
+    [ModifiedUser]      INT           NULL,
+	[PartnerId]         INT           NULL,
+    CONSTRAINT [PK_TargetedGoal] PRIMARY KEY CLUSTERED ([TargetedGoalId] ASC),
+    CONSTRAINT [FK_TargetedGoal_Partner] FOREIGN KEY ([PartnerId]) REFERENCES [dbo].[Partner] ([PartnerId]) )
+END
+GO
+SET ANSI_PADDING OFF
+GO
+
