@@ -1,4 +1,4 @@
-﻿<%@ Page Title="TargetedPlanList" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Default.aspx.cs" EnableViewState="true" Inherits="HPPortal.Web.TargetedGoals.Default" %>
+﻿<%@ Page Title="ActionForTargetedGoals" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="ActionForTargetedGoals.aspx.cs" Inherits="HPPortal.Web.TargetedGoals.ActionForTargetedGoals" %>
 
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
@@ -63,8 +63,7 @@
         <div class="btn btn-default">
             <asp:LinkButton runat="server" Text="Partner Details" OnClick="btnNavigate_Click" CommandArgument="Partners/Details.aspx" />
         </div>
-        <div class="btn  btn-default">
-            <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Strategic Plans" CommandArgument="StrategicPlans/Default.aspx" />
         </div>
         <div class="btn btn-default">
@@ -77,23 +76,31 @@
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
+        </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive Landscape" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
         </div>
-        <div class="btn btn-primary">
-            <span style="font-family: HPSimplified_Bd;">Targeted Goals</span>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions for Targeted Goals" CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
         </div>
     </div>
+    <div class="btn btn-primary">
+        <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
+        <span style="font-family: HPSimplified_Bd;">Actions for Targeted Goals</span>
+    </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-3">
-                    <h4 class="panel-title">Targeted Goals</h4>
+                    <h4 class="panel-title">Actions for Targeted Goals</h4>
                 </div>
                 <div class="col-md-4">
 
@@ -107,29 +114,34 @@
         <div class="panel-body">
             <div>
                 <asp:ListView ID="ListView1" runat="server"
-                    DataKeyNames="TargetedGoalId"
-                    ItemType="HPPortal.Data.Models.TargetedGoal"
+                    DataKeyNames="StrategicPlanId"
+                    ItemType="HPPortal.Data.Models.StrategicPlan"
                     SelectMethod="GetData">
                     <EmptyDataTemplate>
-                        There are no entries found for Targeted goals
+                        There are no entries found for Actions for Targeted Goals
                     </EmptyDataTemplate>
                     <LayoutTemplate>
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <%--  <th>
+                                <asp:LinkButton Text="StrategicPlanId" CommandName="Sort" CommandArgument="StrategicPlanId" runat="Server" />
+                            </th>--%>
                                     <th>
-                                        <asp:LinkButton Text="Goal" CommandName="Sort" CommandArgument="TargetedGoalName" runat="Server" />
+                                        <asp:LinkButton Text="Goals" CommandName="Sort" CommandArgument="GoalName" runat="Server" />
                                     </th>
                                     <th>
-                                        <asp:LinkButton Text="Plan" CommandName="Sort" CommandArgument="QuarterPlan" runat="Server" />
+                                        <asp:LinkButton Text="Where we are" CommandName="Sort" CommandArgument="PreviousQuarter" runat="Server" />
                                     </th>
                                     <th>
-                                        <asp:LinkButton Text="Where we were" CommandName="Sort" CommandArgument="PreviousQuarter" runat="Server" />
+                                        <asp:LinkButton Text="Where we want" CommandName="Sort" CommandArgument="QuarterPlan" runat="Server" />
                                     </th>
                                     <th>
-                                        <asp:LinkButton Text="Where we want" CommandName="Sort" CommandArgument="TargetGoal" runat="Server" />
+                                        <asp:LinkButton Text="Action Required" CommandName="Sort" CommandArgument="ActionRequired" runat="Server" />
                                     </th>
-
+                                    <th>
+                                        <asp:LinkButton Text="AssignedUser" CommandName="Sort" CommandArgument="AssignedUserId" runat="Server" />
+                                    </th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -147,23 +159,27 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <tr>
+                            <%--<td>
+                        <asp:DynamicControl runat="server" DataField="StrategicPlanId" ID="StrategicPlanId" Mode="ReadOnly" />
+                    </td>--%>
                             <td>
-                                <asp:DynamicControl runat="server" DataField="TargetedGoalName" UIHint="MultilineText" ID="TargetedGoalName" Mode="ReadOnly" />
-                            </td>
-                            <td>
-                                <asp:DynamicControl runat="server" DataField="QuarterPlan" UIHint="MultilineText" ID="QuarterPlan" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server" DataField="GoalName" UIHint="MultilineText" ID="GoalName" Mode="ReadOnly" />
                             </td>
                             <td>
                                 <asp:DynamicControl runat="server" DataField="PreviousQuarter" UIHint="MultilineText" ID="PreviousQuarter" Mode="ReadOnly" />
                             </td>
                             <td>
-                                <asp:DynamicControl runat="server" DataField="TargetGoal" UIHint="MultilineText" ID="TargetedGoal" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server" DataField="QuarterPlan" UIHint="MultilineText" ID="QuarterPlan" Mode="ReadOnly" />
                             </td>
-
+                            <td>
+                                <asp:DynamicControl runat="server" DataField="ActionRequired" UIHint="MultilineText" ID="ActionRequired" Mode="readonly" />
+                            </td>
+                            <td>
+                                <div style="padding-top: 7px;"><%#: Item.User != null ? Item.User.Name : "" %></div>
+                            </td>
+                            </td>   
                             <td style="padding-top: 7px;">
-
-                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("TargetedGoalId") %>' OnClick="EditButton_Click" Text="Edit" />
-
+                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("ActionId") %>' OnClick="EditButton_Click" Text="Edit" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -181,47 +197,60 @@
                 <div class="modal-body" id="content">
 
                     <fieldset class="form-horizontal">
-                        <legend>Insert Targeted Goal</legend>
+                        <legend>Insert StrategicPlan</legend>
                         <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
 
+                        <div class="form-group">
+                            <asp:Label ID="AssignedUser" Text="Assigned User" runat="server" CssClass="col-md-3 control-label" />
+                            <div class="col-md-7">
 
+                                <asp:DropDownList
+                                    ID="ddlUser"
+                                    SelectMethod="GetUsers"
+                                    DataTextField="Name"
+                                    DataValueField="UserId"
+                                    CssClass="maxWidth form-control"
+                                    AppendDataBoundItems="true"
+                                    runat="server">
+                                    <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
                         <div class="form-group">
 
                             <span class="col-md-3 control-label">Goal</span>
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtTargetedGoalName"
+                                <asp:TextBox ID="txtGoal"
                                     TextMode="MultiLine" CssClass="form-control DDTextBox"
                                     runat="server" />
 
                             </div>
                         </div>
                         <div class="form-group">
-                            <span class="col-md-3 control-label">Plan</span>
+                            <span class="col-md-3 control-label">Where we are</span>
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtQuarterPlan"
+                                <asp:TextBox ID="txtWhereWeAre"
+                                    TextMode="MultiLine" CssClass="form-control DDTextBox"
+                                    runat="server" />
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-3 control-label">Where we want</span>
+
+                            <div class="col-md-7">
+                                <asp:TextBox ID="txtWhereWeWant"
                                     TextMode="MultiLine" CssClass="form-control DDTextBox"
                                     runat="server" />
 
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <span class="col-md-3 control-label">Where we were </span>
+                         <div class="form-group">
+                            <span class="col-md-3 control-label">Actions Required</span>
 
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtPreviousQuarter"
-                                    TextMode="MultiLine" CssClass="form-control DDTextBox"
-                                    runat="server" />
-
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <span class="col-md-3 control-label">Where we want </span>
-
-                            <div class="col-md-7">
-                                <asp:TextBox ID="txtTargetedGoal"
+                                <asp:TextBox ID="txtAction"
                                     TextMode="MultiLine" CssClass="form-control DDTextBox"
                                     runat="server" />
 
