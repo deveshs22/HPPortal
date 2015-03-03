@@ -398,6 +398,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Competitor\CompetitiveLandscape.aspx.cs">
       <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Competitor\CompetitiveLandscape.aspx.designer.cs">
       <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
@@ -722,6 +723,7 @@
     </Compile>
     <Compile Include="TargetedGoals\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TargetedGoals\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
