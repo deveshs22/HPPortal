@@ -69,13 +69,13 @@
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx" />
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Sales Entry" CommandArgument="Sales/Default.aspx" />
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
         </div>
         <div class="btn btn-primary">
-            <span style="font-family: HPSimplified_Bd;">Competitive Landscape</span>
+            <span style="font-family: HPSimplified_Bd;">Competitive</span>
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
@@ -84,7 +84,7 @@
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions for Targeted Goals" CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions Reqd." CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
         </div>
     </div>
     <div class="panel panel-default">
@@ -103,7 +103,7 @@
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:TextBox ID="txtShare" runat="server" TextMode="Number" Text='<%# Eval("Share") %>' CssClass="form-control DDTextBox"></asp:TextBox>
-                                <asp:HiddenField ID="hdnCompetitorId" runat="server" Value='<%# Eval("CategoryId") %>' />
+                                <asp:HiddenField ID="hdnCompetitorId" runat="server" Value='<%# Eval("CompetitorId") %>' />
                             </ItemTemplate>
                             <ItemStyle Width="100px" />
                         </asp:TemplateField>

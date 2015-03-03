@@ -84,9 +84,9 @@ namespace HPPortal.Web.TargetedGoals
         }
         // Model binding method to get List of StrategicPlan entries
         // USAGE: <asp:ListView SelectMethod="GetData">
-        public IQueryable<HPPortal.Data.Models.StrategicPlan> GetData()
+        public IQueryable<HPPortal.Data.Models.ActionForTargetedGoal> GetData()
         {
-            return _db.StrategicPlans.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater);
+            return _db.ActionForTargetedGoals.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater);
         }
 
         public IEnumerable<Quarter> GetQuarter()

@@ -73,13 +73,13 @@
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx" />
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Sales Entry" CommandArgument="Sales/Default.aspx" />
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
         </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive Landscape" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
@@ -87,15 +87,13 @@
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
         </div>
-        <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions for Targeted Goals" CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
-        </div>
-    </div>
+        
+    
     <div class="btn btn-primary">
         <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
-        <span style="font-family: HPSimplified_Bd;">Actions for Targeted Goals</span>
+        <span style="font-family: HPSimplified_Bd;">Actions Reqd.</span>
     </div>
-
+        </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
@@ -114,8 +112,8 @@
         <div class="panel-body">
             <div>
                 <asp:ListView ID="ListView1" runat="server"
-                    DataKeyNames="StrategicPlanId"
-                    ItemType="HPPortal.Data.Models.StrategicPlan"
+                    DataKeyNames="ActionId"
+                    ItemType="HPPortal.Data.Models.ActionForTargetedGoal"
                     SelectMethod="GetData">
                     <EmptyDataTemplate>
                         There are no entries found for Actions for Targeted Goals
@@ -197,7 +195,7 @@
                 <div class="modal-body" id="content">
 
                     <fieldset class="form-horizontal">
-                        <legend>Insert StrategicPlan</legend>
+                        <legend>Insert Action Reqd. for Targeted Goals</legend>
                         <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
 
                         <div class="form-group">

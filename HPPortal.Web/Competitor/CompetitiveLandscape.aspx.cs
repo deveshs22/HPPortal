@@ -128,45 +128,45 @@ namespace HPPortal.Web.Competitor
             foreach (GridViewRow row in GridView1.Rows)
             {
                 var CompetitorId = 0;
-                var CompetitorLandscape = new Data.Models.CompetitorLandscape();
+                var competitorLandscape = new Data.Models.CompetitorLandscape();
 
                 var hdnCompetitorId = (HiddenField)row.FindControl("hdnCompetitorId");
                 if (hdnCompetitorId != null && !string.IsNullOrEmpty(hdnCompetitorId.Value))
                     CompetitorId = Convert.ToInt32(hdnCompetitorId.Value);
 
                 if (CompetitorId > 0)
-                    CompetitorLandscape = _db.CompetitorLandscapes.Find(CompetitorId);
+                    competitorLandscape = _db.CompetitorLandscapes.Find(CompetitorId);
                 else
                 {
-                    CompetitorLandscape.CategoryId = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value.ToString());
-                    CompetitorLandscape.PartnerId = PartnerId;
-                    CompetitorLandscape.QuarterYear = Quater;
+                    competitorLandscape.CategoryId = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value.ToString());
+                    competitorLandscape.PartnerId = PartnerId;
+                    competitorLandscape.QuarterYear = Quater;
                 }
 
                 var txtShare = (TextBox)row.FindControl("txtShare");
                 if (txtShare != null)
-                    CompetitorLandscape.Share = Convert.ToInt32(txtShare.Text);
+                    competitorLandscape.Share = Convert.ToInt32(txtShare.Text);
 
                 var txtBrandPresenc = (TextBox)row.FindControl("txtBrandPresenc");
                 if (txtBrandPresenc != null)
-                    CompetitorLandscape.BrandPresenc = Convert.ToInt32(txtBrandPresenc.Text);
+                    competitorLandscape.BrandPresenc = Convert.ToInt32(txtBrandPresenc.Text);
 
                 var txtPriceStrategy = (TextBox)row.FindControl("txtPriceStrategy");
                 if (txtPriceStrategy != null)
-                    CompetitorLandscape.PriceStrategy = Convert.ToString(txtPriceStrategy.Text);
+                    competitorLandscape.PriceStrategy = Convert.ToString(txtPriceStrategy.Text);
 
                 var txtStoreInvestment = (TextBox)row.FindControl("txtStoreInvestment");
                 if (txtStoreInvestment != null)
-                    CompetitorLandscape.StoreInvestment = Convert.ToString(txtStoreInvestment.Text);
+                    competitorLandscape.StoreInvestment = Convert.ToString(txtStoreInvestment.Text);
 
                 var txtAdditionalComment = (TextBox)row.FindControl("txtAdditionalComment");
                 if (txtAdditionalComment != null)
-                    CompetitorLandscape.AdditionalComment = Convert.ToString(txtAdditionalComment.Text);
+                    competitorLandscape.AdditionalComment = Convert.ToString(txtAdditionalComment.Text);
 
                 if (CompetitorId > 0)
-                    _db.Entry<CompetitorLandscape>(CompetitorLandscape).State = EntityState.Modified;
+                    _db.Entry<CompetitorLandscape>(competitorLandscape).State = EntityState.Modified;
                 else
-                    _db.CompetitorLandscapes.Add(CompetitorLandscape);
+                    _db.CompetitorLandscapes.Add(competitorLandscape);
 
                 _db.SaveChanges();
 

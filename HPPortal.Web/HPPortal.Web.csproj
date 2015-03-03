@@ -164,6 +164,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Competitor\CompetitiveLandscape.aspx" />
     <Content Include="Content\images\Graph.png" />
     <Content Include="Content\images\UserImg.png" />
     <Content Include="JBPlan.aspx" />
@@ -397,8 +398,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Competitor\CompetitiveLandscape.aspx.cs">
-      <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
     </Compile>
     <Compile Include="Competitor\CompetitiveLandscape.aspx.designer.cs">
       <DependentUpon>CompetitiveLandscape.aspx</DependentUpon>
@@ -801,7 +802,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Competitor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HPPortal.Data\HPPortal.Data.csproj">

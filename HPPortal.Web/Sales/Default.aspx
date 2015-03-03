@@ -70,7 +70,7 @@
              <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx" />
         </div>
         <div class="btn btn-primary">
-             <span style="font-family: HPSimplified_Bd;">Primary Sales Entry</span>
+             <span style="font-family: HPSimplified_Bd;">Sales Entry</span>
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
@@ -85,7 +85,7 @@
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
     </div>
         <div class="btn btn-default">
-            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions for Targeted Goals" CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions Rqd." CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
         </div>
     </div>
     <div class="panel panel-default">

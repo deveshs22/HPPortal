@@ -20,7 +20,7 @@ namespace HPPortal.Web
             if (!IsPostBack)
             {
                 this.lblQuarter.Text = Utility.QuarterHelper.GetCurrentQuarter(DateTime.Now).QuarterYear + " Performance";
-                //BindChart("zone","0");
+                BindChart("zone","0");
  
                 BindActivityLog();
             }
@@ -225,7 +225,7 @@ namespace HPPortal.Web
             {
                 LinkButton btn = (LinkButton)sender;
                 var path = btn.CommandArgument;
-                //BindChart("city", path);
+                BindChart("city", path);
             }
            
         }
