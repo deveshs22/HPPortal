@@ -34,6 +34,6 @@ namespace HPPortal.Data.Models
         public virtual ICollection<City> Cities { get; set; }
         public virtual ICollection<StrategicPlan> StrategicPlans { get; set; }
         public virtual ICollection<PartnerCategory> PartnerCategorys { get; set; }
-        
+        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
     }
 }

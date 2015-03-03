@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace HPPortal.Web
 {
@@ -29,7 +30,6 @@ namespace HPPortal.Web
 
         public int UserId { get; set; }
         public int RoleId { get; set; }
-        public int PartnerId { get; set; }
-        public string QuarterYear { get; set; }
+       
     }
 }

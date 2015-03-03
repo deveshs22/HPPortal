@@ -12,7 +12,7 @@ namespace HPPortal.Data.Models
             this.Sales = new List<Sale>();
             this.Targets = new List<Target>();
             this.StrategicPlans = new List<StrategicPlan>();
-
+            
         }
 
         public int PartnerId { get; set; }
@@ -67,5 +67,6 @@ namespace HPPortal.Data.Models
         public virtual ICollection<Target> Targets { get; set; }
 
         public virtual ICollection<StrategicPlan> StrategicPlans { get; set; }
+        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
     }
 }

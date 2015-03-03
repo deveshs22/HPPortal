@@ -11,6 +11,10 @@ namespace HPPortal.Web.Models
 
         public string CityDescription { get; set; }
 
+        public int CityId { get; set; }
+
+        public string Category { get; set; }
+
         public int TargetUnit { get; set; }
 
         public int TargetAmount { get; set; }

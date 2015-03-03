@@ -22,9 +22,7 @@ namespace HPPortal.Web.Sales
                     PartnerId = Convert.ToInt32(Request.QueryString["pid"]);
                     Quater = Convert.ToString(Request.QueryString["qtr"]);
                 }
-                if (PartnerId == 0)
-                    Response.Redirect("/JBPlan.aspx");
-
+               
                 var partner = _db.Partners.Include(p => p.User).FirstOrDefault(p => p.PartnerId == PartnerId);
                 lblPartner.Text = partner.PartnerName;
                 lblQuater.Text = Quater;
@@ -41,7 +39,7 @@ namespace HPPortal.Web.Sales
             var qtr = Quater;
             var partnerId = PartnerId;
             var SaleVMList = new List<SalesViewModel>();
-            var products = _db.Products;
+            var products = _db.Products.OrderBy(p => p.SortOrder);
 
             foreach (var product in products)
             {

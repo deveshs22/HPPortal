@@ -17,14 +17,14 @@ namespace HPPortal.Web.Targets
         {
             if (!IsPostBack)
             {
+                
                 if (!string.IsNullOrEmpty(Convert.ToString(Request.QueryString["pid"])))
                 {
+                    UserId = SessionData.Current.UserId;
                     PartnerId = Convert.ToInt32(Request.QueryString["pid"]);
                     Quater = Convert.ToString(Request.QueryString["qtr"]);
                 }
-                if (PartnerId == 0)
-                    Response.Redirect("/JBPlan.aspx");
-
+               
                 var partner = _db.Partners.Include(p=>p.User).FirstOrDefault(p=>p.PartnerId == PartnerId);
                 lblPartner.Text = partner.PartnerName;
                 lblQuater.Text = Quater;
@@ -41,7 +41,7 @@ namespace HPPortal.Web.Targets
             var qtr = Quater;
             var partnerId = PartnerId;
             var targetVMList = new List<TargetViewModel>();
-            var products = _db.Products;
+            var products = _db.Products.OrderBy(p=>p.SortOrder);
 
             foreach (var product in products)
             {
@@ -202,6 +202,18 @@ namespace HPPortal.Web.Targets
             get
             {
                 return ViewState["Quarter"] as string;
+            }
+            set
+            {
+                ViewState["Quarter"] = value;
+            }
+        }
+
+        private int UserId
+        {
+            get
+            {
+                return (int)ViewState["Quarter"];
             }
             set
             {

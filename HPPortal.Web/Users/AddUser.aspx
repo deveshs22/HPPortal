@@ -78,11 +78,11 @@
 
                             </div>
                         </div>
-
-                        <div class="form-group">
+                        
+                         <div class="form-group">
                             <span class="col-md-3 control-label">Partner Category</span>
                             <div class="col-md-7">
-                                <asp:CheckBoxList ID="chkPartnerCategory" runat="server" AutoPostBack="true" RepeatColumns="4" RepeatDirection="Vertical"></asp:CheckBoxList>
+                                <asp:CheckBoxList ID="chkPartnerCategory" runat="server" AutoPostBack="False"  CssClass="checkboxlist" RepeatDirection="Horizontal"></asp:CheckBoxList>
                                 <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator6"
                                     Text="*" runat="server" CssClass="validation" ErrorMessage="Reporting Required" 
                                     ControlToValidate="ddlReporting"

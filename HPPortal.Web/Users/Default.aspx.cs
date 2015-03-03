@@ -15,6 +15,10 @@ namespace HPPortal.Web.Users
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                ListView1.Sort("Name", SortDirection.Ascending);
+            }
         }
 
         // Model binding method to get List of User entries

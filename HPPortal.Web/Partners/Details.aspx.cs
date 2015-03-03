@@ -40,7 +40,7 @@ namespace HPPortal.Web.Partners
         // USAGE: <asp:FormView SelectMethod="GetItem">
         public HPPortal.Data.Models.Partner GetItem()
         {
-            if (PartnerId == null)
+            if (PartnerId == 0)
             {
                 return null;
             }

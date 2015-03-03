@@ -9,15 +9,15 @@
         <div class="col-md-4">
             <br />
             <div class="btn btn-default">
-                <asp:HyperLink runat="server" NavigateUrl="Insert" Text="+ Create new" />
+                <asp:HyperLink runat="server" NavigateUrl="Insert" Text="+ Create new"  ID="btnCreate"/>
             </div>
         </div>
     </div>
     <div>
         <asp:ListView ID="ListView1" runat="server"
-            DataKeyNames="PartnerId"
+            DataKeyNames="PartnerId" 
             ItemType="HPPortal.Data.Models.Partner"
-            SelectMethod="GetData">
+            SelectMethod="GetData" OnItemDataBound="ListView1_ItemDataBound">
             <EmptyDataTemplate>
                 There are no entries found for Partner
             </EmptyDataTemplate>
@@ -55,7 +55,7 @@
                         <tr runat="server" id="itemPlaceholder" />
                     </tbody>
                 </table>
-                <asp:DataPager PageSize="5" runat="server">
+                <asp:DataPager PageSize="12" runat="server">
                     <Fields>
                         <asp:NextPreviousPagerField ShowLastPageButton="False" ShowNextPageButton="False" ButtonType="Button" ButtonCssClass="btn" />
                         <asp:NumericPagerField ButtonType="Button" NumericButtonCssClass="btn" CurrentPageLabelCssClass="btn disabled" NextPreviousButtonCssClass="btn" />
@@ -90,9 +90,9 @@
 
                     <td>
                         <div style="padding-top: 7px;">
-					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Edit", Item.PartnerId) %>' Text="Edit" />
+					    <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Edit", Item.PartnerId) %>' Text="Edit" ID="btnEdit" />
                             | 
-                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Delete", Item.PartnerId) %>' Text="Delete" />
+                        <asp:HyperLink runat="server" NavigateUrl='<%# FriendlyUrl.Href("~/Partners/Delete", Item.PartnerId) %>' Text="Delete" ID="btnDelete" />
                         </div>
                     </td>
                 </tr>

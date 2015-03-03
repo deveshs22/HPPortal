@@ -51,7 +51,7 @@ namespace HPPortal.Web
                             DateTime.Now,                        // issue time is now
                             DateTime.Now.AddMinutes(15),         // expires in 10 minutes
                             RememberMe.Checked,     // cookie is not persistent
-                            user.Role.Description   // role assignment is stored in userData
+                            user.RoleId.ToString()   // role assignment is stored in userData
                             );
 
                     HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName,

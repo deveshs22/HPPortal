@@ -68,6 +68,19 @@ namespace HPPortal.Web.Utility
                 };
         }
 
+        public static Quarter GetCurrentQtr(string quarterYear)
+        {
+            var qtr = Quarters.Find(q => q.QuarterDescription == quarterYear.Substring(0, 2));
+           
+            return new Quarter
+            {
+                MonthId = qtr.MonthId,
+                QuarterId = qtr.QuarterId,
+                QuarterDescription = qtr.QuarterDescription,
+                QuarterYear = quarterYear
+            };
+        }
+
         public static Quarter GetPrevYearQtr(string quarterYear)
         {
             var qtr = Quarters.Find(q => q.QuarterDescription == quarterYear.Substring(0, 2));

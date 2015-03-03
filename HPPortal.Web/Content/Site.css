@@ -22,6 +22,19 @@ body {
     max-width: 280px;
 }
 
+/* Scroller Box */
+#scroller_container {
+ position: relative;
+ width: 120px;
+ height: 200px;
+ overflow: hidden;
+}
+
+#scroller p {
+ padding: 0;
+}
+/* Scoller Box */
+
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
 input[type="password"],
@@ -32,6 +45,15 @@ input[type="number"],
 input[type="date"]
  {
     max-width: 280px;
+}
+
+.checkboxlist input {
+        margin-top: 7px;
+}
+.checkboxlist label {
+    margin-top: 7px;
+    margin-right: 10px !important;
+    margin-left: 5px !important;
 }
 
 .centeralign {

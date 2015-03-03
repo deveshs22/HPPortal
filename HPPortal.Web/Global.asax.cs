@@ -52,10 +52,11 @@ namespace HPPortal.Web
         void Application_Error(object sender, EventArgs e)
         {
             // Code that runs when an unhandled error occurs
+
             Exception exc = Server.GetLastError();
             Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], ConfigurationManager.AppSettings["PortolError"],
                 "", "", "Portal Error", exc.ToString(), "", "");
-            //TODO: Implement Email to Admin 
+
             Server.Transfer("~/Error.aspx");
            
         } 

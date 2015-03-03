@@ -13,6 +13,8 @@
                 <h2 class="panel-title">Welcome to HP JB Plan Creation</h2>
 
             </div>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true">
+                <ContentTemplate>
             <div class="panel-body">
                 <br />
                 <div class="row">
@@ -28,7 +30,7 @@
                                     CssClass="form-control"
                                     Width="300px"
                                     AppendDataBoundItems="true"
-                                    runat="server">
+                                    runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPartner_SelectedIndexChanged">
                                     <asp:ListItem Text="Select Partner" Value="0"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -45,9 +47,6 @@
                             <div class="col-md-6">
                                 <asp:DropDownList
                                     ID="ddlQuarter"
-                                    SelectMethod="GetQuarters"
-                                    DataTextField="QuarterYear"
-                                    DataValueField="QuarterId"
                                     CssClass="maxWidth form-control"
                                     AppendDataBoundItems="true"
                                     runat="server">
@@ -62,6 +61,8 @@
                 </div>
                 <br />
             </div>
+                    </ContentTemplate>
+            </asp:UpdatePanel>
             <div class="panel-footer" style="align-content: center;">
                 <asp:Button runat="server" ID="btnCreate" Text="Create / Edit Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click" CommandArgument="Create" />
                 &nbsp; &nbsp;

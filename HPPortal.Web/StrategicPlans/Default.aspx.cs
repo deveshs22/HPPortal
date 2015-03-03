@@ -99,7 +99,7 @@ namespace HPPortal.Web.StrategicPlans
 
         public IEnumerable<User> GetUsers()
         {
-            return _db.Users.ToList();
+            return _db.Users.OrderBy(u=>u.Name).ToList();
         }
 
         private void CommitToItem(StrategicPlan item)
@@ -154,45 +154,44 @@ namespace HPPortal.Web.StrategicPlans
 
         protected void InsertButton_Click(object sender, EventArgs e)
         {
-            using (_db)
+
+            var item = new HPPortal.Data.Models.StrategicPlan();
+
+            if (PlanId != null && PlanId > 0)
+                item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
+
+            if (Session["User"] == null)
+                Response.Redirect("/Logon.aspx");
+
+            var user = Session["User"] as User;
+            if (ModelState.IsValid)
             {
-                var item = new HPPortal.Data.Models.StrategicPlan();
+                CommitToItem(item);
 
                 if (PlanId != null && PlanId > 0)
-                    item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
-                
-                if (Session["User"] == null)
-                    Response.Redirect("/Logon.aspx");
-
-                var user = Session["User"] as User;
-                if (ModelState.IsValid)
                 {
-                    CommitToItem(item);
+                    item.ModifiedDate = DateTime.Now;
+                    if (user != null)
+                        item.ModifiedUser = user.UserId;
 
-                    if (PlanId != null && PlanId > 0)
-                    {
-                        item.ModifiedDate = DateTime.Now;
-                        if (user != null)
-                            item.ModifiedUser = user.UserId;
-                        
-                        _db.Entry(item).State = EntityState.Modified;
-                        _db.SaveChanges();
-                        Response.Redirect("Default");
-                    }
-                    else
-                    {
-                        // Save changes
-                        item.CreatedDate = DateTime.Now;
-                        if (user != null)
-                            item.CreatedUser = user.UserId;
-                       
-                        _db.StrategicPlans.Add(item);
-                        _db.SaveChanges();
+                    _db.Entry(item).State = EntityState.Modified;
+                    _db.SaveChanges();
+                    Response.Redirect("Default");
+                }
+                else
+                {
+                    // Save changes
+                    item.CreatedDate = DateTime.Now;
+                    if (user != null)
+                        item.CreatedUser = user.UserId;
 
-                        Response.Redirect("Default");
-                    }
+                    _db.StrategicPlans.Add(item);
+                    _db.SaveChanges();
+
+                    Response.Redirect("Default");
                 }
             }
+
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
