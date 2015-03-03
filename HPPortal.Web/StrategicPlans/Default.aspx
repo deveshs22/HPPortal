@@ -3,17 +3,17 @@
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>&nbsp;</div>
-        
+
     <div class="well">
-    
+
         <div class="row">
             <div class="col-md-offset-1 col-md-1 control-label">
-               Partner:
+                Partner:
 
             </div>
             <div class="col-md-2 control-label">
-                
-                    <asp:Label ID="lblPartner" runat="server"></asp:Label>
+
+                <asp:Label ID="lblPartner" runat="server"></asp:Label>
 
             </div>
 
@@ -21,8 +21,8 @@
                 Outlet Type:
             </div>
             <div class="col-md-2 control-label">
-               
-                    <asp:Label ID="lblOutletType" runat="server"></asp:Label>
+
+                <asp:Label ID="lblOutletType" runat="server"></asp:Label>
 
             </div>
 
@@ -30,8 +30,8 @@
                 Quarter:
             </div>
             <div class="col-md-2 control-label">
-               
-                    <asp:Label ID="lblQuater" runat="server"></asp:Label>
+
+                <asp:Label ID="lblQuater" runat="server"></asp:Label>
 
             </div>
 
@@ -41,8 +41,8 @@
                 City:
             </div>
             <div class="col-md-2 control-label">
-                
-                    <asp:Label ID="lblCity" runat="server"></asp:Label>
+
+                <asp:Label ID="lblCity" runat="server"></asp:Label>
 
             </div>
 
@@ -50,45 +50,48 @@
                 HP Account Manager:
             </div>
             <div class="col-md-2 control-label">
-                
-                    <asp:Label ID="lblAccountManager" runat="server"></asp:Label>
+
+                <asp:Label ID="lblAccountManager" runat="server"></asp:Label>
 
             </div>
 
 
         </div>
-        
+
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn btn-default">
             <asp:LinkButton runat="server" Text="Partner Details" OnClick="btnNavigate_Click" CommandArgument="Partners/Details.aspx" />
         </div>
-            <div class="btn btn-primary">
-                <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
-                <span style="font-family: HPSimplified_Bd;">Strategic Plans</span>
-            </div>
-            <div class="btn btn-default">
+        <div class="btn btn-primary">
+            <%-- <asp:HyperLink runat="server" Enabled="false" NavigateUrl="#" Text="Strategic Plans" />--%>
+            <span style="font-family: HPSimplified_Bd;">Strategic Plans</span>
+        </div>
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" Text="Overview Plans" OnClick="btnNavigate_Click" CommandArgument="OverViewPlans/OverviewPlan.aspx" />
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Target Entry" CommandArgument="Targets/Default.aspx" />
-            </div>
-            <div class="btn btn-default">
+        </div>
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Primary Sales Entry" CommandArgument="Sales/Default.aspx" />
-            </div>
-            <div class="btn btn-default">
+        </div>
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Plan and Performance" CommandArgument="Sales/PlanandPerformance.aspx" />
-            </div>
-            <div class="btn btn-default">
+        </div>
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive Landscape" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
-            </div>
-            <div class="btn btn-default">
-                <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx"/>
+        </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
         </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Targeted Goals" CommandArgument="TargetedGoals/Default.aspx" />
-            </div>
         </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions for Targeted Goals" CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
+        </div>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">

@@ -85,6 +85,9 @@
         <div class="btn btn-primary">
             <span style="font-family: HPSimplified_Bd;">Targeted Goals</span>
         </div>
+        <div class="btn btn-default">
+            <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Actions for Targeted Goals" CommandArgument="TargetedGoals/ActionForTargetedGoals.aspx" />
+        </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">

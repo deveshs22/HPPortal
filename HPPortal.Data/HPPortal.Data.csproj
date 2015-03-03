@@ -46,9 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ActionForTargetedGoal.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\ActivityLog.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="HPSiteDBContext.cs" />
+    <Compile Include="Models\Mapping\ActionForTargetedGoalMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Mapping\ActivityLogMap.cs" />
     <Compile Include="Models\Competitor.cs" />
     <Compile Include="Models\CompetitorLandscape.cs">

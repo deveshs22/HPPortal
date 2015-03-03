@@ -659,3 +659,37 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ActionForTargetedGoal]') AND type in (N'U'))
+BEGIN
+
+CREATE TABLE [dbo].[ActionForTargetedGoal]
+(
+	[ActionId]  INT IDENTITY (1, 1) NOT NULL, 
+    [GoalName] VARCHAR(50) NOT NULL, 
+    [QuarterPlan] VARCHAR(MAX) NOT NULL,
+	[PreviousQuarter] VARCHAR(MAX) NOT NULL, 
+    [QuarterYear] VARCHAR(50) NOT NULL, 
+    [ActionRequired] VARCHAR(MAX) NOT NULL,
+	[AssignedUserId]    INT           NULL,
+	[CreatedDate]       DATE          NULL,
+    [CreatedUser]       INT           NULL,
+    [ModifiedDate]      DATE          NULL,
+    [ModifiedUser]      INT           NULL,
+	[PartnerId]         INT           NULL,
+    CONSTRAINT [PK_ActionForTargetedGoal] PRIMARY KEY CLUSTERED ([ActionId] ASC),
+    CONSTRAINT [FK_ActionForTargetedGoal_Partner] FOREIGN KEY ([PartnerId]) REFERENCES [dbo].[Partner] ([PartnerId]),
+	 CONSTRAINT [FK_ActionForTargetedGoal_User] FOREIGN KEY ([AssignedUserId]) REFERENCES [dbo].[User] ([UserId]) 
+)
+END
+GO
+SET ANSI_PADDING OFF
+GO
+
+

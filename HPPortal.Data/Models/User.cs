@@ -35,5 +35,6 @@ namespace HPPortal.Data.Models
         public virtual ICollection<StrategicPlan> StrategicPlans { get; set; }
         public virtual ICollection<PartnerCategory> PartnerCategorys { get; set; }
         public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
+        public virtual ICollection<ActionForTargetedGoal> ActionForTargetedGoals { get; set; }
     }
 }
