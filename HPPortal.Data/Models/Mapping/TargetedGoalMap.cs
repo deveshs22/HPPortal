@@ -17,7 +17,7 @@ namespace HPPortal.Data.Models.Mapping
                 .HasMaxLength(50);
 
             this.Property(t => t.TargetedGoalName)
-                .HasMaxLength(50);
+                .HasMaxLength(500);
 
             this.Property(t => t.TargetGoal)
                 .HasMaxLength(500);
