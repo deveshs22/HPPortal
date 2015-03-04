@@ -164,10 +164,17 @@ namespace HPPortal.Web.Competitor
                     competitorLandscape.AdditionalComment = Convert.ToString(txtAdditionalComment.Text);
 
                 if (CompetitorId > 0)
+                {
+                    competitorLandscape.ModifiedDate = System.DateTime.Now;
+                    competitorLandscape.ModifiedUser = SessionData.Current.UserId;
                     _db.Entry<CompetitorLandscape>(competitorLandscape).State = EntityState.Modified;
+                }
                 else
+                {
+                    competitorLandscape.CreatedDate = System.DateTime.Now;
+                    competitorLandscape.CreatedUser = SessionData.Current.UserId;
                     _db.CompetitorLandscapes.Add(competitorLandscape);
-
+                }
                 _db.SaveChanges();
 
                 FillGridView();

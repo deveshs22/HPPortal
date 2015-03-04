@@ -288,6 +288,10 @@ CREATE TABLE [dbo].[Target](
 	[ProductId] [int] NULL,
 	[PartnerId] [int] NULL,
 	[QuarterYear] [varchar](50) NULL,
+	[CreatedDate] [date] NULL,
+	[CreatedUser] [int] NULL,
+	[ModifiedDate] [date] NULL,
+	[ModifiedUser] [int] NULL,
  CONSTRAINT [PK_Target] PRIMARY KEY CLUSTERED 
 (
 	[TargetId] ASC
@@ -365,6 +369,10 @@ CREATE TABLE [dbo].[Sale](
 	[ProductId] [int] NULL,
 	[PartnerId] [int] NULL,
 	[QuarterYear] [varchar](50) NULL,
+	[CreatedDate] [date] NULL,
+	[CreatedUser] [int] NULL,
+	[ModifiedDate] [date] NULL,
+	[ModifiedUser] [int] NULL,
  CONSTRAINT [PK_Sale] PRIMARY KEY CLUSTERED 
 (
 	[SaleId] ASC

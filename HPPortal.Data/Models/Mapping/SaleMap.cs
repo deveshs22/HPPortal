@@ -22,7 +22,10 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.ProductId).HasColumnName("ProductId");
             this.Property(t => t.PartnerId).HasColumnName("PartnerId");
             this.Property(t => t.QuarterYear).HasColumnName("QuarterYear");
-
+            this.Property(t => t.CreatedDate).HasColumnName("CreatedDate");
+            this.Property(t => t.CreatedUser).HasColumnName("CreatedUser");
+            this.Property(t => t.ModifiedDate).HasColumnName("ModifiedDate");
+            this.Property(t => t.ModifiedUser).HasColumnName("ModifiedUser");
             // Relationships
             this.HasRequired(t => t.Partner)
                 .WithMany(t => t.Sales)

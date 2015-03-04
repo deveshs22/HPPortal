@@ -24,6 +24,10 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(c => c.CategoryId).HasColumnName("CategoryId");
             this.Property(c => c.PartnerId).HasColumnName("PartnerId");
             this.Property(c => c.QuarterYear).HasColumnName("QuarterYear");
+            this.Property(t => t.CreatedDate).HasColumnName("CreatedDate");
+            this.Property(t => t.CreatedUser).HasColumnName("CreatedUser");
+            this.Property(t => t.ModifiedDate).HasColumnName("ModifiedDate");
+            this.Property(t => t.ModifiedUser).HasColumnName("ModifiedUser");
 
             // Relationships
             this.HasRequired(t => t.Partner)

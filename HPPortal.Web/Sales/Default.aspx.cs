@@ -160,10 +160,17 @@ namespace HPPortal.Web.Sales
 
 
                 if (saleId > 0)
+                {
+                    sales.ModifiedDate = System.DateTime.Now;
+                    sales.ModifiedUser = SessionData.Current.UserId;
                     _db.Entry<Sale>(sales).State = EntityState.Modified;
+                }
                 else
+                {
+                    sales.CreatedDate = System.DateTime.Now;
+                    sales.CreatedUser = SessionData.Current.UserId;
                     _db.Sales.Add(sales);
-
+                }
                 _db.SaveChanges();
 
                 FillGridView();

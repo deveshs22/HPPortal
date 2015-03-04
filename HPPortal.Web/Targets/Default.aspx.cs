@@ -162,9 +162,17 @@ namespace HPPortal.Web.Targets
 
 
                 if (targetId > 0)
+                {
+                    target.ModifiedDate = System.DateTime.Now;
+                    target.ModifiedUser = SessionData.Current.UserId;
                     _db.Entry<Target>(target).State = EntityState.Modified;
+                }
                 else
+                {
+                    target.CreatedDate = System.DateTime.Now;
+                    target.CreatedUser = SessionData.Current.UserId;
                     _db.Targets.Add(target);
+                }
 
                 _db.SaveChanges();
 

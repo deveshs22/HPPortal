@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HPPortal.Data.Models
 {
+    [Serializable]
     public partial class CompetitorLandscape
     {
        public int CompetitorId { get; set; }
@@ -17,6 +18,10 @@ namespace HPPortal.Data.Models
        public int CategoryId { get; set; }
        public int PartnerId { get; set; }
        public string QuarterYear { get; set; }
+       public Nullable<System.DateTime> CreatedDate { get; set; }
+       public Nullable<int> CreatedUser { get; set; }
+       public Nullable<System.DateTime> ModifiedDate { get; set; }
+       public Nullable<int> ModifiedUser { get; set; }
        public virtual Partner Partner { get; set; }
        public virtual Competitor Competitor { get; set; }
     }

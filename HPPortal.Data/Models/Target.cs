@@ -12,6 +12,10 @@ namespace HPPortal.Data.Models
         public int ProductId { get; set; }
         public int PartnerId { get; set; }
         public string QuarterYear { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> CreatedUser { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> ModifiedUser { get; set; }
         public virtual Partner Partner { get; set; }
         public virtual Product Product { get; set; }
     }
