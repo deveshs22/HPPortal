@@ -10,7 +10,7 @@ using System.Configuration;
 namespace HPPortal.Web.Utility
 {
     public class MailFormat : IDisposable
-    {      
+    {
         public static bool SendMailMessage(string froms, string to, string bcc, string cc, string subject, string body, string Host, int Port, string UserName, string Password)
         {
             StringBuilder sBuilderBody = new StringBuilder();
@@ -93,7 +93,7 @@ namespace HPPortal.Web.Utility
             }
             return strBody;
         }
-    
+
         public static bool SendMailMessages(string froms, string to, string bcc, string cc, string subject, string body, string attachment1, string attachment2)
         {
             StringBuilder sBuilderBody = new StringBuilder();
@@ -157,6 +157,17 @@ namespace HPPortal.Web.Utility
                 mSmtpClient.Dispose();
                 mMailMessage.Dispose();
             }
+        }
+
+        public static string GetMessage(string notificationFor, string user)
+        {
+            StringBuilder mailbody = new StringBuilder();
+            mailbody.Append("<h4>").Append(notificationFor).Append("</h4>");
+            mailbody.Append("<p>Hi ").Append(user).Append(" ,</p>");
+            mailbody.Append("<p>There is a ").Append(notificationFor).Append(" assigned to you. Please log in to hpjbplans.com for further details.</p>");
+            mailbody.Append("<p>Thanks ,</p><p>HP JB Portal Admin</p>");
+
+            return mailbody.ToString();
         }
 
         #region IDisposable Members

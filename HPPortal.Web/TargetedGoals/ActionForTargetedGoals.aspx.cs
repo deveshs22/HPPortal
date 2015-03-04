@@ -9,6 +9,7 @@ using HPPortal.Data.Models;
 using HPPortal.Web.Utility;
 using System.Text;
 using System.Web.DynamicData;
+using System.Configuration;
 
 namespace HPPortal.Web.TargetedGoals
 {
@@ -80,7 +81,7 @@ namespace HPPortal.Web.TargetedGoals
             txtAction.Text = planDetails.ActionRequired;
             txtWhereWeAre.Text = planDetails.PreviousQuarter;
             txtWhereWeWant.Text = planDetails.QuarterPlan;
-            ddlUser.SelectedValue = planDetails.AssignedUserId.ToString();            
+            ddlUser.SelectedValue = planDetails.AssignedUserId.ToString();
         }
         // Model binding method to get List of StrategicPlan entries
         // USAGE: <asp:ListView SelectMethod="GetData">
@@ -113,7 +114,7 @@ namespace HPPortal.Web.TargetedGoals
 
             if (ddlUser.SelectedIndex > 0)
                 item.AssignedUserId = Convert.ToInt32(ddlUser.SelectedValue);
-            
+
             item.PartnerId = PartnerId;
             item.QuarterYear = Quater;
         }
@@ -193,6 +194,19 @@ namespace HPPortal.Web.TargetedGoals
 
                     string path = "TargetedGoals/ActionForTargetedGoals";
                     Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+                }
+
+                // send mail to assigned user
+
+                var assignedUser = _db.Users.FirstOrDefault(u => u.UserId == item.AssignedUserId);
+                if (assignedUser != null)
+                {
+                    string emailAddress = assignedUser.EmailId;
+                    string subject = @"[HP JB Portal] Targeted goal assigned.";
+                    string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name);
+
+                    Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
+                "", "", subject, message, "", "");
                 }
             }
 

@@ -9,6 +9,7 @@ using HPPortal.Data.Models;
 using HPPortal.Web.Utility;
 using System.Text;
 using System.Web.DynamicData;
+using System.Configuration;
 
 namespace HPPortal.Web.StrategicPlans
 {
@@ -27,7 +28,7 @@ namespace HPPortal.Web.StrategicPlans
                 }
                 if (PartnerId == 0)
                     Response.Redirect("/Logon.aspx");
-                
+
                 ClearData();
                 var partner = _db.Partners.Include(p => p.User).FirstOrDefault(p => p.PartnerId == PartnerId);
                 lblPartner.Text = partner.PartnerName;
@@ -99,7 +100,7 @@ namespace HPPortal.Web.StrategicPlans
 
         public IEnumerable<User> GetUsers()
         {
-            return _db.Users.OrderBy(u=>u.Name).ToList();
+            return _db.Users.OrderBy(u => u.Name).ToList();
         }
 
         private void CommitToItem(StrategicPlan item)
@@ -113,7 +114,7 @@ namespace HPPortal.Web.StrategicPlans
 
             item.CheckpointState = ddlCheckpointState.SelectedValue;
             item.PartnerId = PartnerId;
-            item.QuarterYear = Quater;            
+            item.QuarterYear = Quater;
         }
 
         private int PartnerId
@@ -155,44 +156,57 @@ namespace HPPortal.Web.StrategicPlans
         protected void InsertButton_Click(object sender, EventArgs e)
         {
 
-                var item = new HPPortal.Data.Models.StrategicPlan();
+            var item = new HPPortal.Data.Models.StrategicPlan();
+
+            if (PlanId != null && PlanId > 0)
+                item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
+
+            if (Session["User"] == null)
+                Response.Redirect("/Logon.aspx");
+
+            var user = Session["User"] as User;
+            if (ModelState.IsValid)
+            {
+                CommitToItem(item);
 
                 if (PlanId != null && PlanId > 0)
-                    item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
-                
-                if (Session["User"] == null)
-                    Response.Redirect("/Logon.aspx");
-
-                var user = Session["User"] as User;
-                if (ModelState.IsValid)
                 {
-                    CommitToItem(item);
+                    item.ModifiedDate = DateTime.Now;
+                    if (user != null)
+                        item.ModifiedUser = user.UserId;
 
-                    if (PlanId != null && PlanId > 0)
-                    {
-                        item.ModifiedDate = DateTime.Now;
-                        if (user != null)
-                            item.ModifiedUser = user.UserId;
-                        
-                        _db.Entry(item).State = EntityState.Modified;
-                        _db.SaveChanges();
-                        string path = "StrategicPlans/Default";
-                        Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
-                    }
-                    else
-                    {
-                        // Save changes
-                        item.CreatedDate = DateTime.Now;
-                        if (user != null)
-                            item.CreatedUser = user.UserId;
-                       
-                        _db.StrategicPlans.Add(item);
-                        _db.SaveChanges();
-
-                        string path = "StrategicPlans/Default";
-                        Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
-                    }
+                    _db.Entry(item).State = EntityState.Modified;
+                    _db.SaveChanges();
+                    string path = "StrategicPlans/Default";
+                    Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
                 }
+                else
+                {
+                    // Save changes
+                    item.CreatedDate = DateTime.Now;
+                    if (user != null)
+                        item.CreatedUser = user.UserId;
+
+                    _db.StrategicPlans.Add(item);
+                    _db.SaveChanges();
+
+                    string path = "StrategicPlans/Default";
+                    Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+                }
+
+                // send mail to assigned user
+
+                var assignedUser = _db.Users.FirstOrDefault(u => u.UserId == item.AssignedUserId);
+                if (assignedUser != null)
+                {
+                    string emailAddress = assignedUser.EmailId;
+                    string subject = @"[HP JB Portal] Strategic plan assigned.";
+                    string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name);
+                   
+                    Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
+                "", "", subject, message, "", "");
+                }
+            }
 
         }
 
