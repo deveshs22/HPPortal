@@ -102,10 +102,10 @@
                         <ChartAreas>
                             <asp:ChartArea Name="ChartArea1">
                                 <AxisY>
-                                    <MajorGrid LineColor="Gray" />
+                                    <MajorGrid LineColor="#eeeeee" />
                                 </AxisY>
                                 <AxisX>
-                                    <MajorGrid LineColor="Gray" />
+                                    <MajorGrid LineColor="#eeeeee" />
                                 </AxisX>
                                 <Area3DStyle Inclination="10" Rotation="5" />
                             </asp:ChartArea>
@@ -137,7 +137,7 @@
                         <ItemTemplate>
                             <li style="list-style: none;">
                                  <label style="width:90px; color:#428bca; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Updated Date</label>: 
-                                    &nbsp; <%#: Item.LogDate.ToString("dd:MM:yyyy HH:MM") %>
+                                    &nbsp; <%#: Item.LogDate.ToString("dd:MM:yyyy HH:mm") %>
                                <br />
                                  <label style="width:90px; color:#428bca;  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Updated By</label>:   &nbsp; <%#: Item.User.Name %>
                                 <br />
@@ -184,7 +184,7 @@
          speed: 1,
 
          // animation timing
-         timing: 1,
+         timing: 3,
 
          // mouse hover to stop the scroller
          mouse: true

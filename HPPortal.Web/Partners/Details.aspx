@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Partner Details" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="Details.aspx.cs" Inherits="HPPortal.Web.Partners.Details" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
-      <div class="well">
+    <div>&nbsp;</div>  
+    <div class="well">
     
         <div class="row">
             <div class="col-md-offset-1 col-md-1 control-label">

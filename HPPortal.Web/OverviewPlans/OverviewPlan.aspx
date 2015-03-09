@@ -3,7 +3,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
 
     <div>
-        <p>&nbsp;</p>
+        &nbsp;
     </div>
     <div class="well">
 

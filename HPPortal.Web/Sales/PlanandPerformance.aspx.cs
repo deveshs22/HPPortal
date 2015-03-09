@@ -43,7 +43,7 @@ namespace HPPortal.Web.Sales
             var SaleVMList = new List<SalesViewModel>();
             var PlanPerformanceVMList = new List<PlanPerformanceViewModel>();
 
-            var products = _db.Products;
+            var products = _db.Products.OrderBy(p=>p.SortOrder);
 
             foreach (var product in products)
             {

@@ -35,9 +35,11 @@ namespace HPPortal.Web
 
             var partners = userData.Cities.SelectMany(c => c.Partners).Where(p => partnerCategoriesId.Contains(p.PartnerCategoryId)).ToList();
             var partnerIds = partners.Select(p=>p.PartnerId);
-            var list = _db.ActivityLogs.Where(a => partnerIds.Contains(a.PartnerId)).OrderByDescending(a => a.LogDate).Take(20).ToList();
+            var list = _db.ActivityLogs.Where(a => partnerIds.Contains(a.PartnerId)).OrderByDescending(a => a.LogId).Take(200);
+            var activityList = list.GroupBy(a => a.PartnerId).Select(a => a.FirstOrDefault()).Distinct().ToList();
 
-            listActivityLog.DataSource = list;
+            listActivityLog.Items.Clear();
+            listActivityLog.DataSource = activityList.OrderByDescending(a=>a.LogId);
             listActivityLog.DataBind();
 
         }
@@ -170,7 +172,6 @@ namespace HPPortal.Web
                     }
             }
             
-
             return perfVMList;
         }
 
@@ -196,6 +197,7 @@ namespace HPPortal.Web
             var lnk = (LinkButton)ListView1.FindControl("lnkCity");
             lnk.Text = Category;
 
+            this.perfChart.Series.Clear();
 
             var tgtSeries = new Series();
             var salesSeries = new Series();

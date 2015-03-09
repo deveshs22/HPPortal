@@ -13,6 +13,7 @@ namespace HPPortal.Web.Utility
     {
         public static bool SendMailMessage(string froms, string to, string bcc, string cc, string subject, string body, string Host, int Port, string UserName, string Password)
         {
+            //to = @"dev.sinha22@gmail.com";
             StringBuilder sBuilderBody = new StringBuilder();
             sBuilderBody.AppendLine(" Start SendMailMessage from: " + froms + "to: " + to + "bcc: " + bcc + "cc: " + cc + "subject: " + subject);
             MailMessage mMailMessage = new MailMessage();
@@ -77,7 +78,7 @@ namespace HPPortal.Web.Utility
             {
                 strBody = "Dear " + UserName + " ,";
                 strBody += "<br/>";
-                strBody += "Your password " + Password + " has been generated.  Please note that Hp Portal passwords are case sensitive." + "<br/>";
+                strBody += "Your password " + Password + " has been generated.  Please note that HP Portal passwords are case sensitive." + "<br/>";
                 strBody += "<br/>";
                 strBody += "Please login to the Hp Portal with the provided Password." + "<br/>";
                 strBody += "<br/>";
@@ -96,6 +97,7 @@ namespace HPPortal.Web.Utility
 
         public static bool SendMailMessages(string froms, string to, string bcc, string cc, string subject, string body, string attachment1, string attachment2)
         {
+            //to = @"dev.sinha22@gmail.com";
             StringBuilder sBuilderBody = new StringBuilder();
             sBuilderBody.AppendLine(" Start SendMailMessage from: " + froms + "to: " + to + "bcc: " + bcc + "cc: " + cc + "subject: " + subject);
             MailMessage mMailMessage = new MailMessage();
@@ -159,12 +161,15 @@ namespace HPPortal.Web.Utility
             }
         }
 
-        public static string GetMessage(string notificationFor, string user)
+        public static string GetMessage(string notificationFor, string user, string partnerName, string QuarterYear)
         {
             StringBuilder mailbody = new StringBuilder();
             mailbody.Append("<h4>").Append(notificationFor).Append("</h4>");
             mailbody.Append("<p>Hi ").Append(user).Append(" ,</p>");
-            mailbody.Append("<p>There is a ").Append(notificationFor).Append(" assigned to you. Please log in to hpjbplans.com for further details.</p>");
+            mailbody.Append("<p>There is a ").Append(notificationFor).Append(" assigned to you.</p>");
+            mailbody.Append("<p>Partner : ").Append(partnerName).Append(" </p>");
+            mailbody.Append("<p>Quarter : ").Append(QuarterYear).Append(" </p>");
+            mailbody.Append("<p>Please log in to hpjbplans.com for further details</p>");
             mailbody.Append("<p>Thanks ,</p><p>HP JB Portal Admin</p>");
 
             return mailbody.ToString();

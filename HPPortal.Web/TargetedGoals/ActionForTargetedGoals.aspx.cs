@@ -179,8 +179,7 @@ namespace HPPortal.Web.TargetedGoals
 
                     _db.Entry(item).State = EntityState.Modified;
                     _db.SaveChanges();
-                    string path = "TargetedGoals/ActionForTargetedGoals";
-                    Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+
                 }
                 else
                 {
@@ -191,10 +190,7 @@ namespace HPPortal.Web.TargetedGoals
 
                     _db.ActionForTargetedGoals.Add(item);
                     _db.SaveChanges();
-
-                    string path = "TargetedGoals/ActionForTargetedGoals";
-                    Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
-                }
+                }                             
 
                 // send mail to assigned user
 
@@ -202,12 +198,15 @@ namespace HPPortal.Web.TargetedGoals
                 if (assignedUser != null)
                 {
                     string emailAddress = assignedUser.EmailId;
-                    string subject = @"[HP JB Portal] Targeted goal assigned.";
-                    string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name);
+                    string subject = @"HPJB Portal Targeted goal assigned.";
+                    string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name, item.Partner.PartnerName, item.QuarterYear);
 
                     Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
                 "", "", subject, message, "", "");
                 }
+
+                string path = "TargetedGoals/ActionForTargetedGoals";
+                Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
             }
 
         }

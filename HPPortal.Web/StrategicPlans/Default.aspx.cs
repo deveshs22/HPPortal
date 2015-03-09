@@ -177,8 +177,7 @@ namespace HPPortal.Web.StrategicPlans
 
                     _db.Entry(item).State = EntityState.Modified;
                     _db.SaveChanges();
-                    string path = "StrategicPlans/Default";
-                    Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+                    
                 }
                 else
                 {
@@ -190,8 +189,7 @@ namespace HPPortal.Web.StrategicPlans
                     _db.StrategicPlans.Add(item);
                     _db.SaveChanges();
 
-                    string path = "StrategicPlans/Default";
-                    Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+                    
                 }
 
                 // send mail to assigned user
@@ -201,11 +199,14 @@ namespace HPPortal.Web.StrategicPlans
                 {
                     string emailAddress = assignedUser.EmailId;
                     string subject = @"[HP JB Portal] Strategic plan assigned.";
-                    string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name);
+                    string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name, item.Partner.PartnerName, item.QuarterYear);
                    
                     Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
                 "", "", subject, message, "", "");
                 }
+
+                string path = "StrategicPlans/Default";
+                Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
             }
 
         }
