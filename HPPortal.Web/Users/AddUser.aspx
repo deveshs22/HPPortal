@@ -68,6 +68,18 @@
                             </div>
                         </div>
 
+                         <div class="form-group">
+                            <span class="col-md-3 control-label">Reporting</span>
+                            <div class="col-md-7">
+                                <asp:DropDownList ID="ddlReporting" CssClass="form-control maxWidth" OnSelectedIndexChanged="ddlReporting_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4"
+                                    Text="*" runat="server" CssClass="validation" ErrorMessage="Reporting Required" 
+                                    ControlToValidate="ddlReporting"
+                                     InitialValue="-1"></asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <span class="col-md-3 control-label">Roles</span>
                             <div class="col-md-7">
@@ -87,18 +99,6 @@
                                     Text="*" runat="server" CssClass="validation" ErrorMessage="Reporting Required" 
                                     ControlToValidate="ddlReporting"
                                      InitialValue="-1"></asp:RequiredFieldValidator>--%>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <span class="col-md-3 control-label">Reporting</span>
-                            <div class="col-md-7">
-                                <asp:DropDownList ID="ddlReporting" CssClass="form-control maxWidth" OnSelectedIndexChanged="ddlReporting_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4"
-                                    Text="*" runat="server" CssClass="validation" ErrorMessage="Reporting Required" 
-                                    ControlToValidate="ddlReporting"
-                                     InitialValue="-1"></asp:RequiredFieldValidator>
 
                             </div>
                         </div>
