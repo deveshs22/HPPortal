@@ -25,6 +25,10 @@
                         <thead>
                             <tr>
                                 <th>
+                                   S.No.
+                                </th>
+
+                                <th>
                                     <asp:LinkButton Text="Email Address" CommandName="Sort" CommandArgument="EmailId" runat="Server" />
                                 </th>
 
@@ -58,6 +62,9 @@
                 </LayoutTemplate>
                 <ItemTemplate>
                     <tr>
+                        <td>
+                            <%# Container.DataItemIndex+1 %>
+                        </td>
                         <td>
                             <asp:DynamicControl runat="server" DataField="EmailId" ID="EmailId" Mode="ReadOnly" />
                         </td>
