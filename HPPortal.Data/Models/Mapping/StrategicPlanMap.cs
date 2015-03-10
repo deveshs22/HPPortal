@@ -40,7 +40,7 @@ namespace HPPortal.Data.Models.Mapping
                 .WithMany(t => t.StrategicPlans)
                 .HasForeignKey(d => d.AssignedUserId);
 
-            this.HasOptional(t => t.Partner)
+            this.HasRequired(t => t.Partner)
                 .WithMany(t => t.StrategicPlans)
                 .HasForeignKey(d => d.PartnerId);
 

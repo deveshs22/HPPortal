@@ -21,7 +21,7 @@ namespace HPPortal.Data.Models
         public string Comments { get; set; }
         public string CheckpointState { get; set; }
         public virtual User User { get; set; }
-        public Nullable<int> PartnerId { get; set; }
+        public int PartnerId { get; set; }
         public virtual Partner Partner { get; set; }
     }
 }

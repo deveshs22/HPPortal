@@ -24,7 +24,7 @@ namespace HPPortal.Data.Models
         public Nullable<int> CreatedUser { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedUser { get; set; }
-        public Nullable<int> PartnerId { get; set; }
+        public int PartnerId { get; set; }
         public virtual Partner Partner { get; set; }
         public virtual User User { get; set; }
     }

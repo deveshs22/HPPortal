@@ -568,6 +568,7 @@
     <Compile Include="Logon.aspx.designer.cs">
       <DependentUpon>Logon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TasksViewModel.cs" />
     <Compile Include="Models\CompetitorViewModel.cs" />
     <Compile Include="Models\PerformanceViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

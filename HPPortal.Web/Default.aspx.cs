@@ -41,6 +41,50 @@ namespace HPPortal.Web
             listActivityLog.Items.Clear();
             listActivityLog.DataSource = activityList.OrderByDescending(a=>a.LogId);
             listActivityLog.DataBind();
+            var currentQtr = Utility.QuarterHelper.GetCurrentQuarter(DateTime.Now);
+            
+            var actionList = _db.ActionForTargetedGoals.Where(a => a.AssignedUserId == userId
+                 && a.QuarterYear == currentQtr.QuarterYear
+                 && partnerIds.Contains(a.PartnerId)).OrderByDescending(a => a.ActionId).Take(10);
+
+            var strategyList = _db.StrategicPlans.Where(a => a.AssignedUserId == userId
+                 && a.QuarterYear == currentQtr.QuarterYear
+                 && partnerIds.Contains(a.PartnerId)).OrderByDescending(a => a.StrategicPlanId).Take(10);
+
+            var tasklist = new List<TasksViewModel>();
+            TasksViewModel task;
+            foreach (var action in actionList)
+            {
+                task = new TasksViewModel
+                {
+                    PartnerId = action.PartnerId,
+                    PartnerName = action.Partner.PartnerName,
+                    Quarter = action.QuarterYear,
+                    TaskModule = "Action for Targeted Goal",
+                    Url = string.Format("/TargetedGoals/ActionForTargetedGoals?pid={0}&qtr={1}", action.PartnerId, action.QuarterYear)
+                };
+                if (!tasklist.Exists(t => t.PartnerId == task.PartnerId && t.TaskModule == task.TaskModule))
+                    tasklist.Add(task);
+            }
+
+            foreach (var action in strategyList)
+            {
+                task = new TasksViewModel
+                {
+                    PartnerId = action.PartnerId,
+                    PartnerName = action.Partner.PartnerName,
+                    Quarter = action.QuarterYear,
+                    TaskModule = "Strategic Plan",
+                    Url = string.Format("/StrategicPlans/Default?pid={0}&qtr={1}", action.PartnerId, action.QuarterYear)
+                };
+
+                if (!tasklist.Exists(t => t.PartnerId == task.PartnerId && t.TaskModule == task.TaskModule))
+                    tasklist.Add(task);
+            }
+           
+            listViewTasks.Items.Clear();
+            listViewTasks.DataSource = tasklist;
+            listViewTasks.DataBind();
 
         }
 

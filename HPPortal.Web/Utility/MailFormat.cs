@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.IO;
 using System.Web;
 using System.Configuration;
+using System.Net;
 
 namespace HPPortal.Web.Utility
 {
@@ -13,7 +14,7 @@ namespace HPPortal.Web.Utility
     {
         public static bool SendMailMessage(string froms, string to, string bcc, string cc, string subject, string body, string Host, int Port, string UserName, string Password)
         {
-            //to = @"dev.sinha22@gmail.com";
+           // to = @"dev.sinha22@gmail.com";
             StringBuilder sBuilderBody = new StringBuilder();
             sBuilderBody.AppendLine(" Start SendMailMessage from: " + froms + "to: " + to + "bcc: " + bcc + "cc: " + cc + "subject: " + subject);
             MailMessage mMailMessage = new MailMessage();
@@ -173,6 +174,80 @@ namespace HPPortal.Web.Utility
             mailbody.Append("<p>Thanks ,</p><p>HP JB Portal Admin</p>");
 
             return mailbody.ToString();
+        }
+
+        private WebProxy objProxy1 = null;
+
+        public static void SendSMS(string mobile, string user, string partnerName)
+        {
+            //message = message.Replace("%", "%25");
+            //message = message.Replace("&", "%26");
+            //message = message.Replace("+", "%2D");
+            //message = message.Replace("#", "%23");
+
+            var message = ConfigurationManager.AppSettings["SMSText"].ToString();
+            message = message.Replace("#user", user);
+            message = message.Replace("#partner", partnerName);
+            message = message.Replace("#date", DateTime.Now.ToString("dd/MM/yy"));
+
+
+            message = message.Replace("%", "%25");
+            message = message.Replace("&", "%26");
+            message = message.Replace("+", "%2D");
+            message = message.Replace("#", "%23");
+            //message = HttpUtility.UrlEncode(message);
+
+            var url = ConfigurationManager.AppSettings["SMSApi"].ToString();
+
+            url = url.Replace("#mob", mobile);
+            url = url.Replace("#msg", message);
+
+            HttpWebRequest objWebRequest = null;
+            HttpWebResponse objWebResponse = null;
+            StreamWriter objStreamWriter = null;
+            StreamReader objStreamReader = null;
+
+            try
+            {
+
+                string stringResult = null;
+
+                objWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                objWebRequest.Method = "POST";
+
+                objWebRequest.ContentType = "application/x-www-form-urlencoded";
+
+                objStreamWriter = new StreamWriter(objWebRequest.GetRequestStream());
+                objStreamWriter.Flush();
+                objStreamWriter.Close();
+
+                objWebResponse = (HttpWebResponse)objWebRequest.GetResponse();
+                objStreamReader = new StreamReader(objWebResponse.GetResponseStream());
+                stringResult = objStreamReader.ReadToEnd();
+
+                objStreamReader.Close();
+                return;
+            }
+
+            catch (Exception)
+            { }
+
+            finally
+            {
+
+                if ((objStreamWriter != null))
+                {
+                    objStreamWriter.Close();
+                }
+                if ((objStreamReader != null))
+                {
+                    objStreamReader.Close();
+                }
+                objWebRequest = null;
+                objWebResponse = null;
+
+            }
+
         }
 
         #region IDisposable Members

@@ -35,7 +35,7 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.ModifiedUser).HasColumnName("ModifiedUser");
             this.Property(t => t.AssignedUserId).HasColumnName("AssignedUserId");
 
-            this.HasOptional(t => t.Partner)
+            this.HasRequired(t => t.Partner)
                 .WithMany(t => t.ActionForTargetedGoals)
                 .HasForeignKey(d => d.PartnerId);
 

@@ -197,12 +197,15 @@ namespace HPPortal.Web.StrategicPlans
                 var assignedUser = _db.Users.FirstOrDefault(u => u.UserId == item.AssignedUserId);
                 if (assignedUser != null)
                 {
+                    var partner = _db.Partners.Find(item.PartnerId);
                     string emailAddress = assignedUser.EmailId;
                     string subject = @"[HP JB Portal] Strategic plan assigned.";
-                    string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name, item.Partner.PartnerName, item.QuarterYear);
+                    string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name, partner.PartnerName, item.QuarterYear);
                    
                     Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
                 "", "", subject, message, "", "");
+
+                    Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
                 }
 
                 string path = "StrategicPlans/Default";
