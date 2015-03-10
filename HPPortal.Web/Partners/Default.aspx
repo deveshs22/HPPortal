@@ -25,7 +25,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-
+                            <th>
+                                S.No.
+                            </th>
                             <th>
                                 <asp:LinkButton Text="Partner Name" CommandName="Sort" CommandArgument="PartnerName" runat="Server" />
                             </th>
@@ -65,6 +67,9 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
+                    <td>
+                    <%# Container.DataItemIndex+1 %>
+                        </td>
                     <td>
                         <asp:DynamicControl runat="server" DataField="PartnerName" ID="PartnerName" Mode="ReadOnly" />
                     </td>
