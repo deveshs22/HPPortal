@@ -19,7 +19,6 @@ namespace HPPortal.Web.TargetedGoals
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
                 if (!string.IsNullOrEmpty(Convert.ToString(Request.QueryString["pid"])))
@@ -86,6 +85,21 @@ namespace HPPortal.Web.TargetedGoals
         // Model binding method to get List of StrategicPlan entries
         // USAGE: <asp:ListView SelectMethod="GetData">
         public IQueryable<HPPortal.Data.Models.ActionForTargetedGoal> GetData()
+        {
+            var data = _db.ActionForTargetedGoals.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater).OrderBy(s => s.GoalName);
+
+            if (data != null && data.ToList().Count > 0)
+            {
+                divAddActions.Style.Add("display", "block");
+            }
+            else
+            {
+                divAddActions.Style.Add("display", "none");
+            }
+            return data;
+        }
+
+        public IQueryable<HPPortal.Data.Models.ActionForTargetedGoal> GetDataForTargets()
         {
             return _db.ActionForTargetedGoals.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater);
         }
@@ -190,7 +204,7 @@ namespace HPPortal.Web.TargetedGoals
 
                     _db.ActionForTargetedGoals.Add(item);
                     _db.SaveChanges();
-                }                             
+                }
 
                 // send mail to assigned user
 
@@ -225,6 +239,99 @@ namespace HPPortal.Web.TargetedGoals
             LinkButton btn = (LinkButton)sender;
             var path = btn.CommandArgument;
             Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+        }
+
+        protected void lnkAddActions_Click(object sender, EventArgs e)
+        {
+            String csname1 = "PopupScript";
+            Type cstype = this.GetType();
+
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = Page.ClientScript;
+
+            // Check to see if the startup script is already registered.
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+                // In my experience, the jQuery file must be included at the top
+                // of the page for this to work. Oterwise you get '$ not found' error.
+                StringBuilder cstext1 = new StringBuilder();
+                cstext1.Append("<script type=text/javascript>$(document).ready(function() { $('#modalC').modal('show')}); </");
+                cstext1.Append("script>");
+                cs.RegisterStartupScript(cstype, csname1, cstext1.ToString());
+            }
+            divAddTargetedGoals.Style.Add("display", "none");
+            divAddActionsDetails.Style.Add("display", "block");
+        }
+
+        protected void InsertButton1_Click(object sender, EventArgs e)
+        {
+            var item = new HPPortal.Data.Models.ActionForTargetedGoal();
+
+            if (PlanId != null && PlanId > 0)
+                item = _db.ActionForTargetedGoals.Include(p => p.User).FirstOrDefault(p => p.ActionId == PlanId);
+
+            if (Session["User"] == null)
+                Response.Redirect("/Logon.aspx");
+
+            var user = Session["User"] as User;
+            if (ModelState.IsValid)
+            {
+                //CommitToItem(item);
+                var plan = _db.ActionForTargetedGoals.Include(p => p.User).ToList().FirstOrDefault(i => i.ActionId == Convert.ToInt32(ddlTragetedGoals.SelectedValue));
+                // Save changes
+                if (plan != null)
+                {
+                    item.CreatedDate = DateTime.Now;
+                    if (user != null)
+                        item.CreatedUser = user.UserId;
+
+                    item.AssignedUserId = plan.AssignedUserId;
+                    item.GoalName = plan.GoalName;
+                    item.PartnerId = plan.PartnerId;
+                    item.PreviousQuarter = plan.PreviousQuarter;
+                    item.QuarterPlan = plan.QuarterPlan;
+                    item.QuarterYear = plan.QuarterYear;
+                    item.GoalName = plan.GoalName;
+                    item.ActionRequired = TextBox1.Text.Trim();
+                    _db.ActionForTargetedGoals.Add(item);
+                    _db.SaveChanges();
+
+                }
+                string path = "TargetedGoals/ActionForTargetedGoals";
+                Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+            }
+
+        }
+
+        protected void CancelButton1_Click(object sender, EventArgs e)
+        {
+            string path = "TargetedGoals/ActionForTargetedGoals";
+            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+        }
+
+        protected void ListView1_DataBound(object sender, EventArgs e)
+        {
+            //for (int rowIndex = ListView1. Count - 2;
+            //                                   rowIndex >= 0; rowIndex--)
+            //{
+            //    GridViewRow gvRow = ListView1.Rows[rowIndex];
+            //    GridViewRow gvPreviousRow = ListView1.Rows[rowIndex + 1];
+
+            //    if (gvRow.Cells[0].Text ==
+            //                           gvPreviousRow.Cells[0].Text)
+            //    {
+            //        if (gvPreviousRow.Cells[0].RowSpan < 2)
+            //        {
+            //            gvRow.Cells[0].RowSpan = 2;
+            //        }
+            //        else
+            //        {
+            //            gvRow.Cells[0].RowSpan =
+            //                gvPreviousRow.Cells[0].RowSpan + 1;
+            //        }
+            //        gvPreviousRow.Cells[0].Visible = false;
+            //    }
+            //}
         }
     }
 }
