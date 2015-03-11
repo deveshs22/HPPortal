@@ -2170,3 +2170,76 @@ REFERENCES [dbo].[UserCity] ([UserId], [CityId])
 GO
 ALTER TABLE [dbo].[UserCity] CHECK CONSTRAINT [FK_UserCity_UserCity]
 GO
+
+/****** Object:  Table [dbo].[PlacementProduct]    Script Date: 03/11/2015 11:44:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[PlacementProduct](
+	[PlacementProductId] [int] IDENTITY(1,1) NOT NULL,
+	[PlacementProductDescription] [varchar](200) NOT NULL,
+	[Active] [bit] NOT NULL,
+ CONSTRAINT [PK_PlacementProduct] PRIMARY KEY CLUSTERED 
+(
+	[PlacementProductId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+/****** Object:  Table [dbo].[PlacementTarget]    Script Date: 03/11/2015 11:44:24 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[PlacementTarget](
+	[PlacementTargetId] [int] IDENTITY(1,1) NOT NULL,
+	[PlacementProductId] [int] NOT NULL,
+	[Stores] [int] NULL,
+	[Units] [int] NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedUser] [int] NULL,
+	[ModifiedDate] [datetime] NULL,
+	[ModifiedUser] [int] NULL,
+	[PartnerId] [int] NOT NULL,
+	[QuarterYear] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_PlacementTarget] PRIMARY KEY CLUSTERED 
+(
+	[PlacementTargetId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[PlacementTarget]  WITH CHECK ADD  CONSTRAINT [FK_PlacementTarget_Partner] FOREIGN KEY([PartnerId])
+REFERENCES [dbo].[Partner] ([PartnerId])
+GO
+
+ALTER TABLE [dbo].[PlacementTarget] CHECK CONSTRAINT [FK_PlacementTarget_Partner]
+GO
+
+ALTER TABLE [dbo].[PlacementTarget]  WITH CHECK ADD  CONSTRAINT [FK_PlacementTarget_PlacementProduct] FOREIGN KEY([PlacementProductId])
+REFERENCES [dbo].[PlacementProduct] ([PlacementProductId])
+GO
+
+ALTER TABLE [dbo].[PlacementTarget] CHECK CONSTRAINT [FK_PlacementTarget_PlacementProduct]
+GO
+
