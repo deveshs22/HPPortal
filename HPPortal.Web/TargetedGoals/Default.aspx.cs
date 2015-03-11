@@ -35,6 +35,8 @@ namespace HPPortal.Web.TargetedGoals
                 lblCity.Text = partner.City.Description;
                 lblOutletType.Text = partner.PartnerCategory.Description;
                 lblAccountManager.Text = partner.User.Name;
+
+                FillGridView();
             }
         }
 
@@ -45,6 +47,97 @@ namespace HPPortal.Web.TargetedGoals
             txtTargetedGoal.Text = string.Empty;
             txtPreviousQuarter.Text = string.Empty;  
         }
+        #region Placement Grid
+
+        private void FillGridView()
+        {
+            var qtr = Quater;
+            var partnerId = PartnerId;
+            var targetList = new List<PlacementTarget>();
+            var products = _db.PlacementProducts.Where(p=>p.Active).OrderBy(p => p.PlacementProductDescription);
+
+            foreach (var product in products)
+            {
+                var target = _db.PlacementTargets.Include(t=>t.PlacementProduct)
+                    .FirstOrDefault(t => t.PartnerId == partnerId && t.QuarterYear == qtr && t.PlacementProductId == product.PlacementProductId);
+
+                if (target == null)
+                {
+                    target = new Data.Models.PlacementTarget();
+                    target.PlacementProduct = product;
+                    target.PlacementProductId = product.PlacementProductId;
+                }
+                target.PlacementProductDescription = product.PlacementProductDescription;
+                
+                targetList.Add(target);
+
+            }
+            gridPlacement.DataSource = targetList;
+            gridPlacement.DataBind();
+            gridPlacement.UseAccessibleHeader = true;
+            gridPlacement.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+        }
+
+        protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Text = "No of Stores Targeted in " + Quater;
+                e.Row.Cells[2].Text = "No of Units Targeted in " + Quater;
+            }
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gridPlacement.Rows)
+            {
+                var targetId = 0;
+                var target = new Data.Models.PlacementTarget();
+
+                var hdnTargetId = (HiddenField)row.FindControl("hdnTargetId");
+                if (hdnTargetId != null && !string.IsNullOrEmpty(hdnTargetId.Value))
+                    targetId = Convert.ToInt32(hdnTargetId.Value);
+
+                if (targetId > 0)
+                    target = _db.PlacementTargets.Find(targetId);
+                else
+                {
+                    target.PlacementProductId = Convert.ToInt32(gridPlacement.DataKeys[row.RowIndex].Value.ToString());
+                    target.PartnerId = PartnerId;
+                    target.QuarterYear = Quater;
+                }
+
+                var txtStores = (TextBox)row.FindControl("txtStores");
+                if (txtStores != null)
+                    target.Stores = Convert.ToInt32(txtStores.Text);
+
+                var txtUnits = (TextBox)row.FindControl("txtUnits");
+                if (txtUnits != null)
+                    target.Units = Convert.ToInt32(txtUnits.Text);
+
+                
+                if (targetId > 0)
+                {
+                    target.ModifiedDate = System.DateTime.Now;
+                    target.ModifiedUser = SessionData.Current.UserId;
+                    _db.Entry<PlacementTarget>(target).State = EntityState.Modified;
+                }
+                else
+                {
+                    target.CreatedDate = System.DateTime.Now;
+                    target.CreatedUser = SessionData.Current.UserId;
+                    _db.PlacementTargets.Add(target);
+                }
+
+                _db.SaveChanges();
+
+                FillGridView();
+
+            }
+        }
+
+        #endregion
 
         protected void EditButton_Click(Object obj, EventArgs e)
         {

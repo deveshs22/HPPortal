@@ -36,6 +36,8 @@ namespace HPPortal.Data.Models
         public DbSet<CompetitorLandscape> CompetitorLandscapes { get; set; }
         public DbSet<ActivityLog> ActivityLogs { get; set; }
         public DbSet<ActionForTargetedGoal> ActionForTargetedGoals { get; set; }
+        public DbSet<PlacementProduct> PlacementProducts { get; set; }
+        public DbSet<PlacementTarget> PlacementTargets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -59,6 +61,8 @@ namespace HPPortal.Data.Models
             modelBuilder.Configurations.Add(new PermissionMap());
             modelBuilder.Configurations.Add(new ActivityLogMap());
             modelBuilder.Configurations.Add(new ActionForTargetedGoalMap());
+            modelBuilder.Configurations.Add(new PlacementProductMap());
+            modelBuilder.Configurations.Add(new PlacementTargetMap());
         }
     }
 }

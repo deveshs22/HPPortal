@@ -153,7 +153,7 @@
                         <h3 class="panel-title">User Activity Log
                         </h3>
                     </div>
-                    <div class="panel-body" style="height: 290px">
+                    <div class="panel-body" style="height: 350px">
                         <ul id="scroller">
 
 

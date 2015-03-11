@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="panel-body">
             <div>
                 <asp:ListView ID="ListView1" runat="server"
@@ -169,6 +169,57 @@
                     </ItemTemplate>
                 </asp:ListView>
             </div>
+            
+            <hr />
+            <div class="row col-md-offset-2 col-md-8 ">
+
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                    <h5>New Product Placement Drive</h5>
+                            </div>
+                    <div class="col-md-offset-10">
+                        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
+                            </div>
+                        </div>
+                </div>
+                <div class="panel-body">
+
+                    <div class="form-horizontal">
+                        <asp:GridView ID="gridPlacement" runat="server" AllowPaging="False" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="PlacementProductId"
+                            PageSize="50"
+                             GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
+
+                            <Columns>
+                                <asp:BoundField DataField="PlacementProductDescription" HeaderText="PL" />
+
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtStores" runat="server" TextMode="Number" Text='<%# Eval("Stores") %>' CssClass="form-control DDTextBox" Width="100px"></asp:TextBox>
+                                        <asp:HiddenField ID="hdnTargetId" runat="server" Value='<%# Eval("PlacementTargetId") %>' />
+                                    </ItemTemplate>
+                                    
+                                </asp:TemplateField>
+
+                                <asp:TemplateField>
+
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtUnits" runat="server" TextMode="Number" Text='<%# Eval("Units") %>' CssClass="form-control DDTextBox" Width="100px"></asp:TextBox>
+                                    </ItemTemplate>
+                                   
+                                </asp:TemplateField>
+
+                            </Columns>
+                        </asp:GridView>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+                </div>
         </div>
     </div>
     <div class="modal fade" id="modalC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

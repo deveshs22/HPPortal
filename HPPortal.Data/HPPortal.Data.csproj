@@ -68,6 +68,7 @@
     <Compile Include="Models\Mapping\OverviewPlanMap.cs" />
     <Compile Include="Models\Mapping\PartnerCategoryMap.cs" />
     <Compile Include="Models\Mapping\PartnerMap.cs" />
+    <Compile Include="Models\Mapping\PlacementProductMap.cs" />
     <Compile Include="Models\Mapping\ProductMap.cs" />
     <Compile Include="Models\Mapping\RoleMap.cs" />
     <Compile Include="Models\Mapping\SaleMap.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Models\Mapping\TargetedGoalMap.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Mapping\PlacementTargetMap.cs" />
     <Compile Include="Models\Mapping\TargetMap.cs" />
     <Compile Include="Models\Mapping\UserMap.cs" />
     <Compile Include="Models\Mapping\ZoneMap.cs" />
@@ -83,10 +85,12 @@
     <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\PartnerCategory.cs" />
     <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\PlacementProduct.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\StrategicPlan.cs" />
+    <Compile Include="Models\PlacementTarget.cs" />
     <Compile Include="Models\Target.cs" />
     <Compile Include="Models\TargetedGoal.cs" />
     <Compile Include="Models\User.cs" />

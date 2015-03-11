@@ -72,5 +72,6 @@ namespace HPPortal.Data.Models
         public virtual ICollection<CompetitorLandscape> CompetitorLandscapes { get; set; }
         public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
         public virtual ICollection<ActionForTargetedGoal> ActionForTargetedGoals { get; set; }
+        public virtual ICollection<PlacementTarget> PlacementTargets { get; set; }
     }
 }
