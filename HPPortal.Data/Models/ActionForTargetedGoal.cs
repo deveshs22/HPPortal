@@ -26,6 +26,6 @@ namespace HPPortal.Data.Models
         public Nullable<int> ModifiedUser { get; set; }
         public int PartnerId { get; set; }
         public virtual Partner Partner { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

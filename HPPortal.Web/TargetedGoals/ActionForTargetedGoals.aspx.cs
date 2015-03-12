@@ -37,8 +37,47 @@ namespace HPPortal.Web.TargetedGoals
                 lblCity.Text = partner.City.Description;
                 lblOutletType.Text = partner.PartnerCategory.Description;
                 lblAccountManager.Text = partner.User.Name;
+                BindUserTree();
             }
 
+        }
+
+        private void BindUserTree(int actionId=0)
+        {
+            treeViewUsers.Nodes.Clear();
+
+            var selected = _db.ActionForTargetedGoals.Where(a => a.ActionId == actionId).SelectMany(a => a.Users);
+
+            var users = _db.Users.Where(u => (bool)u.Active).Select(u => new { u.UserId, u.Name }).OrderBy(u => u.Name).ToList();
+            foreach (var user in users)
+            {
+                TreeNode node = new TreeNode
+                {
+                    Value = user.UserId.ToString(),
+                    Text = user.Name
+                };
+
+                if (selected != null)
+                    node.Checked = selected.Any(u => u.UserId == user.UserId);
+
+                node.SelectAction = TreeNodeSelectAction.None;
+                treeViewUsers.Nodes.Add(node);
+            }
+        }
+
+        private List<User> GetSelectedUsers()
+        {
+            List<User> users = new List<User>();
+            foreach (TreeNode node in treeViewUsers.Nodes)
+            {
+
+                if (node.Checked)
+                {
+                    var user = _db.Users.Find(Convert.ToInt32(node.Value));
+                    users.Add(user);
+                }
+            }
+            return users;
         }
 
         private void ClearData()
@@ -47,9 +86,7 @@ namespace HPPortal.Web.TargetedGoals
             txtGoal.Text = string.Empty;
             txtWhereWeWant.Text = string.Empty;
             txtWhereWeAre.Text = string.Empty;
-            //ddlUser.SelectedValue = "0";
-            //ddlCheckpointState.SelectedValue = "0";
-        }
+        }        
 
         protected void EditButton_Click(Object obj, EventArgs e)
         {
@@ -75,13 +112,15 @@ namespace HPPortal.Web.TargetedGoals
 
             // Fill data
             PlanId = planId;
-            var planDetails = _db.ActionForTargetedGoals.Include(p => p.User).FirstOrDefault(p => p.ActionId == planId);
+            var planDetails = _db.ActionForTargetedGoals.Include(p => p.Users).FirstOrDefault(p => p.ActionId == planId);
 
             txtGoal.Text = planDetails.GoalName;
             txtAction.Text = planDetails.ActionRequired;
             txtWhereWeAre.Text = planDetails.PreviousQuarter;
             txtWhereWeWant.Text = planDetails.QuarterPlan;
-            ddlUser.SelectedValue = planDetails.AssignedUserId.ToString();
+            BindUserTree(planId);
+
+            //ddlUser.SelectedValue = planDetails.AssignedUserId.ToString();
         }
         // Model binding method to get List of StrategicPlan entries
         // USAGE: <asp:ListView SelectMethod="GetData">
@@ -112,8 +151,7 @@ namespace HPPortal.Web.TargetedGoals
             item.QuarterPlan = txtWhereWeWant.Text.Trim();
             item.PreviousQuarter = txtWhereWeAre.Text.Trim();
 
-            if (ddlUser.SelectedIndex > 0)
-                item.AssignedUserId = Convert.ToInt32(ddlUser.SelectedValue);
+            item.Users = GetSelectedUsers();
 
             item.PartnerId = PartnerId;
             item.QuarterYear = Quater;
@@ -161,7 +199,7 @@ namespace HPPortal.Web.TargetedGoals
             var item = new HPPortal.Data.Models.ActionForTargetedGoal();
 
             if (PlanId != null && PlanId > 0)
-                item = _db.ActionForTargetedGoals.Include(p => p.User).FirstOrDefault(p => p.ActionId == PlanId);
+                item = _db.ActionForTargetedGoals.Include(p => p.Users).FirstOrDefault(p => p.ActionId == PlanId);
 
             if (Session["User"] == null)
                 Response.Redirect("/Logon.aspx");
@@ -193,19 +231,21 @@ namespace HPPortal.Web.TargetedGoals
                 }                             
 
                 // send mail to assigned user
-
-                var assignedUser = _db.Users.FirstOrDefault(u => u.UserId == item.AssignedUserId);
-                if (assignedUser != null)
+                var assignedUsers = item.Users;
+                if (assignedUsers != null)
                 {
                     var partner = _db.Partners.Find(item.PartnerId);
-                    string emailAddress = assignedUser.EmailId;
-                    string subject = @"HPJB Portal Targeted goal assigned.";
-                    string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name, partner.PartnerName, item.QuarterYear);
+                    foreach (var assignedUser in assignedUsers)
+                    {
+                        string emailAddress = assignedUser.EmailId;
+                        string subject = @"HPJB Portal Targeted goal assigned.";
+                        string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name, partner.PartnerName, item.QuarterYear);
 
-                    Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
-                "", "", subject, message, "", "");
+                        Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
+                    "", "", subject, message, "", "");
 
-                    Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
+                        Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
+                    }
                 }
 
                 string path = "TargetedGoals/ActionForTargetedGoals";

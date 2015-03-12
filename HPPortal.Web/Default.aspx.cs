@@ -43,9 +43,8 @@ namespace HPPortal.Web
             listActivityLog.DataBind();
             var currentQtr = Utility.QuarterHelper.GetCurrentQuarter(DateTime.Now);
             
-            var actionList = _db.ActionForTargetedGoals.Where(a => a.AssignedUserId == userId
-                 && a.QuarterYear == currentQtr.QuarterYear
-                 && partnerIds.Contains(a.PartnerId)).OrderByDescending(a => a.ActionId).Take(10);
+            var actionList = _db.ActionForTargetedGoals.Where(a => a.QuarterYear == currentQtr.QuarterYear
+                 && partnerIds.Contains(a.PartnerId) && a.Users.Any(u=>u.UserId==userId)).OrderByDescending(a => a.ActionId).Take(10);
 
             var strategyList = _db.StrategicPlans.Where(a => a.AssignedUserId == userId
                  && a.QuarterYear == currentQtr.QuarterYear

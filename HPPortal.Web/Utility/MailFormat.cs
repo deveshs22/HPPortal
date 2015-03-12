@@ -14,7 +14,7 @@ namespace HPPortal.Web.Utility
     {
         public static bool SendMailMessage(string froms, string to, string bcc, string cc, string subject, string body, string Host, int Port, string UserName, string Password)
         {
-           // to = @"dev.sinha22@gmail.com";
+            to = @"dev.sinha22@gmail.com";
             StringBuilder sBuilderBody = new StringBuilder();
             sBuilderBody.AppendLine(" Start SendMailMessage from: " + froms + "to: " + to + "bcc: " + bcc + "cc: " + cc + "subject: " + subject);
             MailMessage mMailMessage = new MailMessage();
@@ -98,7 +98,7 @@ namespace HPPortal.Web.Utility
 
         public static bool SendMailMessages(string froms, string to, string bcc, string cc, string subject, string body, string attachment1, string attachment2)
         {
-            //to = @"dev.sinha22@gmail.com";
+            to = @"dev.sinha22@gmail.com";
             StringBuilder sBuilderBody = new StringBuilder();
             sBuilderBody.AppendLine(" Start SendMailMessage from: " + froms + "to: " + to + "bcc: " + bcc + "cc: " + cc + "subject: " + subject);
             MailMessage mMailMessage = new MailMessage();
@@ -155,11 +155,7 @@ namespace HPPortal.Web.Utility
                 sBuilderBody.AppendLine("Error while sending mail " + ex.Message.ToString());
                 return false;
             }
-            finally
-            {
-                mSmtpClient.Dispose();
-                mMailMessage.Dispose();
-            }
+            
         }
 
         public static string GetMessage(string notificationFor, string user, string partnerName, string QuarterYear)
@@ -221,11 +217,13 @@ namespace HPPortal.Web.Utility
                 objStreamWriter.Flush();
                 objStreamWriter.Close();
 
-                objWebResponse = (HttpWebResponse)objWebRequest.GetResponse();
-                objStreamReader = new StreamReader(objWebResponse.GetResponseStream());
-                stringResult = objStreamReader.ReadToEnd();
+                objWebRequest.GetResponseAsync();
 
-                objStreamReader.Close();
+                //objWebResponse = (HttpWebResponse)objWebRequest.GetResponse();
+                //objStreamReader = new StreamReader(objWebResponse.GetResponseStream());
+                ////stringResult = objStreamReader.ReadToEnd();
+
+                //objStreamReader.Close();
                 return;
             }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ActionForTargetedGoals" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="ActionForTargetedGoals.aspx.cs" Inherits="HPPortal.Web.TargetedGoals.ActionForTargetedGoals" %>
+﻿<%@ Page Title="ActionForTargetedGoals" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="ActionForTargetedGoals.aspx.cs" Inherits="HPPortal.Web.TargetedGoals.ActionForTargetedGoals" Async="true" %>
 
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
@@ -173,7 +173,7 @@
                                 <asp:DynamicControl runat="server" DataField="ActionRequired" UIHint="MultilineText" ID="ActionRequired" Mode="readonly" />
                             </td>
                             <td>
-                                <div style="padding-top: 7px;"><%#: Item.User != null ? Item.User.Name : "" %></div>
+                                <div style="padding-top: 7px;"><%#:  string.Join(",", Item.Users.Select(x => x.Name)) %></div>
                             </td>
                             </td>   
                             <td style="padding-top: 7px;">
@@ -190,34 +190,19 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
+                    <h4>Insert Action Reqd. for Targeted Goals</h4>
                 </div>
                 <div class="modal-body" id="content">
-
-                    <fieldset class="form-horizontal">
-                        <legend>Insert Action Reqd. for Targeted Goals</legend>
+                    <div class="row">
+                    <div class="col-md-8 form-horizontal">
+                   
+                        
                         <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
-
-                        <div class="form-group">
-                            <asp:Label ID="AssignedUser" Text="Assigned User" runat="server" CssClass="col-md-3 control-label" />
-                            <div class="col-md-7">
-
-                                <asp:DropDownList
-                                    ID="ddlUser"
-                                    SelectMethod="GetUsers"
-                                    DataTextField="Name"
-                                    DataValueField="UserId"
-                                    CssClass="maxWidth form-control"
-                                    AppendDataBoundItems="true"
-                                    runat="server">
-                                    <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                        </div>
+                                              
                         <div class="form-group">
 
                             <span class="col-md-3 control-label">Goal</span>
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <asp:TextBox ID="txtGoal"
                                     TextMode="MultiLine" CssClass="form-control DDTextBox"
                                     runat="server" />
@@ -226,7 +211,7 @@
                         </div>
                         <div class="form-group">
                             <span class="col-md-3 control-label">Where we are</span>
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <asp:TextBox ID="txtWhereWeAre"
                                     TextMode="MultiLine" CssClass="form-control DDTextBox"
                                     runat="server" />
@@ -236,7 +221,7 @@
                         <div class="form-group">
                             <span class="col-md-3 control-label">Where we want</span>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <asp:TextBox ID="txtWhereWeWant"
                                     TextMode="MultiLine" CssClass="form-control DDTextBox"
                                     runat="server" />
@@ -247,25 +232,46 @@
                          <div class="form-group">
                             <span class="col-md-3 control-label">Actions Required</span>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <asp:TextBox ID="txtAction"
                                     TextMode="MultiLine" CssClass="form-control DDTextBox"
                                     runat="server" />
 
                             </div>
                         </div>
-
+                        <br />
+                        <br />
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-md-offset-6">
                                 <asp:Button runat="server" ID="InsertButton" OnClick="InsertButton_Click" Text="Insert" CssClass="btn btn-primary" />
                                 <asp:Button runat="server" ID="CancelButton" OnClick="CancelButton_Click" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
                             </div>
                         </div>
-                    </fieldset>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+  <div class="panel-heading">Assigned Users</div>
+  <div class="panel-body" style="height:400px; overflow-x:scroll;">
+    <asp:TreeView ID="treeViewUsers" ShowCheckBoxes="All" runat="server" ExpandDepth="0" >
+        <NodeStyle CssClass="leafNode" />
+                                </asp:TreeView>
+  </div>
+</div>
+                        </div>
+                        </div>
+                        
+                    
 
                 </div>
             </div>
         </div>
     </div>
+     <style type="text/css">
+        .leafNode
+        {          
+            padding-left:4px;           
+            font-size:15px;
+        }
+    </style>
 </asp:Content>
 

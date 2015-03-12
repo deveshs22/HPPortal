@@ -20,6 +20,8 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.GoalName)
                 .HasMaxLength(500);
 
+            this.Ignore(t => t.AssignedUserId);
+
             // Table & Column Mappings
             this.ToTable("ActionForTargetedGoal");
             this.Property(t => t.ActionId).HasColumnName("ActionId");
@@ -33,15 +35,21 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.CreatedUser).HasColumnName("CreatedUser");
             this.Property(t => t.ModifiedDate).HasColumnName("ModifiedDate");
             this.Property(t => t.ModifiedUser).HasColumnName("ModifiedUser");
-            this.Property(t => t.AssignedUserId).HasColumnName("AssignedUserId");
+            
 
             this.HasRequired(t => t.Partner)
                 .WithMany(t => t.ActionForTargetedGoals)
                 .HasForeignKey(d => d.PartnerId);
 
-            this.HasOptional(t => t.User)
+            // Many to many relationship with User
+            this.HasMany(t => t.Users)
                 .WithMany(t => t.ActionForTargetedGoals)
-                .HasForeignKey(d => d.AssignedUserId);
+                .Map(m =>
+                {
+                    m.ToTable("ActionAssignedUser");
+                    m.MapLeftKey("ActionId");
+                    m.MapRightKey("UserId");
+                });
 
         }
     }
