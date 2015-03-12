@@ -67,24 +67,6 @@ namespace HPPortal.Web.StrategicPlans {
         protected global::System.Web.UI.WebControls.ListView ListView1;
         
         /// <summary>
-        /// AssignedUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AssignedUser;
-        
-        /// <summary>
-        /// ddlUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUser;
-        
-        /// <summary>
         /// txtBusinessObjective control.
         /// </summary>
         /// <remarks>
@@ -146,5 +128,14 @@ namespace HPPortal.Web.StrategicPlans {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CancelButton;
+        
+        /// <summary>
+        /// treeViewUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TreeView treeViewUsers;
     }
 }

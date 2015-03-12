@@ -36,7 +36,47 @@ namespace HPPortal.Web.StrategicPlans
                 lblCity.Text = partner.City.Description;
                 lblOutletType.Text = partner.PartnerCategory.Description;
                 lblAccountManager.Text = partner.User.Name;
+                BindUserTree();
             }
+        }
+
+        private void BindUserTree(int actionId = 0)
+        {
+            treeViewUsers.Nodes.Clear();
+
+            var selected = _db.StrategicPlans.Where(a => a.StrategicPlanId == actionId).SelectMany(a => a.Users);
+
+            var users = _db.Users.Where(u => (bool)u.Active).Select(u => new { u.UserId, u.Name }).OrderBy(u => u.Name).ToList();
+            foreach (var user in users)
+            {
+                TreeNode node = new TreeNode
+                {
+                    Value = user.UserId.ToString(),
+                    Text = user.Name
+                };
+
+                if (actionId > 0 && selected != null)
+                    node.Checked = selected.Any(u => u.UserId == user.UserId);
+
+                node.SelectAction = TreeNodeSelectAction.None;
+                treeViewUsers.Nodes.Add(node);
+            }
+        }
+
+
+        private List<User> GetSelectedUsers()
+        {
+            List<User> users = new List<User>();
+            foreach (TreeNode node in treeViewUsers.Nodes)
+            {
+
+                if (node.Checked)
+                {
+                    var user = _db.Users.Find(Convert.ToInt32(node.Value));
+                    users.Add(user);
+                }
+            }
+            return users;
         }
 
         private void ClearData()
@@ -73,13 +113,14 @@ namespace HPPortal.Web.StrategicPlans
 
             // Fill data
             PlanId = planId;
-            var planDetails = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == planId);
+            var planDetails = _db.StrategicPlans.Include(p => p.Users).FirstOrDefault(p => p.StrategicPlanId == planId);
             txtBusinessObjective.Text = planDetails.BusinessObjective;
             txtMetrics.Text = planDetails.Metrics;
             txtStrategies.Text = planDetails.Strategies;
             //txtComments.Text = planDetails.Comments;
-            ddlUser.SelectedValue = planDetails.AssignedUserId.ToString();
+            //ddlUser.SelectedValue = planDetails.AssignedUserId.ToString();
             ddlCheckpointState.SelectedValue = planDetails.CheckpointState;
+            BindUserTree(PlanId);
         }
         // Model binding method to get List of StrategicPlan entries
         // USAGE: <asp:ListView SelectMethod="GetData">
@@ -109,8 +150,10 @@ namespace HPPortal.Web.StrategicPlans
             item.Strategies = txtStrategies.Text;
             item.Metrics = txtMetrics.Text;
 
-            if (ddlUser.SelectedIndex > 0)
-                item.AssignedUserId = Convert.ToInt32(ddlUser.SelectedValue);
+            //if (ddlUser.SelectedIndex > 0)
+            //    item.AssignedUserId = Convert.ToInt32(ddlUser.SelectedValue);
+
+            item.Users = GetSelectedUsers();
 
             item.CheckpointState = ddlCheckpointState.SelectedValue;
             item.PartnerId = PartnerId;
@@ -159,7 +202,7 @@ namespace HPPortal.Web.StrategicPlans
             var item = new HPPortal.Data.Models.StrategicPlan();
 
             if (PlanId != null && PlanId > 0)
-                item = _db.StrategicPlans.Include(p => p.User).FirstOrDefault(p => p.StrategicPlanId == PlanId);
+                item = _db.StrategicPlans.Include(p => p.Users).FirstOrDefault(p => p.StrategicPlanId == PlanId);
 
             if (Session["User"] == null)
                 Response.Redirect("/Logon.aspx");
@@ -177,7 +220,7 @@ namespace HPPortal.Web.StrategicPlans
 
                     _db.Entry(item).State = EntityState.Modified;
                     _db.SaveChanges();
-                    
+
                 }
                 else
                 {
@@ -189,7 +232,7 @@ namespace HPPortal.Web.StrategicPlans
                     _db.StrategicPlans.Add(item);
                     _db.SaveChanges();
 
-                    
+
                 }
 
                 // send mail to assigned user
@@ -201,7 +244,7 @@ namespace HPPortal.Web.StrategicPlans
                     string emailAddress = assignedUser.EmailId;
                     string subject = @"[HP JB Portal] Strategic plan assigned.";
                     string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name, partner.PartnerName, item.QuarterYear);
-                   
+
                     Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
                 "", "", subject, message, "", "");
 

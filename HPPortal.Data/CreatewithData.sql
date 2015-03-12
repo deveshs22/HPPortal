@@ -1,4 +1,8 @@
-﻿--USE [HPSiteDBNew]
+﻿--DROP DATABASE [HPSiteDBNew]
+--GO
+CREATE DATABASE [HPSiteDBNew]
+GO 
+USE [HPSiteDBNew]
 GO
 /****** Object:  Table [dbo].[States]    Script Date: 03/09/2015 18:18:18 ******/
 SET ANSI_NULLS ON
@@ -2275,3 +2279,34 @@ GO
 
 ALTER TABLE [dbo].[ActionAssignedUser] CHECK CONSTRAINT [FK_ActionAssignedUser_User]
 GO
+
+
+/****** Object:  Table [dbo].[StrategicPlanUser]    Script Date: 03/12/2015 11:02:47 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[StrategicPlanAssignedUser](
+	[StrategicPlanId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+ CONSTRAINT [PK_StrategicPlanAssignedUser] PRIMARY KEY CLUSTERED 
+(
+	[StrategicPlanId] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[StrategicPlanAssignedUser]  WITH CHECK ADD  CONSTRAINT [FK_StrategicPlanAssignedUser_StrategicPlan] FOREIGN KEY([StrategicPlanId])
+REFERENCES [dbo].[StrategicPlan] ([StrategicPlanId])
+GO
+ALTER TABLE [dbo].[StrategicPlanAssignedUser] CHECK CONSTRAINT [FK_StrategicPlanAssignedUser_StrategicPlan]
+GO
+ALTER TABLE [dbo].[StrategicPlanAssignedUser]  WITH CHECK ADD  CONSTRAINT [FK_StrategicPlanAssignedUser_User] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([UserId])
+GO
+ALTER TABLE [dbo].[StrategicPlanAssignedUser] CHECK CONSTRAINT [FK_StrategicPlanAssignedUser_User]
+GO
+

@@ -26,7 +26,7 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.Strategies).HasColumnName("Strategies");
             this.Property(t => t.Metrics).HasColumnName("Metrics");
             this.Property(t => t.QuarterYear).HasColumnName("QuarterYear");
-            this.Property(t => t.AssignedUserId).HasColumnName("AssignedUserId");
+           // this.Property(t => t.AssignedUserId).HasColumnName("AssignedUserId");
             this.Property(t => t.PartnerId).HasColumnName("PartnerId");
             this.Property(t => t.CreatedDate).HasColumnName("CreatedDate");
             this.Property(t => t.CreatedUser).HasColumnName("CreatedUser");
@@ -36,9 +36,15 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.CheckpointState).HasColumnName("CheckpointState");
 
             // Relationships
-            this.HasOptional(t => t.User)
+            // Many to many relationship with User
+            this.HasMany(t => t.Users)
                 .WithMany(t => t.StrategicPlans)
-                .HasForeignKey(d => d.AssignedUserId);
+                .Map(m =>
+                {
+                    m.ToTable("StrategicPlanAssignedUser");
+                    m.MapLeftKey("StrategicPlanId");
+                    m.MapRightKey("UserId");
+                });
 
             this.HasRequired(t => t.Partner)
                 .WithMany(t => t.StrategicPlans)

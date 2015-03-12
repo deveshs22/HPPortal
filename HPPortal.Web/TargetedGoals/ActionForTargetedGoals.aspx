@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-md-2">
 
-                    <div class="btn btn-default" style="float:right;">
+                    <div class="btn btn-default" style="float: right;">
                         <asp:LinkButton ID="lnkAddNewGoal" runat="server" Text="Add New Goal" OnClick="lnkAddNewGoal_Click"></asp:LinkButton>
                     </div>
                 </div>
@@ -124,23 +124,25 @@
                         There are no entries found for Actions for Targeted Goals
                     </EmptyDataTemplate>
                     <Columns>
-                          
-                        <asp:BoundField runat="server" DataField="GoalName" HeaderText="Goal"/>
+
+                        <asp:BoundField runat="server" DataField="GoalName" HeaderText="Goal" />
                         <asp:BoundField runat="server" DataField="PreviousQuarter" HeaderText="Where we are" />
                         <asp:BoundField runat="server" DataField="QuarterPlan" HeaderText="Where we want" />
                         <asp:BoundField runat="server" DataField="ActionRequired" HeaderText="Action Required" />
                         <asp:TemplateField>
-                            <HeaderTemplate> <asp:Label runat="server" Text="Assigned User"></asp:Label></HeaderTemplate>
+                            <HeaderTemplate>
+                                <asp:Label runat="server" Text="Assigned User"></asp:Label>
+                            </HeaderTemplate>
                             <ItemTemplate>
                                 <div style="padding-top: 7px;"><%#:  string.Join(",", Item.Users.Select(x => x.Name)) %></div>
                             </ItemTemplate>
-                        </asp:TemplateField>   
+                        </asp:TemplateField>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:LinkButton runat="server" CommandArgument='<%# Eval("ActionId") %>' OnClick="EditButton_Click" Text="Edit" />
                             </ItemTemplate>
-                        </asp:TemplateField>   
-                                                    
+                        </asp:TemplateField>
+
                     </Columns>
                 </asp:GridView>
             </div>
@@ -158,7 +160,6 @@
                         <div class="col-md-8 form-horizontal">
 
                             <div id="divAddTargetedGoals" runat="server" style="display: block;">
-
                                 <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
                                 <div class="form-group">
 
@@ -211,41 +212,41 @@
                             </div>
 
                             <div id="divAddActionsDetails" style="display: none;" runat="server">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <asp:Label ID="Label1" Text="Goals" runat="server" CssClass="col-md-3 control-label" />
-                                <div class="col-md-7">
-                                    <asp:DropDownList
-                                        ID="ddlTragetedGoals"
-                                        SelectMethod="GetDataForTargets"
-                                        DataTextField="GoalName"
-                                        DataValueField="ActionId"
-                                        CssClass="maxWidth form-control"
-                                        AppendDataBoundItems="true"
-                                        runat="server">
-                                        <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
-                                    </asp:DropDownList>
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label1" Text="Goals" runat="server" CssClass="col-md-3 control-label" />
+                                        <div class="col-md-7">
+                                            <asp:DropDownList
+                                                ID="ddlTragetedGoals"
+                                                SelectMethod="GetDataForTargets"
+                                                DataTextField="GoalName"
+                                                DataValueField="ActionId"
+                                                CssClass="maxWidth form-control"
+                                                AppendDataBoundItems="true"
+                                                runat="server">
+                                                <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="col-md-3 control-label">Actions Required</span>
+
+                                        <div class="col-md-7">
+                                            <asp:TextBox ID="TextBox1"
+                                                TextMode="MultiLine" CssClass="form-control DDTextBox"
+                                                runat="server" />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <asp:Button runat="server" ID="Button1" OnClick="InsertButton1_Click" Text="Insert" CssClass="btn btn-primary" />
+                                            <asp:Button runat="server" ID="Button2" OnClick="CancelButton1_Click" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <span class="col-md-3 control-label">Actions Required</span>
-
-                                <div class="col-md-7">
-                                    <asp:TextBox ID="TextBox1"
-                                        TextMode="MultiLine" CssClass="form-control DDTextBox"
-                                        runat="server" />
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <asp:Button runat="server" ID="Button1" OnClick="InsertButton1_Click" Text="Insert" CssClass="btn btn-primary" />
-                                    <asp:Button runat="server" ID="Button2" OnClick="CancelButton1_Click" Text="Cancel" CausesValidation="false" CssClass="btn btn-default" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                         </div>
                         <div class="col-md-4">
                             <div class="panel panel-default">
@@ -259,16 +260,14 @@
                         </div>
                     </div>
 
-                    
                 </div>
             </div>
         </div>
     </div>
     <style type="text/css">
-        .leafNode
-        {          
-            padding-left:4px;           
-            font-size:15px;
+        .leafNode {
+            padding-left: 4px;
+            font-size: 15px;
         }
     </style>
 </asp:Content>

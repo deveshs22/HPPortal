@@ -37,11 +37,12 @@ namespace HPPortal.Web.TargetedGoals
                 lblOutletType.Text = partner.PartnerCategory.Description;
                 lblAccountManager.Text = partner.User.Name;
                 BindUserTree();
+                //lblError.Visible = false;
             }
 
         }
 
-        private void BindUserTree(int actionId=0)
+        private void BindUserTree(int actionId = 0)
         {
             treeViewUsers.Nodes.Clear();
 
@@ -85,7 +86,7 @@ namespace HPPortal.Web.TargetedGoals
             txtGoal.Text = string.Empty;
             txtWhereWeWant.Text = string.Empty;
             txtWhereWeAre.Text = string.Empty;
-        }        
+        }
 
         protected void EditButton_Click(Object obj, EventArgs e)
         {
@@ -140,7 +141,18 @@ namespace HPPortal.Web.TargetedGoals
 
         public IQueryable<HPPortal.Data.Models.ActionForTargetedGoal> GetDataForTargets()
         {
-            return _db.ActionForTargetedGoals.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater);
+            var goals = _db.ActionForTargetedGoals.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater);
+            List<HPPortal.Data.Models.ActionForTargetedGoal> distinctGoals = new List<HPPortal.Data.Models.ActionForTargetedGoal>();
+
+            foreach (var item in goals)
+            {
+                if (!distinctGoals.Exists(i => i.GoalName.Equals(item.GoalName, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    distinctGoals.Add(item);
+                }
+            }
+
+            return distinctGoals.AsQueryable<HPPortal.Data.Models.ActionForTargetedGoal>();
         }
 
         public IEnumerable<Quarter> GetQuarter()
@@ -209,7 +221,6 @@ namespace HPPortal.Web.TargetedGoals
 
         protected void InsertButton_Click(object sender, EventArgs e)
         {
-
             var item = new HPPortal.Data.Models.ActionForTargetedGoal();
 
             if (PlanId != null && PlanId > 0)
@@ -222,9 +233,16 @@ namespace HPPortal.Web.TargetedGoals
             if (ModelState.IsValid)
             {
                 CommitToItem(item);
-
+                var data = _db.ActionForTargetedGoals;
                 if (PlanId != null && PlanId > 0)
                 {
+                    data.ToList().Remove(item);
+                    if (data.ToList().Exists(i => i.GoalName == item.GoalName))
+                    {
+                      //  lblError.Visible = true;
+                        
+                        return;
+                    }
                     item.ModifiedDate = DateTime.Now;
                     if (user != null)
                         item.ModifiedUser = user.UserId;
@@ -235,6 +253,11 @@ namespace HPPortal.Web.TargetedGoals
                 }
                 else
                 {
+                    if (data != null && data.ToList().Exists(i => i.GoalName == item.GoalName))
+                    {
+                      // lblError.Visible = true;
+                        return;
+                    }
                     // Save changes
                     item.CreatedDate = DateTime.Now;
                     if (user != null)
@@ -347,7 +370,7 @@ namespace HPPortal.Web.TargetedGoals
                     if (user != null)
                         item.CreatedUser = user.UserId;
 
-                    item.AssignedUserId = plan.AssignedUserId;
+                    item.Users = GetSelectedUsers();
                     item.GoalName = plan.GoalName;
                     item.PartnerId = plan.PartnerId;
                     item.PreviousQuarter = plan.PreviousQuarter;
