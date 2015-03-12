@@ -24,6 +24,8 @@ namespace HPPortal.Web.StrategicPlans
             return QuarterHelper.GetNextnCurrentQuarter(DateTime.Now);
         }
 
+       
+
         // This is the Insert method to insert the entered StrategicPlan item
         // USAGE: <asp:FormView InsertMethod="InsertItem">
         public void InsertItem()

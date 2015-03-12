@@ -75,7 +75,7 @@ namespace HPPortal.Web.TargetedGoals
             gridPlacement.DataSource = targetList;
             gridPlacement.DataBind();
             gridPlacement.UseAccessibleHeader = true;
-            gridPlacement.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //gridPlacement.HeaderRow.TableSection = TableRowSection.TableHeader;
 
         }
 
