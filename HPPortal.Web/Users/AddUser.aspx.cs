@@ -326,6 +326,7 @@ namespace HPPortal.Web.Users
             for (int i = 0; i < chkPartnerCategory.Items.Count; i++)
             {
                 chkPartnerCategory.Items[i].Enabled = false;
+                chkPartnerCategory.Items[i].Selected = false;
             }
             foreach (PartnerCategory c in category)
             {

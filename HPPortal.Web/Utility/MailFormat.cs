@@ -55,7 +55,7 @@ namespace HPPortal.Web.Utility
             mSmtpClient.Credentials = new System.Net.NetworkCredential(UserName, Password);
             try
             {
-                mSmtpClient.Send(mMailMessage);
+                mSmtpClient.SendAsync(mMailMessage, null);
 
                 sBuilderBody.AppendLine(" email sent successfully ");
                 return true;
@@ -70,30 +70,6 @@ namespace HPPortal.Web.Utility
                 mMailMessage.Dispose();
                 mSmtpClient.Dispose();
             }
-        }
-
-        public static object SendForgotPasswordMailBody(string UserName, string Password)
-        {
-            string strBody = "";
-            try
-            {
-                strBody = "Dear " + UserName + " ,";
-                strBody += "<br/>";
-                strBody += "Your password " + Password + " has been generated.  Please note that HP Portal passwords are case sensitive." + "<br/>";
-                strBody += "<br/>";
-                strBody += "Please login to the Hp Portal with the provided Password." + "<br/>";
-                strBody += "<br/>";
-                strBody += "<a href=" + ConfigurationManager.AppSettings["URL"] + ">" + ConfigurationManager.AppSettings["URL"] + "</a>";
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-            }
-            return strBody;
         }
 
         public static bool SendMailMessages(string froms, string to, string bcc, string cc, string subject, string body, string attachment1, string attachment2)
@@ -156,6 +132,30 @@ namespace HPPortal.Web.Utility
                 return false;
             }
             
+        }
+
+        public static object SendForgotPasswordMailBody(string UserName, string Password)
+        {
+            string strBody = "";
+            try
+            {
+                strBody = "Dear " + UserName + " ,";
+                strBody += "<br/>";
+                strBody += "Your password " + Password + " has been generated.  Please note that HP Portal passwords are case sensitive." + "<br/>";
+                strBody += "<br/>";
+                strBody += "Please login to the Hp Portal with the provided Password." + "<br/>";
+                strBody += "<br/>";
+                strBody += "<a href=" + ConfigurationManager.AppSettings["URL"] + ">" + ConfigurationManager.AppSettings["URL"] + "</a>";
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+            }
+            return strBody;
         }
 
         public static string GetMessage(string notificationFor, string user, string partnerName, string QuarterYear)

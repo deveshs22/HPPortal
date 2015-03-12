@@ -11,6 +11,7 @@ using System.Text;
 using System.Web.DynamicData;
 using System.Configuration;
 
+
 namespace HPPortal.Web.TargetedGoals
 {
     public partial class ActionForTargetedGoals : System.Web.UI.Page
@@ -86,6 +87,8 @@ namespace HPPortal.Web.TargetedGoals
             txtGoal.Text = string.Empty;
             txtWhereWeWant.Text = string.Empty;
             txtWhereWeAre.Text = string.Empty;
+            BindUserTree();
+            PlanId = 0;
         }
 
         protected void EditButton_Click(Object obj, EventArgs e)
@@ -207,7 +210,7 @@ namespace HPPortal.Web.TargetedGoals
             }
         }
 
-        private int PlanId
+       private int PlanId
         {
             get
             {
@@ -222,9 +225,11 @@ namespace HPPortal.Web.TargetedGoals
         protected void InsertButton_Click(object sender, EventArgs e)
         {
             var item = new HPPortal.Data.Models.ActionForTargetedGoal();
-
-            if (PlanId != null && PlanId > 0)
+           
+            if (PlanId > 0)
                 item = _db.ActionForTargetedGoals.Include(p => p.Users).FirstOrDefault(p => p.ActionId == PlanId);
+
+            var exisitingGoalName= item.GoalName;
 
             if (Session["User"] == null)
                 Response.Redirect("/Logon.aspx");
@@ -234,28 +239,38 @@ namespace HPPortal.Web.TargetedGoals
             {
                 CommitToItem(item);
                 var data = _db.ActionForTargetedGoals;
-                if (PlanId != null && PlanId > 0)
+                if (PlanId > 0)
                 {
-                    data.ToList().Remove(item);
-                    if (data.ToList().Exists(i => i.GoalName == item.GoalName))
-                    {
-                      //  lblError.Visible = true;
-                        
-                        return;
-                    }
-                    item.ModifiedDate = DateTime.Now;
+                     item.ModifiedDate = DateTime.Now;
                     if (user != null)
                         item.ModifiedUser = user.UserId;
 
                     _db.Entry(item).State = EntityState.Modified;
-                    _db.SaveChanges();
+                    
 
+                    var goals = data.Where(d => d.GoalName == exisitingGoalName && d.ActionId != item.ActionId);
+                    if (goals != null)
+                    {
+                        foreach (var goal in goals)
+                        {
+                            goal.GoalName = item.GoalName;
+                            goal.PreviousQuarter = item.PreviousQuarter;
+                            goal.QuarterPlan = item.QuarterPlan;
+
+                            goal.ModifiedDate = DateTime.Now;
+                            if (user != null)
+                                goal.ModifiedUser = user.UserId;
+
+                            _db.Entry(goal).State = EntityState.Modified;
+                        }
+                    }
+                    _db.SaveChanges();
                 }
                 else
                 {
                     if (data != null && data.ToList().Exists(i => i.GoalName == item.GoalName))
                     {
-                      // lblError.Visible = true;
+                        UtilityBL.Alert("Goal already exists.", this);
                         return;
                     }
                     // Save changes
@@ -278,8 +293,9 @@ namespace HPPortal.Web.TargetedGoals
                         string subject = @"HPJB Portal Targeted goal assigned.";
                         string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name, partner.PartnerName, item.QuarterYear);
 
-                        Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
-                    "", "", subject, message, "", "");
+                       var client = new MailService.MailServiceSoapClient();
+                       client.SendMailMessagesAsync(ConfigurationManager.AppSettings["From"], emailAddress,
+                  "", "", subject, message, "", "");
 
                         Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
                     }
@@ -344,6 +360,8 @@ namespace HPPortal.Web.TargetedGoals
                 cstext1.Append("script>");
                 cs.RegisterStartupScript(cstype, csname1, cstext1.ToString());
             }
+            ClearData();
+
             divAddTargetedGoals.Style.Add("display", "block");
             divAddActionsDetails.Style.Add("display", "none");
         }
@@ -396,6 +414,8 @@ namespace HPPortal.Web.TargetedGoals
 
         protected void ListView1_DataBound(object sender, EventArgs e)
         {
+           
+
             for (int rowIndex = gridAction.Rows.Count - 2; rowIndex >= 0; rowIndex--)
             {
                 GridViewRow gvRow = gridAction.Rows[rowIndex];
@@ -407,13 +427,18 @@ namespace HPPortal.Web.TargetedGoals
                     if (gvPreviousRow.Cells[0].RowSpan < 2)
                     {
                         gvRow.Cells[0].RowSpan = 2;
+                        gvRow.Cells[1].RowSpan = 2;
+                        gvRow.Cells[2].RowSpan = 2;
                     }
                     else
                     {
-                        gvRow.Cells[0].RowSpan =
-                            gvPreviousRow.Cells[0].RowSpan + 1;
+                        gvRow.Cells[0].RowSpan =  gvPreviousRow.Cells[0].RowSpan + 1;
+                        gvRow.Cells[1].RowSpan = gvPreviousRow.Cells[1].RowSpan + 1;
+                        gvRow.Cells[2].RowSpan = gvPreviousRow.Cells[2].RowSpan + 1;
                     }
                     gvPreviousRow.Cells[0].Visible = false;
+                    gvPreviousRow.Cells[1].Visible = false;
+                    gvPreviousRow.Cells[2].Visible = false;
                 }
             }
         }

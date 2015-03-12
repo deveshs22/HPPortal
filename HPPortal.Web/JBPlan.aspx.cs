@@ -64,7 +64,12 @@ namespace HPPortal.Web
             { 
                 var userId = SessionData.Current.UserId;
                 int pId = Convert.ToInt32(ddlPartner.SelectedValue);
-                var qtrlist= _db.Targets.Where(t => t.PartnerId == pId).Select(t => t.QuarterYear).Distinct();
+                var qtrlist1 = _db.Targets.Where(t => t.PartnerId == pId).Select(t => t.QuarterYear).Distinct();
+                var qtrlist2 = _db.TargetedGoals.Where(t => t.PartnerId == pId).Select(t => t.QuarterYear).Distinct();
+                var qtrlist3 = _db.StrategicPlans.Where(t => t.PartnerId == pId).Select(t => t.QuarterYear).Distinct();
+
+                var qtrlist = (qtrlist1.Union(qtrlist2)).Union(qtrlist3);
+
                 qtr = qtrlist.ToList().Select(q => Utility.QuarterHelper.GetCurrentQtr(q)).ToList();
                 
             }

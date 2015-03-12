@@ -245,7 +245,9 @@ namespace HPPortal.Web.StrategicPlans
                     string subject = @"[HP JB Portal] Strategic plan assigned.";
                     string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name, partner.PartnerName, item.QuarterYear);
 
-                    Utility.MailFormat.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
+                    var client = new MailService.MailServiceSoapClient();
+
+                    client.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
                 "", "", subject, message, "", "");
 
                     Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);

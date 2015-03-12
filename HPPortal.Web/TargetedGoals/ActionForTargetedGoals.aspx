@@ -158,7 +158,7 @@
                 <div class="modal-body" id="content">
                     <div class="row">
                         <div class="col-md-8 form-horizontal">
-
+                            <asp:Label runat="server" Text="Goal already exists" ForeColor="Red" ID="lblError" Visible="false"></asp:Label>
                             <div id="divAddTargetedGoals" runat="server" style="display: block;">
                                 <asp:ValidationSummary runat="server" CssClass="alert alert-danger" />
                                 <div class="form-group">

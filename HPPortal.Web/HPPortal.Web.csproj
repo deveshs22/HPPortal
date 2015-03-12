@@ -47,6 +47,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -257,6 +259,17 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Service References\MailService\HPPortal.Web.MailService.SendMailMessagesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\MailService\MailService.disco" />
+    <None Include="Service References\MailService\configuration91.svcinfo" />
+    <None Include="Service References\MailService\configuration.svcinfo" />
+    <None Include="Service References\MailService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Services\MailService.asmx" />
     <Content Include="Site.Master" />
     <Content Include="StrategicPlans\Default.aspx" />
     <Content Include="StrategicPlans\Delete.aspx" />
@@ -280,6 +293,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
+    <None Include="Service References\MailService\MailService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -673,6 +687,15 @@
     <Compile Include="Sales\PlanandPerformance.aspx.designer.cs">
       <DependentUpon>PlanandPerformance.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\MailService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\MailService.asmx.cs">
+      <DependentUpon>MailService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -809,6 +832,12 @@
       <Project>{79e34ea2-4d19-42d7-9805-509390fb635f}</Project>
       <Name>HPPortal.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MailService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

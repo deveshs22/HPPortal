@@ -7,9 +7,14 @@
     <div class="row form-horizontal">
 
         <br />
+        
+        
          <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1"><ProgressTemplate>
-                    <p>Loading...</p>
+             <div class="alert alert-warning" role="alert">
+                    <p>Loading Quarters...</p>
+                 </div>
              </ProgressTemplate></asp:UpdateProgress>
+            
         <br />
         <div class="panel panel-default">
             <div class="panel-heading">

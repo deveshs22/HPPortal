@@ -238,8 +238,9 @@ namespace HPPortal.Web
             ListView1.DataBind();
 
             var lnk = (LinkButton)ListView1.FindControl("lnkCity");
-            lnk.Text = Category;
-
+            if (lnk != null)
+                lnk.Text = Category;
+            
             this.perfChart.Series.Clear();
 
             var tgtSeries = new Series();
