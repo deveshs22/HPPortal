@@ -316,6 +316,28 @@ namespace HPPortal.Web.Users
         protected void ddlReporting_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillTreeView(ddlReporting.SelectedValue);
+            var items = _db.Users.Include(u => u.PartnerCategorys).ToList();
+            var item = items.FirstOrDefault(i => i.UserId == Convert.ToInt32(ddlReporting.SelectedValue));
+            EnableReportingUsercetogory(item.PartnerCategorys);
+        }
+
+        private void EnableReportingUsercetogory(ICollection<PartnerCategory> category)
+        {
+            for (int i = 0; i < chkPartnerCategory.Items.Count; i++)
+            {
+                chkPartnerCategory.Items[i].Enabled = false;
+            }
+            foreach (PartnerCategory c in category)
+            {
+                for (int i = 0; i < chkPartnerCategory.Items.Count; i++)
+                {
+                    ListItem chk = chkPartnerCategory.Items[i];
+                    if (Convert.ToInt32(chk.Value) == c.PartnerCategoryId)
+                    {
+                        chkPartnerCategory.Items[i].Enabled = true;
+                    }
+                }
+            }
         }
 
         private User User
