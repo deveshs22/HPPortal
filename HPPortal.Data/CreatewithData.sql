@@ -2243,3 +2243,35 @@ GO
 ALTER TABLE [dbo].[PlacementTarget] CHECK CONSTRAINT [FK_PlacementTarget_PlacementProduct]
 GO
 
+/****** Object:  Table [dbo].[ActionAssignedUser]    Script Date: 03/12/2015 11:02:47 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ActionAssignedUser](
+	[ActionId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+ CONSTRAINT [PK_ActionAssignedUser] PRIMARY KEY CLUSTERED 
+(
+	[ActionId] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[ActionAssignedUser]  WITH CHECK ADD  CONSTRAINT [FK_ActionAssignedUser_ActionForTargetedGoal] FOREIGN KEY([ActionId])
+REFERENCES [dbo].[ActionForTargetedGoal] ([ActionId])
+GO
+
+ALTER TABLE [dbo].[ActionAssignedUser] CHECK CONSTRAINT [FK_ActionAssignedUser_ActionForTargetedGoal]
+GO
+
+ALTER TABLE [dbo].[ActionAssignedUser]  WITH CHECK ADD  CONSTRAINT [FK_ActionAssignedUser_User] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([UserId])
+GO
+
+ALTER TABLE [dbo].[ActionAssignedUser] CHECK CONSTRAINT [FK_ActionAssignedUser_User]
+GO

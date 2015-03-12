@@ -130,6 +130,7 @@
                         <asp:BoundField runat="server" DataField="QuarterPlan" HeaderText="Where we want" />
                         <asp:BoundField runat="server" DataField="ActionRequired" HeaderText="Action Required" />
                         <asp:TemplateField>
+                            <HeaderTemplate> <asp:Label runat="server" Text="Assigned User"></asp:Label></HeaderTemplate>
                             <ItemTemplate>
                                 <div style="padding-top: 7px;"><%#:  string.Join(",", Item.Users.Select(x => x.Name)) %></div>
                             </ItemTemplate>
