@@ -75,42 +75,42 @@ namespace HPPortal.Web.Sales
 
 
                 var cquater1 = currentYearData.FirstOrDefault(t => t.QuarterYear == ("Q1 " + currentYear));
-                var cquater1Sales = 0;
+                decimal cquater1Sales = 0;
                 if (cquater1 != null)
                     cquater1Sales = cquater1.M1 + cquater1.M2 + cquater1.M3;
                 var cquater2 = currentYearData.FirstOrDefault(t => t.QuarterYear == ("Q2 " + currentYear));
 
-                var cquater2Sales = 0;
+                decimal cquater2Sales = 0;
                 if (cquater2 != null)
                     cquater2Sales = cquater2.M1 + cquater2.M2 + cquater2.M3;
                 var cquater3 = currentYearData.FirstOrDefault(t => t.QuarterYear == ("Q3 " + currentYear));
 
-                var cquater3Sales = 0;
+                decimal cquater3Sales = 0;
                 if (cquater3 != null)
                     cquater3Sales = cquater3.M1 + cquater3.M2 + cquater3.M3;
                 var cquater4 = currentYearData.FirstOrDefault(t => t.QuarterYear == ("Q4 " + currentYear));
 
-                var cquater4Sales = 0;
+                decimal cquater4Sales = 0;
                 if (cquater4 != null)
                     cquater4Sales = cquater4.M1 + cquater4.M2 + cquater4.M3;
 
                 var pquater1 = previousYearData.FirstOrDefault(t => t.QuarterYear == ("Q1 " + previousYear));
-                var pquater1Sales = 0;
+                decimal pquater1Sales = 0;
                 if (pquater1 != null)
                     pquater1Sales = pquater1.M1 + pquater1.M2 + pquater1.M3;
 
                 var pquater2 = previousYearData.FirstOrDefault(t => t.QuarterYear == ("Q2 " + previousYear));
-                var pquater2Sales = 0;
+                decimal pquater2Sales = 0;
                 if (pquater2 != null)
                     pquater2Sales = pquater2.M1 + pquater2.M2 + pquater2.M3;
 
                 var pquater3 = previousYearData.FirstOrDefault(t => t.QuarterYear == ("Q3 " + previousYear));
-                var pquater3Sales = 0;
+                decimal pquater3Sales = 0;
                 if (pquater3 != null)
                     pquater3Sales = pquater3.M1 + pquater3.M2 + pquater3.M3;
 
                 var pquater4 = previousYearData.FirstOrDefault(t => t.QuarterYear == ("Q4 " + previousYear));
-                var pquater4Sales = 0;
+                decimal pquater4Sales = 0;
                 if (pquater4 != null)
                     pquater4Sales = pquater4.M1 + pquater4.M2 + pquater4.M3;
 
@@ -196,15 +196,15 @@ namespace HPPortal.Web.Sales
                 e.Row.Cells[0].ColumnSpan = 2;
                 e.Row.Cells[0].Text = "Category";
 
-                e.Row.Cells[1].Text = "Q1 " + currentYear;
-                e.Row.Cells[2].Text = "Q2 " + currentYear;
-                e.Row.Cells[3].Text = "Q3 " + currentYear;
-                e.Row.Cells[4].Text = "Q4 " + currentYear;
+                e.Row.Cells[1].Text = "Q1 " + previousYear;
+                e.Row.Cells[2].Text = "Q2 " + previousYear;
+                e.Row.Cells[3].Text = "Q3 " + previousYear;
+                e.Row.Cells[4].Text = "Q4 " + previousYear;
 
-                e.Row.Cells[5].Text = "Q1 " + previousYear;
-                e.Row.Cells[6].Text = "Q2 " + previousYear;
-                e.Row.Cells[7].Text = "Q3 " + previousYear;
-                e.Row.Cells[8].Text = "Q4 " + previousYear;
+                e.Row.Cells[5].Text = "Q1 " + currentYear;
+                e.Row.Cells[6].Text = "Q2 " + currentYear;
+                e.Row.Cells[7].Text = "Q3 " + currentYear;
+                e.Row.Cells[8].Text = "Q4 " + currentYear;
 
                 e.Row.Cells[9].Text = Utility.QuarterHelper.GetMonthName(Quater, 1);
                 e.Row.Cells[10].Text = Utility.QuarterHelper.GetMonthName(Quater, 2);
@@ -222,20 +222,20 @@ namespace HPPortal.Web.Sales
 
             if (Quater.Contains("Q1"))
             {
-                indexes.Add(4);
-                indexes.Add(3);
-                indexes.Add(2);
+                indexes.Add(8);
+                indexes.Add(7);
+                indexes.Add(6);
             }
 
             else if (Quater.Contains("Q2"))
             {
-                indexes.Add(4);
-                indexes.Add(3);
+                indexes.Add(8);
+                indexes.Add(7);
 
             }
             else if (Quater.Contains("Q3"))
             {
-                indexes.Add(4);
+                indexes.Add(8);
             }
 
             foreach (int columnIndex in indexes)

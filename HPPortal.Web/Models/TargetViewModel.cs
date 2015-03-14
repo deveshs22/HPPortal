@@ -8,9 +8,9 @@ namespace HPPortal.Web.Models
     public class TargetViewModel
     {
         public int TargetId { get; set; }
-        public int M1 { get; set; }
-        public int M2 { get; set; }
-        public int M3 { get; set; }
+        public decimal M1 { get; set; }
+        public decimal M2 { get; set; }
+        public decimal M3 { get; set; }
         public int ProductId { get; set; }
         public int PartnerId { get; set; }
         public string QuarterYear { get; set; }
@@ -18,7 +18,7 @@ namespace HPPortal.Web.Models
         public string ProductDescription { get; set; }
         public string ProductCategory { get; set; }
 
-        public int QuarterTotal
+        public decimal QuarterTotal
         {
             get { return M1 + M2 + M3; }
         }

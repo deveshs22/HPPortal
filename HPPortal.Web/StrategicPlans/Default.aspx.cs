@@ -126,7 +126,17 @@ namespace HPPortal.Web.StrategicPlans
         // USAGE: <asp:ListView SelectMethod="GetData">
         public IQueryable<HPPortal.Data.Models.StrategicPlan> GetData()
         {
-            return _db.StrategicPlans.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater);
+            var plans = _db.StrategicPlans.Where(s => s.PartnerId == PartnerId && s.QuarterYear == Quater);
+            if (plans != null)
+            {
+                foreach (var plan in plans)
+                {
+                    plan.Strategies = plan.Strategies.Replace(Environment.NewLine, "<br />");
+                    plan.Metrics = plan.Metrics.Replace(Environment.NewLine, "<br />");
+                }
+            }
+
+            return plans;
         }
 
         public IEnumerable<Quarter> GetQuarter()
@@ -261,8 +271,22 @@ namespace HPPortal.Web.StrategicPlans
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            string path = "StrategicPlans/Default";
-            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+            String csname1 = "PopupScript";
+            Type cstype = this.GetType();
+
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = Page.ClientScript;
+
+            // Check to see if the startup script is already registered.
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+                // In my experience, the jQuery file must be included at the top
+                // of the page for this to work. Oterwise you get '$ not found' error.
+                StringBuilder cstext1 = new StringBuilder();
+                cstext1.Append("<script type=text/javascript>$(document).ready(function() { $('#modalC').modal('hide')}); </");
+                cstext1.Append("script>");
+                cs.RegisterStartupScript(cstype, csname1, cstext1.ToString());
+            }
         }
 
         protected void btnNavigate_Click(object sender, EventArgs e)
@@ -270,6 +294,33 @@ namespace HPPortal.Web.StrategicPlans
             LinkButton btn = (LinkButton)sender;
             var path = btn.CommandArgument;
             Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+        }
+
+        protected void lnkAddNew_Click(object obj, EventArgs e)
+        {
+            var sender = obj as LinkButton;
+
+            String csname1 = "PopupScript";
+            Type cstype = this.GetType();
+
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = Page.ClientScript;
+
+            // Check to see if the startup script is already registered.
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+                // In my experience, the jQuery file must be included at the top
+                // of the page for this to work. Oterwise you get '$ not found' error.
+                StringBuilder cstext1 = new StringBuilder();
+                cstext1.Append("<script type=text/javascript>$(document).ready(function() { $('#modalC').modal('show')}); </");
+                cstext1.Append("script>");
+                cs.RegisterStartupScript(cstype, csname1, cstext1.ToString());
+            }
+
+            // Fill data
+            PlanId = 0;
+            ClearData();
+            BindUserTree(PlanId);
         }
     }
 }

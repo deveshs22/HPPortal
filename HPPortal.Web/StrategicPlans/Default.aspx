@@ -101,7 +101,7 @@
                 <div class="col-md-4">
 
                     <div class="btn btn-default">
-                        <a href='#' data-toggle='modal' data-target='#modalC'>Add New Row</a>
+                        <asp:LinkButton ID="lnkAddNew" runat="server" Text="Add New Row" OnClick="lnkAddNew_Click"></asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -163,13 +163,13 @@
                         <asp:DynamicControl runat="server" DataField="StrategicPlanId" ID="StrategicPlanId" Mode="ReadOnly" />
                     </td>--%>
                             <td>
-                                <asp:DynamicControl runat="server" DataField="BusinessObjective" UIHint="MultilineText" ID="BusinessObjective" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server"  DataField="BusinessObjective" UIHint="MultilineText" ID="BusinessObjective" Mode="ReadOnly" />
                             </td>
                             <td>
-                                <asp:DynamicControl runat="server" DataField="Strategies" UIHint="MultilineText" ID="Strategies" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server" HtmlEncode="false" DataField="Strategies" UIHint="MultilineText" ID="Strategies" Mode="ReadOnly" />
                             </td>
                             <td>
-                                <asp:DynamicControl runat="server" DataField="Metrics" UIHint="MultilineText" ID="Metrics" Mode="ReadOnly" />
+                                <asp:DynamicControl runat="server" HtmlEncode="false" DataField="Metrics" UIHint="MultilineText" ID="Metrics" Mode="ReadOnly" />
                             </td>
 
                             <td>
