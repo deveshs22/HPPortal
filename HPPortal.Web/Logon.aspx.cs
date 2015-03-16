@@ -17,6 +17,9 @@ namespace HPPortal.Web
         {
             if (!Page.IsPostBack)
             {
+                //PptGenerator gen = new PptGenerator();
+                //gen.GeneratePlanPpt(this, 2, "Q2 2015");
+
                 FormsAuthentication.SignOut();
                 Session.Abandon();
 
