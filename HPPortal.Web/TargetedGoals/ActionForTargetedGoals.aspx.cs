@@ -134,6 +134,11 @@ namespace HPPortal.Web.TargetedGoals
             if (data != null && data.ToList().Count > 0)
             {
                 divAddActions.Style.Add("display", "block");
+                foreach (var item in data.ToList())
+                {
+                    item.GoalName = item.GoalName.Replace(Environment.NewLine, "<br />");
+                    item.ActionRequired = item.ActionRequired.Replace(Environment.NewLine, "<br />");
+                }
             }
             else
             {
@@ -210,7 +215,7 @@ namespace HPPortal.Web.TargetedGoals
             }
         }
 
-       private int PlanId
+        private int PlanId
         {
             get
             {
@@ -225,11 +230,11 @@ namespace HPPortal.Web.TargetedGoals
         protected void InsertButton_Click(object sender, EventArgs e)
         {
             var item = new HPPortal.Data.Models.ActionForTargetedGoal();
-           
+
             if (PlanId > 0)
                 item = _db.ActionForTargetedGoals.Include(p => p.Users).FirstOrDefault(p => p.ActionId == PlanId);
 
-            var exisitingGoalName= item.GoalName;
+            var exisitingGoalName = item.GoalName;
 
             if (Session["User"] == null)
                 Response.Redirect("/Logon.aspx");
@@ -241,12 +246,12 @@ namespace HPPortal.Web.TargetedGoals
                 var data = _db.ActionForTargetedGoals;
                 if (PlanId > 0)
                 {
-                     item.ModifiedDate = DateTime.Now;
+                    item.ModifiedDate = DateTime.Now;
                     if (user != null)
                         item.ModifiedUser = user.UserId;
 
                     _db.Entry(item).State = EntityState.Modified;
-                    
+
 
                     var goals = data.Where(d => d.GoalName == exisitingGoalName && d.ActionId != item.ActionId);
                     if (goals != null)
@@ -293,9 +298,9 @@ namespace HPPortal.Web.TargetedGoals
                         string subject = @"HPJB Portal Targeted goal assigned.";
                         string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name, partner.PartnerName, item.QuarterYear);
 
-                       var client = new MailService.MailServiceSoapClient();
-                       client.SendMailMessagesAsync(ConfigurationManager.AppSettings["From"], emailAddress,
-                  "", "", subject, message, "", "");
+                        var client = new MailService.MailServiceSoapClient();
+                        client.SendMailMessagesAsync(ConfigurationManager.AppSettings["From"], emailAddress,
+                   "", "", subject, message, "", "");
 
                         Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
                     }
@@ -408,13 +413,27 @@ namespace HPPortal.Web.TargetedGoals
 
         protected void CancelButton1_Click(object sender, EventArgs e)
         {
-            string path = "TargetedGoals/ActionForTargetedGoals";
-            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+            String csname1 = "PopupScript";
+            Type cstype = this.GetType();
+
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = Page.ClientScript;
+
+            // Check to see if the startup script is already registered.
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+                // In my experience, the jQuery file must be included at the top
+                // of the page for this to work. Oterwise you get '$ not found' error.
+                StringBuilder cstext1 = new StringBuilder();
+                cstext1.Append("<script type=text/javascript>$(document).ready(function() { $('#modalC').modal('hide')}); </");
+                cstext1.Append("script>");
+                cs.RegisterStartupScript(cstype, csname1, cstext1.ToString());
+            }
         }
 
         protected void ListView1_DataBound(object sender, EventArgs e)
         {
-           
+
 
             for (int rowIndex = gridAction.Rows.Count - 2; rowIndex >= 0; rowIndex--)
             {
@@ -432,7 +451,7 @@ namespace HPPortal.Web.TargetedGoals
                     }
                     else
                     {
-                        gvRow.Cells[0].RowSpan =  gvPreviousRow.Cells[0].RowSpan + 1;
+                        gvRow.Cells[0].RowSpan = gvPreviousRow.Cells[0].RowSpan + 1;
                         gvRow.Cells[1].RowSpan = gvPreviousRow.Cells[1].RowSpan + 1;
                         gvRow.Cells[2].RowSpan = gvPreviousRow.Cells[2].RowSpan + 1;
                     }

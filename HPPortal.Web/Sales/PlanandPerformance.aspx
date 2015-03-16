@@ -75,9 +75,9 @@
         <div class="btn btn-primary">
             <span style="font-family: HPSimplified_Bd;">Plan Performance</span>
         </div>
-         <div class="btn btn-default">
+        <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Competitive" CommandArgument="Competitor/CompetitiveLandscape.aspx" />
-            </div>
+        </div>
         <div class="btn btn-default">
             <asp:LinkButton runat="server" OnClick="btnNavigate_Click" Text="Open House" CommandArgument="OpenHouse/OpenHouseUI.aspx" />
         </div>
@@ -100,15 +100,17 @@
                     <Columns>
                         <asp:BoundField DataField="ProductDescription" HeaderText="Category" />
                         <asp:BoundField DataField="ProductCategory" HeaderText="ProductCategory" ControlStyle-CssClass="form-control" />
-                        <asp:BoundField DataField="CQ1" HeaderText="CQ1" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="CQ2" HeaderText="CQ2" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="CQ3" HeaderText="CQ3" ItemStyle-HorizontalAlign="Center" />
-                        <asp:BoundField DataField="CQ4" HeaderText="CQ4" ItemStyle-HorizontalAlign="Center" />
+
 
                         <asp:BoundField DataField="PQ1" HeaderText="PQ1" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="PQ2" HeaderText="PQ2" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="PQ3" HeaderText="PQ3" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="PQ4" HeaderText="PQ4" ItemStyle-HorizontalAlign="Center" />
+
+                        <asp:BoundField DataField="CQ1" HeaderText="CQ1" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CQ2" HeaderText="CQ2" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CQ3" HeaderText="CQ3" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CQ4" HeaderText="CQ4" ItemStyle-HorizontalAlign="Center" />
 
                         <asp:BoundField DataField="M1" HeaderText="M1" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="M2" HeaderText="M2" ItemStyle-HorizontalAlign="Center" />

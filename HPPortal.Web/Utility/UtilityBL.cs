@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -101,6 +102,36 @@ namespace HPPortal.Web
             return GetAll<CheckpointState>();
         }
 
+        public static IDictionary<int, string> FinalColorList()
+        {
+            string[] allColors = Enum.GetNames(typeof(System.Drawing.KnownColor));
+            string[] systemEnvironmentColors =
+                new string[(
+                typeof(System.Drawing.SystemColors)).GetProperties().Length];
+
+            int index = 0;
+
+            foreach (MemberInfo member in (
+                typeof(System.Drawing.SystemColors)).GetProperties())
+            {
+                systemEnvironmentColors[index++] = member.Name;
+            }
+
+            List<string> finalColorList = new List<string>();
+            var dictionary = new Dictionary<int, string>();
+            var count = 0;
+            foreach (string color in allColors)
+            {
+                count++;
+                if (Array.IndexOf(systemEnvironmentColors, color) < 0)
+                {
+                    //  finalColorList.Add(color);
+                    dictionary.Add(count, color);
+                }
+            }
+            return dictionary;
+        }
+
         public enum CheckpointState
         {
             Good = 1,
@@ -140,6 +171,6 @@ namespace HPPortal.Web
            "alert('" + message + "');",
            true);
         }
-        
+
     }
 }

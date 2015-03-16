@@ -8,9 +8,9 @@ namespace HPPortal.Web.Models
     public class SalesViewModel
     {
         public int SaleId { get; set; }
-        public int M1 { get; set; }
-        public int M2 { get; set; }
-        public int M3 { get; set; }
+        public decimal M1 { get; set; }
+        public decimal M2 { get; set; }
+        public decimal M3 { get; set; }
         public int ProductId { get; set; }
         public int PartnerId { get; set; }
         public string QuarterYear { get; set; }
@@ -18,7 +18,7 @@ namespace HPPortal.Web.Models
         public string ProductDescription { get; set; }
         public string ProductCategory { get; set; }
 
-        public int QuarterTotal
+        public decimal QuarterTotal
         {
             get { return M1 + M2 + M3; }
         }
@@ -32,21 +32,21 @@ namespace HPPortal.Web.Models
     {
         public int SaleId { get; set; }
 
-        public int M1 { get; set; }
-        public int M2 { get; set; }
-        public int M3 { get; set; }
+        public decimal M1 { get; set; }
+        public decimal M2 { get; set; }
+        public decimal M3 { get; set; }
 
         // Previous year quater
-        public int PQ1 { get; set; }
-        public int PQ2 { get; set; }
-        public int PQ3 { get; set; }
-        public int PQ4 { get; set; }
+        public decimal PQ1 { get; set; }
+        public decimal PQ2 { get; set; }
+        public decimal PQ3 { get; set; }
+        public decimal PQ4 { get; set; }
 
         // Current year quater
-        public int CQ1 { get; set; }
-        public int CQ2 { get; set; }
-        public int CQ3 { get; set; }
-        public int CQ4 { get; set; }
+        public decimal CQ1 { get; set; }
+        public decimal CQ2 { get; set; }
+        public decimal CQ3 { get; set; }
+        public decimal CQ4 { get; set; }
 
 
         public int ProductId { get; set; }
@@ -56,18 +56,18 @@ namespace HPPortal.Web.Models
         public string ProductDescription { get; set; }
         public string ProductCategory { get; set; }
 
-        public int QuarterTotal
+        public decimal QuarterTotal
         {
             get { return M1 + M2 + M3; }
         }
 
 
-        public int CurrentYearTotal
+        public decimal CurrentYearTotal
         {
             get { return CQ1 + CQ2 + CQ3 + CQ4; }
         }
 
-        public int PreviousYearTotal
+        public decimal PreviousYearTotal
         {
             get { return PQ1 + PQ2 + PQ3 + PQ4; }
         }

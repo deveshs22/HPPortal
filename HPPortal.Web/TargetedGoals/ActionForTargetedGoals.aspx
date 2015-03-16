@@ -125,10 +125,10 @@
                     </EmptyDataTemplate>
                     <Columns>
 
-                        <asp:BoundField runat="server" DataField="GoalName" HeaderText="Goal" />
+                        <asp:BoundField runat="server" HtmlEncode="false" DataField="GoalName" HeaderText="Goal" />
                         <asp:BoundField runat="server" DataField="PreviousQuarter" HeaderText="Where we are" />
                         <asp:BoundField runat="server" DataField="QuarterPlan" HeaderText="Where we want" />
-                        <asp:BoundField runat="server" DataField="ActionRequired" HeaderText="Action Required" />
+                        <asp:BoundField runat="server" HtmlEncode="false" DataField="ActionRequired" HeaderText="Action Required" />
                         <asp:TemplateField>
                             <HeaderTemplate>
                                 <asp:Label runat="server" Text="Assigned User"></asp:Label>

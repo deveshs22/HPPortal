@@ -15,15 +15,15 @@ namespace HPPortal.Web.Models
 
         public string Category { get; set; }
 
-        public int TargetUnit { get; set; }
+        public decimal TargetUnit { get; set; }
 
-        public int TargetAmount { get; set; }
+        public decimal TargetAmount { get; set; }
 
-        public int SalesUnit { get; set; }
+        public decimal SalesUnit { get; set; }
 
-        public int SalesAmount { get; set; }
+        public decimal SalesAmount { get; set; }
 
-        public int AchievedAmount
+        public decimal AchievedAmount
         {
             get
             {
@@ -34,7 +34,7 @@ namespace HPPortal.Web.Models
             }
         }
 
-        public int AchievedUnit
+        public decimal AchievedUnit
         {
             get
             {

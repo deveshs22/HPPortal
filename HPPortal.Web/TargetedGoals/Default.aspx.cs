@@ -45,7 +45,7 @@ namespace HPPortal.Web.TargetedGoals
             txtQuarterPlan.Text = string.Empty;
             txtTargetedGoalName.Text = string.Empty;
             txtTargetedGoal.Text = string.Empty;
-            txtPreviousQuarter.Text = string.Empty;  
+            txtPreviousQuarter.Text = string.Empty;
         }
         #region Placement Grid
 
@@ -54,11 +54,11 @@ namespace HPPortal.Web.TargetedGoals
             var qtr = Quater;
             var partnerId = PartnerId;
             var targetList = new List<PlacementTarget>();
-            var products = _db.PlacementProducts.Where(p=>p.Active).OrderBy(p => p.PlacementProductDescription);
+            var products = _db.PlacementProducts.Where(p => p.Active).OrderBy(p => p.PlacementProductDescription);
 
             foreach (var product in products)
             {
-                var target = _db.PlacementTargets.Include(t=>t.PlacementProduct)
+                var target = _db.PlacementTargets.Include(t => t.PlacementProduct)
                     .FirstOrDefault(t => t.PartnerId == partnerId && t.QuarterYear == qtr && t.PlacementProductId == product.PlacementProductId);
 
                 if (target == null)
@@ -68,7 +68,7 @@ namespace HPPortal.Web.TargetedGoals
                     target.PlacementProductId = product.PlacementProductId;
                 }
                 target.PlacementProductDescription = product.PlacementProductDescription;
-                
+
                 targetList.Add(target);
 
             }
@@ -116,7 +116,7 @@ namespace HPPortal.Web.TargetedGoals
                 if (txtUnits != null)
                     target.Units = Convert.ToInt32(txtUnits.Text);
 
-                
+
                 if (targetId > 0)
                 {
                     target.ModifiedDate = System.DateTime.Now;
@@ -276,8 +276,22 @@ namespace HPPortal.Web.TargetedGoals
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            string path = "TargetedGoals/Default";
-            Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+            String csname1 = "PopupScript";
+            Type cstype = this.GetType();
+
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = Page.ClientScript;
+
+            // Check to see if the startup script is already registered.
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+                // In my experience, the jQuery file must be included at the top
+                // of the page for this to work. Oterwise you get '$ not found' error.
+                StringBuilder cstext1 = new StringBuilder();
+                cstext1.Append("<script type=text/javascript>$(document).ready(function() { $('#modalC').modal('hide')}); </");
+                cstext1.Append("script>");
+                cs.RegisterStartupScript(cstype, csname1, cstext1.ToString());
+            }
         }
 
         protected void btnNavigate_Click(object sender, EventArgs e)
@@ -285,6 +299,33 @@ namespace HPPortal.Web.TargetedGoals
             LinkButton btn = (LinkButton)sender;
             var path = btn.CommandArgument;
             Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
+        }
+
+
+        protected void lnkAddNew_Click(object obj, EventArgs e)
+        {
+            var sender = obj as LinkButton;
+
+            String csname1 = "PopupScript";
+            Type cstype = this.GetType();
+
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = Page.ClientScript;
+
+            // Check to see if the startup script is already registered.
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+                // In my experience, the jQuery file must be included at the top
+                // of the page for this to work. Oterwise you get '$ not found' error.
+                StringBuilder cstext1 = new StringBuilder();
+                cstext1.Append("<script type=text/javascript>$(document).ready(function() { $('#modalC').modal('show')}); </");
+                cstext1.Append("script>");
+                cs.RegisterStartupScript(cstype, csname1, cstext1.ToString());
+            }
+
+            // Fill data
+            GoalId = 0;
+            ClearData();
         }
     }
 }
