@@ -136,12 +136,12 @@ namespace HPPortal.Web
 
                         var saleUnit = partnerData.SelectMany(p => p.Sales.Where(s => s.Product.Type == UtilityBL.ProductType.Unit.ToString()));
                         if (saleUnit.Any())
-                            perfVM.SalesUnit = saleUnit.Sum(s => s.M1 + s.M2 + s.M3);
+                            perfVM.SalesUnit = (int)saleUnit.Sum(s => s.M1 + s.M2 + s.M3);
 
 
                         var taregetUnit = partnerData.SelectMany(p => p.Targets.Where(s => s.Product.Type == UtilityBL.ProductType.Unit.ToString()));
                         if (taregetUnit.Any())
-                            perfVM.TargetUnit = taregetUnit.Sum(s => s.M1 + s.M2 + s.M3);
+                            perfVM.TargetUnit = (int)taregetUnit.Sum(s => s.M1 + s.M2 + s.M3);
 
                         perfVMList.Add(perfVM);
                     }
@@ -204,12 +204,12 @@ namespace HPPortal.Web
 
                         var saleUnit = partnerData.SelectMany(p => p.Sales.Where(s => s.Product.Type == UtilityBL.ProductType.Unit.ToString()));
                         if (saleUnit.Any())
-                            perfVM.SalesUnit = saleUnit.Sum(s => s.M1 + s.M2 + s.M3);
+                            perfVM.SalesUnit = (int)saleUnit.Sum(s => s.M1 + s.M2 + s.M3);
 
 
                         var taregetUnit = partnerData.SelectMany(p => p.Targets.Where(s => s.Product.Type == UtilityBL.ProductType.Unit.ToString()));
                         if (taregetUnit.Any())
-                            perfVM.TargetUnit = taregetUnit.Sum(s => s.M1 + s.M2 + s.M3);
+                            perfVM.TargetUnit = (int)taregetUnit.Sum(s => s.M1 + s.M2 + s.M3);
 
                         perfVMList.Add(perfVM);
                     }

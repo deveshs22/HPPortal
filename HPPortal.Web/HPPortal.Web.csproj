@@ -678,6 +678,8 @@
       <DependentUpon>Insert.aspx</DependentUpon>
     </Compile>
     <Compile Include="PptBuilder\FrontSlide.cs" />
+    <Compile Include="PptBuilder\TargetedGoalSlide.cs" />
+    <Compile Include="PptBuilder\StrategicPlanSlide.cs" />
     <Compile Include="PptBuilder\LandscapeSlide.cs" />
     <Compile Include="PptBuilder\OverviewPlanSlide.cs" />
     <Compile Include="PptBuilder\PartnerSlide.cs" />

@@ -87,7 +87,20 @@ namespace HPPortal.Web
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Partners/Details.aspx?pid=" + Convert.ToString(ddlPartner.SelectedValue) + "&qtr=" + ddlQuarter.SelectedItem.Text);
+            if (ddlPartner.SelectedIndex >= 0 && ddlQuarter.SelectedItem != null)
+            {
+                Response.Redirect("/Partners/Details.aspx?pid=" + Convert.ToString(ddlPartner.SelectedValue) + "&qtr=" + ddlQuarter.SelectedItem.Text);
+            }
+        }
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            if (ddlPartner.SelectedIndex >= 0 && ddlQuarter.SelectedItem != null)
+            {
+                var pptGen = new PptGenerator();
+                pptGen.GeneratePlanPpt(this, Convert.ToInt32(ddlPartner.SelectedValue), ddlQuarter.SelectedItem.Text);
+            }
+
         }
 
         private string Mode

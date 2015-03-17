@@ -20,9 +20,27 @@ namespace HPPortal.Web
         public Dictionary<SlidePart, SlideId> Slides { get; set; }
 
         public void GeneratePlanPpt(System.Web.UI.Page page, int partnerId, string quarterYear)
-        {
+        {     
             var partner = _db.Partners.Find(partnerId);
-            ParseTemplate(partner, quarterYear, page.Server.MapPath("/PptBuilder/Templates/JBPlanTemplate.pptx"), page.Server.MapPath("/PptBuilder/Output/JBPlan.pptx"));
+            var templateFile = page.Server.MapPath("/PptBuilder/Templates/JBPlanTemplate.pptx");
+
+            var partnerName = partner.PartnerName.Length>10 ? partner.PartnerName.Substring(0,10) :  partner.PartnerName;
+
+            var outFileName = string.Format("JBPlan_{0}_{1}.pptx", partnerName, quarterYear);
+            var outFilePath = page.Server.MapPath("/PptBuilder/Output/" + outFileName);
+
+            ParseTemplate(partner, quarterYear, templateFile, outFilePath);
+
+            if (File.Exists(outFilePath))
+            {
+                page.Response.ClearHeaders();
+                page.Response.Clear();
+                page.Response.ContentType = "application/x-mspowerpoint";
+                page.Response.AddHeader("Content-Disposition", "attachment; filename=" + outFileName);
+                page.Response.WriteFile(outFilePath);
+                page.Response.Flush();
+            }
+
         }
         
         public void ParseTemplate(Partner partner, string quarter, string templatePath, string templateOutputPath)
@@ -84,7 +102,18 @@ namespace HPPortal.Web
                                         prepareSlide.Generate(partner, quarter, slide);
                                         break;
                                     }
-
+                                case SlideIndex.StrategicPlan:
+                                    {
+                                        var prepareSlide = new StrategicPlanSlide();
+                                        prepareSlide.Generate(partner, quarter, slide);
+                                        break;
+                                    }
+                                case SlideIndex.TargetedGoal:
+                                    {
+                                        var prepareSlide = new TargetedGoalSlide();
+                                        prepareSlide.Generate(partner, quarter, slide);
+                                        break;
+                                    }
                                 default:
                                     break;
 

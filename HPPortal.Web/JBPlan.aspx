@@ -77,6 +77,9 @@
                 <asp:Button runat="server" ID="btnCreate" Text="Create / Edit Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click" CommandArgument="Create" />
                 &nbsp; &nbsp;
                 <asp:Button runat="server" ID="btnView" Text="View Plan" CssClass="btn btn-primary" OnClick="btnCreate_Click"  CommandArgument="View"/>
+                &nbsp; &nbsp;
+                &nbsp; &nbsp;
+                <asp:Button runat="server" ID="btnDownload" Text="Download Plan PPT" CssClass="btn btn-primary" OnClick="btnDownload_Click"/>
             </div>
 
         </div>

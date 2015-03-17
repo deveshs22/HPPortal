@@ -15,26 +15,26 @@ namespace HPPortal.Web.Models
 
         public string Category { get; set; }
 
-        public decimal TargetUnit { get; set; }
+        public int TargetUnit { get; set; }
 
         public decimal TargetAmount { get; set; }
 
-        public decimal SalesUnit { get; set; }
+        public int SalesUnit { get; set; }
 
         public decimal SalesAmount { get; set; }
 
-        public decimal AchievedAmount
+        public int AchievedAmount
         {
             get
             {
                 if (TargetAmount != 0)
-                    return (SalesAmount * 100) / TargetAmount;
+                    return (int)((SalesAmount * 100) / TargetAmount);
                 else
                     return 0;
             }
         }
 
-        public decimal AchievedUnit
+        public int AchievedUnit
         {
             get
             {

@@ -83,7 +83,7 @@
                                         <asp:DynamicControl runat="server" DataField="SalesUnit" ID="SalesUnit" Mode="ReadOnly" />
                                     </td>
                                     <td>
-                                        <asp:DynamicControl runat="server" DataField="AchievedUnit" ID="AchievedUnit" Mode="ReadOnly" />
+                                        <asp:DynamicControl runat="server" DataField="AchievedUnit" ID="AchievedUnit" Mode="ReadOnly"/>
                                     </td>
                                 </tr>
                             </ItemTemplate>
