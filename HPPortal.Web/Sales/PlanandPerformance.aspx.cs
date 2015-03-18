@@ -43,7 +43,7 @@ namespace HPPortal.Web.Sales
             var SaleVMList = new List<SalesViewModel>();
             var PlanPerformanceVMList = new List<PlanPerformanceViewModel>();
 
-            var products = _db.Products.OrderBy(p=>p.SortOrder);
+            var products = _db.Products.OrderBy(p => p.SortOrder);
 
             foreach (var product in products)
             {
@@ -186,6 +186,27 @@ namespace HPPortal.Web.Sales
             var currentYear = Quater.Split(' ')[1];
             var previousYear = (Convert.ToInt32(currentYear) - 1).ToString();
 
+
+            List<int> indexes = new List<int>();
+
+            if (Quater.Contains("Q1"))
+            {
+                indexes.Add(8);
+                indexes.Add(7);
+                indexes.Add(9);
+            }
+
+            else if (Quater.Contains("Q2"))
+            {
+                indexes.Add(9);
+                indexes.Add(8);
+
+            }
+            else if (Quater.Contains("Q3"))
+            {
+                indexes.Add(9);
+            }
+
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 for (int i = 0; i < e.Row.Cells.Count; i++)
@@ -215,32 +236,18 @@ namespace HPPortal.Web.Sales
                 //e.Row.Cells[13].Text = Utility.QuarterHelper.GetPrevQuarter(Quater).QuarterYear;
                 e.Row.Cells[12].Text = "YoY Growth %";
                 e.Row.Cells[13].Text = "Seg Growth %";
+
+                foreach (int columnIndex in indexes)
+                    if (columnIndex < e.Row.Cells.Count)
+                        e.Row.Cells[columnIndex - 1].Visible = false;
             }
 
-
-            List<int> indexes = new List<int>();
-
-            if (Quater.Contains("Q1"))
+            else
             {
-                indexes.Add(8);
-                indexes.Add(7);
-                indexes.Add(6);
+                foreach (int columnIndex in indexes)
+                    if (columnIndex < e.Row.Cells.Count)
+                        e.Row.Cells[columnIndex].Visible = false;
             }
-
-            else if (Quater.Contains("Q2"))
-            {
-                indexes.Add(8);
-                indexes.Add(7);
-
-            }
-            else if (Quater.Contains("Q3"))
-            {
-                indexes.Add(8);
-            }
-
-            foreach (int columnIndex in indexes)
-                if (columnIndex < e.Row.Cells.Count)
-                    e.Row.Cells[columnIndex].Visible = false;
 
         }
 
