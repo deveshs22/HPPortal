@@ -14,5 +14,7 @@ namespace HPPortal.Web
        public const int StrategicPlan = 4;
        public const int TargetedGoal = 5;
        public const int ActionReqdSlide = 6;
+       public const int PlanPerformanceSlide = 7;
+       public const int OpenHouseSlide = 8;
     }
 }

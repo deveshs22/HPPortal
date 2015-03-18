@@ -120,6 +120,18 @@ namespace HPPortal.Web
                                         prepareSlide.Generate(partner, quarter, slide);
                                         break;
                                     }
+                                case SlideIndex.PlanPerformanceSlide:
+                                    {
+                                        var prepareSlide = new PlanPerformanceSlide();
+                                        prepareSlide.Generate(partner, quarter, slide);
+                                        break;
+                                    }
+                                case SlideIndex.OpenHouseSlide:
+                                    {
+                                        var prepareSlide = new OpenHouseSlide();
+                                        prepareSlide.Generate(partner, quarter, slide);
+                                        break;
+                                    }
                                 default:
                                     break;
                             }
