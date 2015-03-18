@@ -13,5 +13,6 @@ namespace HPPortal.Web
        public const int Landscape = 3;
        public const int StrategicPlan = 4;
        public const int TargetedGoal = 5;
+       public const int ActionReqdSlide = 6;
     }
 }
