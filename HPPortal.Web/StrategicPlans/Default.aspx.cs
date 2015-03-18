@@ -322,6 +322,21 @@ namespace HPPortal.Web.StrategicPlans
             ClearData();
             BindUserTree(PlanId);
         }
+
+        protected void CheckpointState_DataBound(object sender, EventArgs e)
+        {
+            foreach (ListItem item in ddlCheckpointState.Items)
+            {
+                //Do some things to determine the color of the item
+                if (item.Value == "Good")
+                    //Set the item background-color like so:
+                    item.Attributes.Add("style", "background-color:#00FF00");
+                else if (item.Value == "Average")
+                    item.Attributes.Add("style", "background-color:#FFFF00");
+                else if (item.Value == "Bad")
+                    item.Attributes.Add("style", "background-color:#FF0000");
+            }
+        }
     }
 }
 

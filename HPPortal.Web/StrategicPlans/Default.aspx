@@ -243,7 +243,8 @@
                                         DataTextField="Value"
                                         DataValueField="Value"
                                         CssClass="maxWidth form-control"
-                                        AppendDataBoundItems="true"
+                                        AppendDataBoundItems="true"                                        
+                                        OnDataBound="CheckpointState_DataBound"
                                         runat="server">
                                         <asp:ListItem Text="Select An Option" Value=""></asp:ListItem>
                                     </asp:DropDownList>
