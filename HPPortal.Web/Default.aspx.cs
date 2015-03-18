@@ -234,7 +234,7 @@ namespace HPPortal.Web
 
             //this.perfChart.
 
-            ListView1.DataSource = perfVMList;
+            ListView1.DataSource = perfVMList.OrderBy(p=>p.CityDescription);
 
             ListView1.DataBind();
 

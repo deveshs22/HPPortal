@@ -23,11 +23,15 @@ namespace HPPortal.Web
 
                 btnView.Visible = false;
                 btnCreate.Visible = false;
+                btnDownload.Visible = false;
 
                 if (Mode == "edit")
                     btnCreate.Visible = true;
                 else if (Mode == "view")
+                {
                     btnView.Visible = true;
+                    btnDownload.Visible = false;
+                }
 
                 Authenticate();
                 BindQuarter();

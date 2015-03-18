@@ -172,7 +172,7 @@
                                     <label style="width: 90px; color: #428bca; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Updated By</label>:   &nbsp; <%#: Item.User.Name %>
                                     <br />
                                     <label style="width: 90px; color: #428bca; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Updated Date</label>: 
-                                    &nbsp; <%#: Item.LogDate.ToString("dd:MM:yyyy HH:mm") %>
+                                    &nbsp; <%#: Item.LogDate.ToString("dd-MMM-yy HH:mm") %>
                                     <hr style="margin-top: 5px; margin-bottom: 10px;" />
                                 </li>
                             </ItemTemplate>
