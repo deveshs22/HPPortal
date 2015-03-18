@@ -276,6 +276,7 @@ namespace HPPortal.Web.TargetedGoals
                     if (data != null && data.ToList().Exists(i => i.GoalName == item.GoalName))
                     {
                         UtilityBL.Alert("Goal already exists.", this);
+                        gridAction.DataBind();
                         return;
                     }
                     // Save changes

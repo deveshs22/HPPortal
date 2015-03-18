@@ -55,10 +55,10 @@ namespace HPPortal.Web.PptBuilder
 
 
                 var cells = newRow.Descendants<TableCell>().ToList();
-                cells[2].Remove();
+                //cells[2].Remove();
 
                 var newImgCell = PptHelper.CreateDrawingCell(imageRel + imageRelId);
-                newRow.InsertAt(newImgCell, 2);
+                //newRow.InsertAt(newImgCell, 2);
 
                 if (categoryItems.Any(c=>c.Name==item.CategoryName))
                 {

@@ -107,10 +107,10 @@
                             <asp:Label ID="lblM1" runat="server"></asp:Label>
                         </HeaderTemplate>--%>
                             <ItemTemplate>
-                                <asp:TextBox ID="txtM1" runat="server" TextMode="Number" Text='<%# Eval("M1") %>' CssClass="form-control DDTextBox"></asp:TextBox>
+                                <asp:TextBox ID="txtM1" runat="server"  TextMode="Number" Text='<%# Eval("M1") %>' CssClass="form-control DDTextBox"></asp:TextBox>
                                 <asp:HiddenField ID="hdnTargetId" runat="server" Value='<%# Eval("TargetId") %>' />
                             </ItemTemplate>
-                            <ItemStyle Width="100px" />
+                            <ItemStyle Width="110px" />
                         </asp:TemplateField>
 
                         <asp:TemplateField>
@@ -120,7 +120,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="txtM2" runat="server" TextMode="Number" Text='<%# Eval("M2") %>' CssClass="form-control DDTextBox"></asp:TextBox>
                             </ItemTemplate>
-                            <ItemStyle Width="100px" />
+                            <ItemStyle Width="110px" />
                         </asp:TemplateField>
 
                         <asp:TemplateField>
@@ -130,7 +130,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="txtM3" runat="server" TextMode="Number" Text='<%# Eval("M3") %>' CssClass="form-control DDTextBox"></asp:TextBox>
                             </ItemTemplate>
-                            <ItemStyle Width="100px" />
+                            <ItemStyle Width="110px" />
                         </asp:TemplateField>
                         <asp:BoundField DataField="QuarterTotal" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="PrevQtr" ItemStyle-HorizontalAlign="Center" />

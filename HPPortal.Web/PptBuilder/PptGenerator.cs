@@ -114,9 +114,14 @@ namespace HPPortal.Web
                                         prepareSlide.Generate(partner, quarter, slide);
                                         break;
                                     }
+                                case SlideIndex.ActionReqdSlide:
+                                    {
+                                        var prepareSlide = new ActionReqdSlide();
+                                        prepareSlide.Generate(partner, quarter, slide);
+                                        break;
+                                    }
                                 default:
                                     break;
-
                             }
                         }
 
