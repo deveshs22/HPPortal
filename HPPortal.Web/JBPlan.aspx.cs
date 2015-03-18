@@ -30,7 +30,7 @@ namespace HPPortal.Web
                 else if (Mode == "view")
                 {
                     btnView.Visible = true;
-                    btnDownload.Visible = false;
+                    btnDownload.Visible = true;
                 }
 
                 Authenticate();
