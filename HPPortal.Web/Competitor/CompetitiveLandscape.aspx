@@ -91,15 +91,26 @@
         <div class="panel-heading">
             <h3 class="panel-title">Competitive Landscape</h3>
         </div>
-         <div class="panel-body">
+        <div class="panel-body">
 
             <div class="form-horizontal">
-                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="CategoryId" 
+                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="CategoryId"
                     OnDataBound="GridView1_DataBound1" GridLines="None" OnRowCreated="GridView1_RowCreated" CssClass="table table-hover table-striped">
-                    
+
                     <Columns>
                         <asp:BoundField DataField="CategoryName" HeaderText="Category" />
-                        <asp:BoundField DataField="CompetitorName" HeaderText="Competitor Name"/>
+                        <asp:BoundField DataField="CompetitorName" HeaderText="Competitor Name"  />
+                       <%-- <asp:ImageField DataImageUrlField="CompetitorLogo"></asp:ImageField>--%>
+                        <%-- <asp:TemplateField>
+                            <HeaderTemplate>
+                                <asp:Label ID="txt" runat="server" TextMode="Number" Text='Competitor Name'></asp:Label>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="txtShareName" runat="server" TextMode="Number" Text='<%# Eval("CompetitorName") %>' CssClass="form-control DDTextBox"></asp:Label>
+                                <asp:Image ID="imgLogo" runat="server" ImageUrl='<%# Eval("CompetitorLogo") %>' />
+                            </ItemTemplate>
+                            <ItemStyle Width="100px" />
+                        </asp:TemplateField>--%>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:TextBox ID="txtShare" runat="server" TextMode="Number" Text='<%# Eval("Share") %>' CssClass="form-control DDTextBox"></asp:TextBox>
@@ -137,7 +148,7 @@
                             </ItemTemplate>
                             <ItemStyle Width="100px" />
                         </asp:TemplateField>
-                                               
+
                         <asp:TemplateField>
                             <%-- <HeaderTemplate>
                             <asp:Label ID="lblM3" runat="server"></asp:Label>
@@ -152,12 +163,12 @@
                 </asp:GridView>
 
             </div>
-           <div class="form-group">
-                        <div class="col-sm-offset-5 col-sm-7">
-            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
-                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="btnCancel_Click" />
-                            </div>
-               </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-7">
+                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="btnCancel_Click" />
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>

@@ -19,6 +19,6 @@ namespace HPPortal.Web.Models
 
         public string CategoryName { get; set; }
         public string CompetitorName { get; set; }
-
+        public string CompetitorLogo { get; set; }
     }
 }

@@ -61,6 +61,7 @@ namespace HPPortal.Web.Competitor
                     PartnerId = CompetitorsLi.PartnerId,
                     CategoryName = Competitor.CategoryName,
                     CompetitorName = Competitor.CompetitorName,
+                    CompetitorLogo = Competitor.CompetitorLogo,
                     CategoryId = Competitor.CategoryId,
                     QuarterYear = CompetitorsLi.QuarterYear
                 };

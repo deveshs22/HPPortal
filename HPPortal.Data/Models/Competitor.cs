@@ -15,6 +15,7 @@ namespace HPPortal.Data.Models
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string CompetitorName { get; set; }
+        public string CompetitorLogo { get; set; }
         public int SortBy { get; set; }
         public virtual ICollection<CompetitorLandscape> CompetitorLandscape { get; set; }
     }
