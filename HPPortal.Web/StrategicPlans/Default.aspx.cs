@@ -241,28 +241,31 @@ namespace HPPortal.Web.StrategicPlans
 
                     _db.StrategicPlans.Add(item);
                     _db.SaveChanges();
-
-
                 }
 
                 // send mail to assigned user
-
-                var assignedUser = _db.Users.FirstOrDefault(u => u.UserId == item.AssignedUserId);
-                if (assignedUser != null)
+                var assignedUsers = item.Users;
+                if (assignedUsers != null)
                 {
                     var partner = _db.Partners.Find(item.PartnerId);
-                    string emailAddress = assignedUser.EmailId;
-                    string subject = @"[HP JB Portal] Strategic plan assigned.";
-                    string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name, partner.PartnerName, item.QuarterYear);
+                    // send mail to assigned user
+                    foreach (var assignedUser in assignedUsers)
+                    {
+                        var sendEmail = assignedUser.EmailNotification != null ? (bool)assignedUser.EmailNotification : false;
+                        if (sendEmail)
+                        {
+                            string emailAddress = assignedUser.EmailId;
+                            string subject = @"[HP JB Portal] Strategic plan assigned.";
+                            string message = Utility.MailFormat.GetMessage(@"Strategic plan", assignedUser.Name, partner.PartnerName, item.QuarterYear);
 
-                    var client = new MailService.MailServiceSoapClient();
+                            var client = new MailService.MailServiceSoapClient();
 
-                    client.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
-                "", "", subject, message, "", "");
-
-                    Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
+                            client.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
+                        "", "", subject, message, "", "");
+                        }
+                        Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
+                    }
                 }
-
                 string path = "StrategicPlans/Default";
                 Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));
             }

@@ -442,6 +442,7 @@ CREATE TABLE [dbo].[User](
 	[ReportingId] [int] NULL,
 	[Active] [bit] NULL,
 	[Mobile] [varchar](50) NULL,
+	[EmailNotification] [bit] NULL,
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC

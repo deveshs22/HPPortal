@@ -36,6 +36,7 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(t => t.ReportingId).HasColumnName("ReportingId");
             this.Property(t => t.Active).HasColumnName("Active");
             this.Property(t => t.Mobile).HasColumnName("Mobile");
+            this.Property(t => t.EmailNotification).HasColumnName("EmailNotification");
 
             // Relationships
             this.HasRequired(t => t.Role)
