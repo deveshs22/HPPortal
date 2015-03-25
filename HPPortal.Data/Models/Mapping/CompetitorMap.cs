@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
+
 namespace HPPortal.Data.Models.Mapping
 {
     public class CompetitorMap : EntityTypeConfiguration<Competitor>
@@ -16,11 +17,15 @@ namespace HPPortal.Data.Models.Mapping
             this.Property(c => c.CompetitorName)
                 .HasMaxLength(50);
 
+            this.Property(c => c.CompetitorLogo)
+                .HasMaxLength(150);
+
             // Table & Column Mappings
             this.ToTable("Competitor");
             this.Property(c => c.CategoryId).HasColumnName("CategoryId");
             this.Property(c => c.CategoryName).HasColumnName("CategoryName");
             this.Property(c => c.CompetitorName).HasColumnName("CompetitorName");
+            this.Property(c => c.CompetitorLogo).HasColumnName("CompetitorLogo");
             this.Property(c => c.SortBy).HasColumnName("SortBy");
         }
     }

@@ -372,6 +372,7 @@ CREATE TABLE [dbo].[Competitor](
 	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
 	[CategoryName] [varchar](50) NOT NULL,
 	[CompetitorName] [varchar](50) NOT NULL,
+	[CompetitorLogo] [varchar](150) NULL,
 	[SortBy] [int] NULL,
  CONSTRAINT [PK_Competitor] PRIMARY KEY CLUSTERED 
 (
@@ -382,16 +383,16 @@ GO
 SET ANSI_PADDING OFF
 GO
 SET IDENTITY_INSERT [dbo].[Competitor] ON
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (1, N'Computing', N'HP', 1)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (2, N'Computing', N'Acer', 2)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (3, N'Computing', N'Lenovo', 3)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (4, N'Computing', N'Samsung', 4)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (5, N'Computing', N'Sony', 5)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (6, N'Computing', N'Dell', 6)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (7, N'Printing', N'HP', 1)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (8, N'Printing', N'Canon', 2)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (9, N'Printing', N'Intex', 3)
-INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [SortBy]) VALUES (10, N'Printing', N'Lenovo', 4)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (1, N'Computing', N'HP', N'/Content/images/hp.gif', 1)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (2, N'Computing', N'Acer', N'/Content/images/hp.gif', 2)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (3, N'Computing', N'Lenovo', N'/Content/images/hp.gif', 3)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (4, N'Computing', N'Samsung', N'/Content/images/hp.gif', 4)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (5, N'Computing', N'Sony', N'/Content/images/hp.gif', 5)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (6, N'Computing', N'Dell', N'/Content/images/hp.gif', 6)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (7, N'Printing', N'HP', N'/Content/images/hp.gif', 1)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (8, N'Printing', N'Canon', N'/Content/images/hp.gif', 2)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (9, N'Printing', N'Intex', N'/Content/images/hp.gif', 3)
+INSERT [dbo].[Competitor] ([CategoryId], [CategoryName], [CompetitorName], [CompetitorLogo], [SortBy]) VALUES (10, N'Printing', N'Lenovo', N'/Content/images/hp.gif', 4)
 SET IDENTITY_INSERT [dbo].[Competitor] OFF
 /****** Object:  Table [dbo].[City]    Script Date: 03/09/2015 18:18:18 ******/
 SET ANSI_NULLS ON
@@ -442,6 +443,7 @@ CREATE TABLE [dbo].[User](
 	[ReportingId] [int] NULL,
 	[Active] [bit] NULL,
 	[Mobile] [varchar](50) NULL,
+	[EmailNotification] [bit] NULL,
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC

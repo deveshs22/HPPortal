@@ -27,6 +27,7 @@ namespace HPPortal.Data.Models
         public Nullable<int> ReportingId { get; set; }
         public Nullable<bool> Active { get; set; }
         public string Mobile { get; set; }
+        public Nullable<bool> EmailNotification { get; set; }
         public virtual ICollection<Partner> Partners { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<User> User1 { get; set; }

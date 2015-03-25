@@ -295,14 +295,17 @@ namespace HPPortal.Web.TargetedGoals
                     var partner = _db.Partners.Find(item.PartnerId);
                     foreach (var assignedUser in assignedUsers)
                     {
-                        string emailAddress = assignedUser.EmailId;
-                        string subject = @"HPJB Portal Targeted goal assigned.";
-                        string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name, partner.PartnerName, item.QuarterYear);
+                         var sendEmail = assignedUser.EmailNotification != null ? (bool)assignedUser.EmailNotification : false;
+                         if (sendEmail)
+                         {
+                             string emailAddress = assignedUser.EmailId;
+                             string subject = @"HPJB Portal Targeted goal assigned.";
+                             string message = Utility.MailFormat.GetMessage(@"Targeted goal", assignedUser.Name, partner.PartnerName, item.QuarterYear);
 
-                        var client = new MailService.MailServiceSoapClient();
-                        client.SendMailMessagesAsync(ConfigurationManager.AppSettings["From"], emailAddress,
-                   "", "", subject, message, "", "");
-
+                             var client = new MailService.MailServiceSoapClient();
+                             client.SendMailMessagesAsync(ConfigurationManager.AppSettings["From"], emailAddress,
+                        "", "", subject, message, "", "");
+                         }
                         Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
                     }
                 }
