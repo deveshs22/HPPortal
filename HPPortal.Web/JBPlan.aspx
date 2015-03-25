@@ -6,12 +6,14 @@
     </div>
     <div class="row form-horizontal">
 
-        <br />
+        
         
         
          <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1"><ProgressTemplate>
+             <div style="height:30px">&nbsp;
              <div class="alert alert-warning" role="alert">
-                    <p>Loading Quarters...</p>
+                    Loading Quarters... 
+                 </div>
                  </div>
              </ProgressTemplate></asp:UpdateProgress>
             
