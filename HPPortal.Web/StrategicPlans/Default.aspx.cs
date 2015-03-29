@@ -251,7 +251,7 @@ namespace HPPortal.Web.StrategicPlans
                     // send mail to assigned user
                     foreach (var assignedUser in assignedUsers)
                     {
-                        var sendEmail = assignedUser.EmailNotification != null ? (bool)assignedUser.EmailNotification : false;
+                        var sendEmail = assignedUser.EmailNotification != null ? (bool)assignedUser.EmailNotification : true;
                         if (sendEmail)
                         {
                             string emailAddress = assignedUser.EmailId;
@@ -262,9 +262,10 @@ namespace HPPortal.Web.StrategicPlans
 
                             client.SendMailMessages(ConfigurationManager.AppSettings["From"], emailAddress,
                         "", "", subject, message, "", "");
+
+                            Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
                         }
-                        Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
-                    }
+                    }                    
                 }
                 string path = "StrategicPlans/Default";
                 Response.Redirect(string.Format("/{0}?pid={1}&qtr={2}", path, PartnerId, Quater));

@@ -12,6 +12,11 @@ namespace HPPortal.Web.Models
         public string Quarter { get; set; }
         public string TaskModule { get; set; }
         public string Url { get; set; }
+        public string TaskDetail { get; set; }
+        public string City { get; set; }
+        public string Category { get; set; }
+        public string UserName { get; set; }
+
        
     }
 }

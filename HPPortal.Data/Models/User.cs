@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace HPPortal.Data.Models
 {
     [Serializable]
+    [DisplayColumn("Name","Name", false)]
     public partial class User
     {
         public User()

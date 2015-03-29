@@ -229,8 +229,11 @@
     <Content Include="Content\HPSimplified\HPSimplified_Rg.ttf" />
     <Content Include="PptBuilder\Templates\JBPlanTemplate.pptx" />
     <None Include="Properties\PublishProfiles\hpjbplans.com.pubxml" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\New hp ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Reports\JBPlanStatus.aspx" />
+    <Content Include="Reports\TaskRegister.aspx" />
     <Content Include="Reports\Partner.aspx" />
     <Content Include="Sales\Default.aspx" />
     <Content Include="Sales\PlanandPerformance.aspx" />
@@ -699,6 +702,13 @@
     </Compile>
     <Compile Include="Reports\JBPlanStatus.aspx.designer.cs">
       <DependentUpon>JBPlanStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\TaskRegister.aspx.cs">
+      <DependentUpon>TaskRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\TaskRegister.aspx.designer.cs">
+      <DependentUpon>TaskRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Partner.aspx.cs">
       <DependentUpon>Partner.aspx</DependentUpon>

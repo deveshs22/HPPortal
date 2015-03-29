@@ -63,6 +63,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="/Reports/Partner">Partner</a></li>
                     <li><a href="/Reports/JBPlanStatus">JBPlan Status</a></li>
+                    <li><a href="/Reports/TaskRegister">Task Register</a></li>
                     
                 </ul>
             </li>

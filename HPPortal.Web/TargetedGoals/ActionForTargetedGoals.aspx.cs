@@ -295,7 +295,7 @@ namespace HPPortal.Web.TargetedGoals
                     var partner = _db.Partners.Find(item.PartnerId);
                     foreach (var assignedUser in assignedUsers)
                     {
-                         var sendEmail = assignedUser.EmailNotification != null ? (bool)assignedUser.EmailNotification : false;
+                         var sendEmail = assignedUser.EmailNotification != null ? (bool)assignedUser.EmailNotification : true;
                          if (sendEmail)
                          {
                              string emailAddress = assignedUser.EmailId;
@@ -305,8 +305,9 @@ namespace HPPortal.Web.TargetedGoals
                              var client = new MailService.MailServiceSoapClient();
                              client.SendMailMessagesAsync(ConfigurationManager.AppSettings["From"], emailAddress,
                         "", "", subject, message, "", "");
+
+                             Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
                          }
-                        Utility.MailFormat.SendSMS(assignedUser.Mobile, assignedUser.Name, partner.PartnerName);
                     }
                 }
 

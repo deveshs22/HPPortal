@@ -48,6 +48,7 @@ namespace HPPortal.Data.Models.Mapping
 
             this.HasMany(t => t.Cities);
             this.HasMany(p => p.PartnerCategorys);
+
         }
     }
 }

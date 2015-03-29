@@ -1,4 +1,4 @@
-﻿<%@ Page Title="PartnerList" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="JBPlanStatus.aspx.cs" Inherits="HPPortal.Web.Reports.JBPlanStatus" %>
+﻿<%@ Page Title="JBPlan Status" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="JBPlanStatus.aspx.cs" Inherits="HPPortal.Web.Reports.JBPlanStatus" %>
 
 <%@ Register TagPrefix="FriendlyUrls" Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">

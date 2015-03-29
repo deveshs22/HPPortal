@@ -15,7 +15,6 @@ namespace HPPortal.Web.Partners
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         // This is the Insert method to insert the entered Partner item

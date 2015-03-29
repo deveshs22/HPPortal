@@ -2,7 +2,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <div>
 		<p>&nbsp;</p>
-        <asp:FormView runat="server"
+        <asp:FormView runat="server" ID="FormView1"
             ItemType="HPPortal.Data.Models.Partner" DefaultMode="Insert"
             InsertItemPosition="FirstItem" InsertMethod="InsertItem"
             OnItemCommand="ItemCommand" RenderOuterTable="false">
@@ -32,7 +32,7 @@
 								DataTypeName="HPPortal.Data.Models.User" 
 								DataTextField="Name" 
 								DataValueField="UserId" 
-								UIHint="ForeignKey" runat="server" />
+								UIHint="ForeignKey" runat="server" id="ddlAssociatedUser"/>
 
 						    <asp:DynamicControl Mode="Insert" DataField="FrequencyOfEngagement" runat="server" />
 						    <asp:DynamicControl Mode="Insert" DataField="RelationshipStatus" runat="server" />

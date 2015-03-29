@@ -165,7 +165,7 @@ namespace HPPortal.Web.Users
         {
             var cities = GetSelectedCities();
 
-            var roles = _db.Users.ToList();
+            var roles = _db.Users.OrderBy(u=>u.Name).ToList();
             if (!IsNew)
             {
                 var role = roles.FirstOrDefault(r => r.UserId == User.UserId);
