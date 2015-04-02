@@ -35,7 +35,7 @@ namespace HPPortal.Web
 
             var partners = userData.Cities.SelectMany(c => c.Partners).Where(p => partnerCategoriesId.Contains(p.PartnerCategoryId)).ToList();
             var partnerIds = partners.Select(p => p.PartnerId);
-            var list = _db.ActivityLogs.Where(a => partnerIds.Contains(a.PartnerId)).OrderByDescending(a => a.LogId).Take(200);
+            var list = _db.ActivityLogs.Where(a => partnerIds.Contains(a.PartnerId) && a.Module !="Login").OrderByDescending(a => a.LogId).Take(200);
             var activityList = list.GroupBy(a => a.PartnerId).Select(a => a.FirstOrDefault()).Distinct().ToList();
 
             listActivityLog.Items.Clear();

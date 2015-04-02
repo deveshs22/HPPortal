@@ -164,13 +164,13 @@ namespace HPPortal.Web.Targets
                 if (targetId > 0)
                 {
                     target.ModifiedDate = System.DateTime.Now;
-                    target.ModifiedUser = SessionData.Current.UserId;
+                    target.ModifiedUser = UserId;
                     _db.Entry<Target>(target).State = EntityState.Modified;
                 }
                 else
                 {
                     target.CreatedDate = System.DateTime.Now;
-                    target.CreatedUser = SessionData.Current.UserId;
+                    target.CreatedUser = UserId;
                     _db.Targets.Add(target);
                 }
 
@@ -221,11 +221,11 @@ namespace HPPortal.Web.Targets
         {
             get
             {
-                return (int)ViewState["Quarter"];
+                return (int)ViewState["UserId"];
             }
             set
             {
-                ViewState["Quarter"] = value;
+                ViewState["UserId"] = value;
             }
         }
 

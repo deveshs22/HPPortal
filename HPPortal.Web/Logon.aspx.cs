@@ -67,6 +67,19 @@ namespace HPPortal.Web
                     if (Request.QueryString["ReturnUrl"] == null)
                         returnUrl = "/Default.aspx";
 
+
+                    var log = new ActivityLog
+                    {
+                        Module="Login",
+                        LogDate= DateTime.Now,
+                        UserId= user.UserId,
+                        PartnerId=1
+                    
+                    };
+
+                    _db.ActivityLogs.Add(log);
+                    _db.SaveChanges();
+
                     Response.Redirect(returnUrl);
 
                 }

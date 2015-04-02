@@ -20,7 +20,7 @@ namespace HPPortal.Web
             if (!IsPostBack)
             {
                 Mode = Convert.ToString(Request.QueryString["m"]);
-
+                
                 btnView.Visible = false;
                 btnCreate.Visible = false;
                 btnDownload.Visible = false;
@@ -35,6 +35,7 @@ namespace HPPortal.Web
 
                 Authenticate();
                 BindQuarter();
+                UserId = SessionData.Current.UserId;
             }
         }
 
@@ -93,6 +94,19 @@ namespace HPPortal.Web
         {
             if (ddlPartner.SelectedIndex >= 0 && ddlQuarter.SelectedItem != null)
             {
+                var mode = (Mode == "edit" ? "Entry" : "View");
+                
+                var log = new ActivityLog
+                {
+                    Module = "JB Plan " + mode ,
+                    LogDate = DateTime.Now,
+                    UserId = UserId,
+                    PartnerId = Convert.ToInt32(ddlPartner.SelectedValue),
+                    QuarterYear = ddlQuarter.SelectedItem.Text
+                };
+                _db.ActivityLogs.Add(log);
+                _db.SaveChanges();
+
                 Response.Redirect("/Partners/Details.aspx?pid=" + Convert.ToString(ddlPartner.SelectedValue) + "&qtr=" + ddlQuarter.SelectedItem.Text);
             }
         }
@@ -116,6 +130,18 @@ namespace HPPortal.Web
             set
             {
                 ViewState["Mode"] = value;
+            }
+        }
+
+        private int UserId
+        {
+            get
+            {
+                return (int)ViewState["UserId"];
+            }
+            set
+            {
+                ViewState["UserId"] = value;
             }
         }
 
